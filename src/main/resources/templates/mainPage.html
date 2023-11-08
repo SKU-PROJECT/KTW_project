@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>MainPage</title>
+  <link th:href="@{/css/main.css}" rel="stylesheet">
+</head>
+
+<body>
+<header>
+  <img class="logo" th:src="@{/images/Logo.png}" alt="Logo Image"/>
+  <nav>
+    <ul>
+      <li class="main_list"><input type="text"><button>검색</button></li>
+      <li class="main_list"><a class="main" href="/">여행지 소개</a></li>
+      <li class="main_list"><a class="main" href="/">여행 정보</a></li>
+      <li class="main_list"><a class="main" href="/boards">게시판</a></li>
+      <li class="main_list"><a class="main" href="/">로그인</a></li>
+      <li class="main_list"><a class="main" href="/">회원가입</a></li>
+    </ul>
+  </nav>
+  <hr>
+</header>
+
+<div class="sub_div1">
+  <p class="p_main">이달의 추천 여행지</p>
+</div>
+<div class="main_div">
+  <img class="image1"
+       th:src="@{https://www.visakorea.com/content/dam/VCOM/regional/ap/southkorea/travelwithvisa/marquee-travel-with-visa-1920x720.jpg}">
+  <p class="p_title">Kick The World</p>
+</div>
+
+<div class="sub_div2">
+  <p class="p_main">추천 여행 코스</p>
+</div>
+
+</body>
+
+</html>
