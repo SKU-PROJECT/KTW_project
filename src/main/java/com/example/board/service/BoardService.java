@@ -15,7 +15,6 @@ import java.util.List;
 public class BoardService {
 
     private final BoardRepository boardRepository;
-
     public Board save(AddBoardRequest request) {
         return boardRepository.save(request.toEntity());
     }

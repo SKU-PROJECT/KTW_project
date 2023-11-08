@@ -9,7 +9,6 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Getter
 public class BoardViewResponse {
-
     private Long id;
     private String title;
     private String content;

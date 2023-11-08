@@ -16,7 +16,6 @@ import java.util.List;
 @RequiredArgsConstructor
 @Controller
 public class BoardViewController {
-
     private final BoardService boardService;
 
     @GetMapping("/boards")

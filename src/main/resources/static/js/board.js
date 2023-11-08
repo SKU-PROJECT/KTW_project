@@ -13,7 +13,6 @@ if (deleteButton) {
             });
     });
 }
-
 // 수정 기능
 const modifyButton = document.getElementById('modify-btn');
 

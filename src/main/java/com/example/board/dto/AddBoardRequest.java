@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 @Getter
 public class AddBoardRequest {
     private String title;
-
     private String content;
 
     public Board toEntity() {

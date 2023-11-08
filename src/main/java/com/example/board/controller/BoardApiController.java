@@ -25,7 +25,6 @@ public class BoardApiController {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(savedBoard);
     }
-
     @GetMapping("/api/boards")
     public ResponseEntity<List<BoardResponse>> findAllBoards() {
         List<BoardResponse> boards = boardService.findAll()
@@ -51,7 +50,6 @@ public class BoardApiController {
         return ResponseEntity.ok()
                 .build();
     }
-
     @PutMapping("/api/boards/{id}")
     public ResponseEntity<Board> updateBoard(@PathVariable long id,
                                                @RequestBody UpdateBoardRequest request) {
