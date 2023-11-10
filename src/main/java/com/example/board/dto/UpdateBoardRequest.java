@@ -10,5 +10,7 @@ import lombok.NoArgsConstructor;
 public class UpdateBoardRequest {
     private String title;
     private String content;
+    private String mem_id;
+    private String board_category;
 
 }

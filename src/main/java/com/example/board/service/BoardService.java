@@ -16,10 +16,12 @@ public class BoardService {
 
     private final BoardRepository boardRepository;
     public Board save(AddBoardRequest request) {
+
         return boardRepository.save(request.toEntity());
     }
 
     public List<Board> findAll() {
+
         return boardRepository.findAll();
     }
 
@@ -29,6 +31,7 @@ public class BoardService {
     }
 
     public void delete(long id) {
+
         boardRepository.deleteById(id);
     }
 
@@ -37,7 +40,7 @@ public class BoardService {
         Board board = boardRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("not found : " + id));
 
-        board.update(request.getTitle(), request.getContent());
+        board.update(request.getTitle(), request.getContent(), request.getMem_id(), request.getBoard_category());
 
         return board;
     }
