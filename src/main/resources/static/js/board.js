@@ -28,7 +28,9 @@ if (modifyButton) {
             },
             body: JSON.stringify({
                 title: document.getElementById('title').value,
-                content: document.getElementById('content').value
+                content: document.getElementById('content').value,
+                mem_id:document.getElementById('mem_id').value,
+                board_category:document.getElementById('board_category').value
             })
         })
             .then(() => {
@@ -50,7 +52,9 @@ if (createButton) {
             },
             body: JSON.stringify({
                 title: document.getElementById('title').value,
-                content: document.getElementById('content').value
+                content: document.getElementById('content').value,
+                mem_id:document.getElementById('mem_id').value,
+                board_category:document.getElementById('board_category').value
             })
         })
             .then(() => {

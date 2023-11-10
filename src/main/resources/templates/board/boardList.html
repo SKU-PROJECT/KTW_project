@@ -22,15 +22,16 @@
 <div class="total_container">
 <div class="search-container">
     <ul>
-        <li class="sub_list"><a href="/boards">전체</a></li>
-        <li class="sub_list"><a href="/">자유게시판</a></li>
-        <li class="sub_list"><a href="/">여행후기게시판</a></li>
-        <li class="sub_list"><a href="/">여행동행모집</a></li>
-        <li class="sub_list"><a href="/">기타</a></li>
+        <li class="sub_list"><a className="main" href="/boards">전체</a></li>
+        <li class="sub_list"><a className="main" href="/">자유게시판</a></li>
+        <li class="sub_list"><a className="main" href="/">여행후기게시판</a></li>
+        <li class="sub_list"><a className="main" href="/">여행동행모집</a></li>
+        <li class="sub_list"><a className="main" href="/">기타</a></li>
     </ul>
    </div>
 <div class="search-container">
-    <input type="text" classname="search" value="" > <button type="submit"> 검색</button>
+    <input type="text" classname="search" placeholder="제목 검색" value="" >
+    <button className="btn" type="submit"> 검색</button>
 </div>
 
 <div class="board-wrapper">
@@ -40,6 +41,7 @@
             <tr>
                 <th>글 번호</th>
                 <th>제목</th>
+                <th>작성자</th>
                 <th>카테고리</th>
             </tr>
             </thead>
@@ -47,7 +49,8 @@
             <tr th:each="board : ${boards}">
                 <td th:text="${board.id}"></td>
                 <td><a th:text="${board.title}" th:href="@{/boards/{id}(id=${board.id})}"></a></td>
-
+                <td th:text="${board.mem_id}"></td>
+                <td th:text="${board.board_category}"></td>
             </tr>
             </tbody>
         </table>

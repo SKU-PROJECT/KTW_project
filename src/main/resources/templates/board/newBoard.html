@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>게시글 등록</title>
+    <link th:href="@{/css/board.css}" rel="stylesheet">
+    </head>
+<body>
+<header>
+    <img class="logo" th:src="@{/images/Logo.png}" alt="Logo Image"/>
+    <nav>
+        <ul>
+            <li class="main_list"><input type="text"><button>검색</button></li>
+            <li class="main_list"><a href="/static">여행지 소개</a></li>
+            <li class="main_list"><a href="/static">여행 정보</a></li>
+            <li class="main_list"><a href="/boards">게시판</a></li>
+            <li class="main_list"><a href="/static">로그인</a></li>
+            <li class="main_list"><a href="/static">회원가입</a></li>
+        </ul>
+    </nav><hr>
+</header>
+<h2>Add Post</h2>
+        <div>
+                <input type="hidden" id="board-id" th:value="${board.id}">
+                    <input type="text" class="form-control" placeholder="제목" id="title" th:value="${board.title}"><br>
+                    <input type="text" class="form-control" placeholder="작성자" id="mem_id" th:value="${board.mem_id}"><br>
+                    <input type="text" class="form-control" placeholder="카테고리" id="board_category" th:value="${board.board_category}"><br>
+                    <textarea class="form-control h-25" rows="10" placeholder="내용" id="content" th:text="${board.content}"></textarea>
+             </div>
+<div>
+                <button th:if="${board.id} != null" type="button" id="modify-btn" >수정</button>
+                <button th:if="${board.id} == null" type="button" id="create-btn" >등록</button>
+        </div>
+
+<script src="/js/board.js"></script>
+</body>

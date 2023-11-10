@@ -12,18 +12,19 @@ header {
 .logo {
     width: 120px;
     height: 120px;
-    margin-left: 30px;
+    margin-left: 60px;
 }
-
 h1 {
     display: inline-block;
 }
-
 nav {
     display: inline-block;
     float: right;
 }
-
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
 .main_list {
     font-family: 'Pretendard-Regular';
     font-weight:bold;
@@ -41,31 +42,45 @@ nav {
     color: black;
 }
 
-.main_div {
-    font-family: 'Pretendard-Regular';
-    font-size: 45px;
-
+.sidebar {
+    height: 100%;
+    width: 200px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: #111;
+    padding-top: 20px;
 }
 
-.image1 {
-    width: 1024px;
-    height: 500px;
-    margin: auto;
-    display: block;
-    justify-content: center;
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
 }
 
-.p_title {
-    font-family: 'Pretendard-Regular';
+.sidebar ul li {
+    padding: 8px 16px;
     text-align: center;
-    color: white;
-    margin-top: 100px;
-
 }
 
-.p_main {
-    font-family: 'Pretendard-Regular';
-    text-align: center;
-    font-size: 30px;
+.sidebar ul li a {
+    text-decoration: none;
+    color: #ffffff;
+}
 
+.sidebar ul li:hover {
+    background-color: #555;
+}
+
+.content {
+    margin-left: 220px;
+    padding: 20px;
+}
+
+/* Optional: Add styles for better appearance */
+.sidebar {
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+}
+
+.sidebar ul li:hover a {
+    color: #ffd700; /* Change text color on hover */
 }
