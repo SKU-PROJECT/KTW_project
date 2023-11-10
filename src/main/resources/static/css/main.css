@@ -26,10 +26,11 @@ nav {
 
 .main_list {
     font-family: 'Pretendard-Regular';
+    font-weight:bold;
     float: left;
     list-style-type: none;
     padding: 25px;
-    font-size: 23px;
+    font-size: 20px;
     margin-left: auto;
     margin-right: auto;
     text-align: right;
