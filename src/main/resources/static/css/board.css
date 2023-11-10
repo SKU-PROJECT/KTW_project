@@ -42,7 +42,7 @@ nav {
     float: left;
     list-style-type: none;
     padding: 25px;
-    font-size: 16px;
+    font-size: 18px;
     margin-left: auto;
     margin-right: auto;
     text-align: center;
@@ -75,6 +75,27 @@ a {
     font-family: 'Pretendard-Regular';
     text-align: center;
 }
+input {
+    font-family: 'Pretendard-Regular';
+    font-size: 15px;
+    width: 300px;
+    padding: 3px;
+    margin:10px;
+}
+.main:hover {
+    color: blue;
+}
+button {
+    font-family: 'Pretendard-Regular';
+    font-size: 15px;
+    font-weight:bold;
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid #161616;
+    padding:10px;
+    margin:5px;
+
+}
 
 .table_board {
     font-family : 'Pretendard-Regular';
@@ -84,7 +105,14 @@ a {
     border-spacing: 2px;
     padding:20px;
 }
-
+.detail {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    margin-left: auto;
+    margin-right:auto;
+}
 
 th {
     background-color: rgb(5, 8, 37);
@@ -94,10 +122,9 @@ th {
     font-size: 18px;
 }
 tr,td {
-    padding: 10px;
-    margin:15px;
+    padding: 16px;
+    margin:20px;
     border-bottom : 1px solid #949494;
-
 }
 tr:hover {
     background-color: rgba(0, 0, 0, 0.26);
@@ -106,5 +133,9 @@ tr:hover {
     padding: 20px;
     justify-content: center;
     text-align: center;
+}
+#modify-btn,
+#delete-btn {
+    margin-left: auto;
 }
 

@@ -21,33 +21,27 @@
 </header>
 <div class="search-container">
     <ul>
-        <li class="sub_list"><a href="/">전체</a></li>
+        <li class="sub_list"><a href="/boards">전체</a></li>
         <li class="sub_list"><a href="/">자유게시판</a></li>
         <li class="sub_list"><a href="/">여행후기게시판</a></li>
         <li class="sub_list"><a href="/">여행동행모집</a></li>
         <li class="sub_list"><a href="/">기타</a></li>
     </ul>
 </div>
-<div class="search-container">
-    <input type="text" classname="search" value="" > <button type="submit"> 검색</button>
-</div>
         <div>
-            <board>
                 <input type="hidden" id="board-id" th:value="${board.id}">
-                <header>
+                <div className="detail">
                     <h1 th:text="${board.title}"></h1>
-                    <div th:text="|Posted on ${#temporals.format(board.createdAt, 'yyyy-MM-dd HH:mm')}|"></div>
-                </header>
-                <section >
                     <p th:text="${board.content}"></p>
-                </section>
+                    <p th:text="${board.mem_id}"></p>
+                    <p th:text="${board.createdAt}"></p>
+                    <p th:text="${board.board_category}"></p>
+                </div>
+            <div>
                 <button type="button" id="modify-btn"
-                        th:onclick="|location.href='@{/new-board?id={boardId}(boardId=${board.id})}'|"
-                        >수정</button>
-                <button type="button" id="delete-btn"
-                        >삭제</button>
-            </board>
-        </div>
+                        th:onclick="|location.href='@{/new-board?id={boardId}(boardId=${board.id})}'|">수정</button>
+                <button type="button" id="delete-btn">삭제</button>
+            </div>
     </div>
 
 <script src="/js/board.js"></script>
