@@ -1,0 +1,86 @@
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+header {
+    width: 100%;
+    top: 0;
+}
+.logo {
+    width: 120px;
+    height: 120px;
+    margin-left: 60px;
+}
+h1 {
+    display: inline-block;
+}
+nav {
+    display: inline-block;
+    float: right;
+}
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+.main_list {
+    font-family: 'Pretendard-Regular';
+    font-weight:bold;
+    float: left;
+    list-style-type: none;
+    padding: 25px;
+    font-size: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: right;
+}
+
+.main {
+    text-decoration: none;
+    color: black;
+}
+
+.sidebar {
+    height: 100%;
+    width: 200px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: #111;
+    padding-top: 20px;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    padding: 8px 16px;
+    text-align: center;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.sidebar ul li:hover {
+    background-color: #555;
+}
+
+.content {
+    margin-left: 220px;
+    padding: 20px;
+}
+
+/* Optional: Add styles for better appearance */
+.sidebar {
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+}
+
+.sidebar ul li:hover a {
+    color: #ffd700; /* Change text color on hover */
+}
