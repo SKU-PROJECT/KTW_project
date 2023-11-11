@@ -27,7 +27,8 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-devtools'
     //    runtimeOnly 'com.h2database:h2' // H2
     //    runtimeOnly 'com.microsoft.sqlserver:mssql-jdbc' // MSSQL
-    runtimeOnly 'mysql:mysql-connector-java:8.0.32' // MYSQL
+    //runtimeOnly 'mysql:mysql-connector-java:8.0.32' // MYSQL
+    runtimeOnly 'org.mariadb.jdbc:mariadb-java-client:2.7.4'
 
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
