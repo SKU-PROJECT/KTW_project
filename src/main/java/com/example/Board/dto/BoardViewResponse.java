@@ -1,10 +1,9 @@
-package com.example.board.dto;
+package com.example.Board.dto;
 
-import com.example.board.domain.Board;
+import com.example.Board.entity.Board;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
 import java.util.Date;
 
 @NoArgsConstructor
@@ -13,7 +12,6 @@ public class BoardViewResponse {
     private Long id;
     private String title;
     private String content;
-
     private String mem_id;
     private String board_category;
     private Date createdAt;

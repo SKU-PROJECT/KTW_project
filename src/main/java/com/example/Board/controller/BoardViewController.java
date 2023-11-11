@@ -1,15 +1,15 @@
-package com.example.board.controller;
+package com.example.Board.controller;
 
-import com.example.board.domain.Board;
-import com.example.board.dto.BoardListViewResponse;
-import com.example.board.dto.BoardViewResponse;
-import com.example.board.service.BoardService;
+import com.example.Board.entity.Board;
+import com.example.Board.dto.BoardViewResponse;
+import com.example.Board.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -20,9 +20,9 @@ public class BoardViewController {
 
     @GetMapping("/boards")
     public String getBoards(Model model) {
-        List<BoardListViewResponse> boards = boardService.findAll()
+        List<BoardViewResponse> boards = boardService.findAll()
                 .stream()
-                .map(BoardListViewResponse::new)
+                .map(BoardViewResponse::new)
                 .toList();
         model.addAttribute("boards", boards);
 
