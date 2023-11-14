@@ -19,6 +19,7 @@
         </ul>
     </nav><hr>
 </header>
+
 <div class="total_container">
 <div class="search-container">
     <ul>
@@ -29,9 +30,10 @@
         <li class="sub_list"><a className="main" href="/">기타</a></li>
     </ul>
    </div>
+
 <div class="search-container">
-    <input type="text" classname="search" placeholder="제목 검색" value="" >
-    <button className="btn" type="submit"> 검색</button>
+        <input type="text" name="title" placeholder="검색">
+        <button type="submit">Search</button>
 </div>
 
 <div class="board-wrapper">
@@ -56,6 +58,7 @@
         </table>
     </div>
 </div>
+
 <div class="button">
     <button type="button" id="create-btn" th:onclick="|location.href='@{/new-board}'|">글 등록</button>
 </div>
