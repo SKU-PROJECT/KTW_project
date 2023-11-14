@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Add stay</title>
+</head>
+<body>
+
+<h2>Add stay</h2>
+
+<form th:object="${stay}" th:action="@{/stays/create}" method="post">
+
+  <label>숙소명: <input type="text" th:field="*{name}" /></label><br/>
+  <label>카테고리: <input type="text" th:field="*{category}" /></label><br/>
+  <label>숙소 금액: <input type="text" th:field="*{price}" /></label><br/>
+  <label>주소: <input type="text" th:field="*{address}" /></label><br/>
+  <label>서비스: <input type="text" th:field="*{service}" /></label><br/>
+  <label>이용안내: <input type="text" th:field="*{useGuide}" /></label><br/>
+
+  <button type="submit">숙소 등록</button>
+</form>
+
+</body>
+</html>
