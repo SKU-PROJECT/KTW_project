@@ -23,15 +23,22 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-webflux'
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'org.springframework.boot:spring-boot-devtools'
-    //    runtimeOnly 'com.h2database:h2' // H2
-    //    runtimeOnly 'com.microsoft.sqlserver:mssql-jdbc' // MSSQL
-    runtimeOnly 'mysql:mysql-connector-java:8.0.32' // MYSQL
+    implementation 'org.apache.commons:commons-lang3:3.12.0'
 
-    compileOnly 'org.projectlombok:lombok'
+    runtimeOnly 'org.mariadb.jdbc:mariadb-java-client:2.7.4' // mariaDB
+
+    compileOnly 'org.projectlombok:lombok' //lombok
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    // JSON
+    implementation 'com.googlecode.json-simple:json-simple:1.1.1'
+
+    // File
+    implementation 'commons-io:commons-io:2.7'
 }
 
 tasks.named('test') {

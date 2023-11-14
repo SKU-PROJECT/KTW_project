@@ -1,7 +1,7 @@
 spring:
   datasource:
-    url: jdbc:mysql://121.134.218.34:13306/springdb
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mariadb://121.134.218.34:13306/kicktheworld
+    driver-class-name: org.mariadb.jdbc.Driver
     username: 'kicktheworld'
     password: 'kicktheworld1!'
   jpa:
@@ -9,4 +9,8 @@ spring:
     generate-ddl: true
     show-sql: true
     hibernate:
-      ddl-auto: validate
+      ddl-auto: update
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
