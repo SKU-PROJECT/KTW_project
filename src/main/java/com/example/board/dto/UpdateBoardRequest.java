@@ -13,4 +13,5 @@ public class UpdateBoardRequest {
     private String mem_id;
     private String board_category;
 
+
 }

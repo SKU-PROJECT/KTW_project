@@ -9,7 +9,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 public class KickTheWorldApplication {
 
     public static void main(String[] args) {
-
         SpringApplication.run(KickTheWorldApplication.class, args);
     }
 

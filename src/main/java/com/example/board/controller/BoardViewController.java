@@ -1,6 +1,5 @@
 package com.example.Board.controller;
 
-import com.example.Board.dto.FileFormat;
 import com.example.Board.entity.Board;
 import com.example.Board.dto.BoardViewResponse;
 import com.example.Board.service.BoardService;
@@ -10,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
+import com.example.Board.dto.FileFormat;
 
 import java.util.List;
 
