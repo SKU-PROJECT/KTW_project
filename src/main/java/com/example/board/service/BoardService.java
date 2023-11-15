@@ -1,4 +1,5 @@
-package com.example.Board.service;
+package com.example.board.service;
+
 
 import com.example.Board.dto.File;
 import com.example.Board.dto.FileFormat;
@@ -7,6 +8,7 @@ import com.example.Board.dto.AddBoardRequest;
 import com.example.Board.dto.UpdateBoardRequest;
 import com.example.Board.repository.BoardRepository;
 import com.example.Board.repository.FileRepository;
+
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

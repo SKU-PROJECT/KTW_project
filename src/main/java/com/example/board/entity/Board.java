@@ -1,4 +1,4 @@
-package com.example.Board.entity;
+package com.example.board.entity;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
