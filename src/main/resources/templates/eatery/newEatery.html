@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>음식점 등록</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+</head>
+<body>
+<div class="p-5 mb-5 text-center</> bg-light">
+    <h1 class="mb-3">Kick The World</h1>
+    <h4 class="mb-3">오늘 뭐 먹지?</h4>
+</div>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-8">
+            <article>
+                <input type="hidden" id="eatery-id" th:value="${eatery.id}">
+
+                <header class="mb-4">
+                    <input type="text" class="form-control" placeholder="음식점 코드" id="code" th:value="${eatery.code}">
+                </header>
+                <section class="mb-5">
+                    <input type="text" class="form-control" placeholder="업소명" id="name" th:value="${eatery.name}">
+                    <input type="text" class="form-control" placeholder="카테고리" id="category" th:value="${eatery.category}">
+                    <input type="text" class="form-control" placeholder="지역 코드" id="location" th:value="${eatery.location}">
+                    <input type="text" class="form-control" placeholder="주소" id="address" th:value="${eatery.address}">
+                    <textarea class="form-control h-25" rows="10" placeholder="내용" id="detail" th:text="${eatery.detail}"></textarea>
+                </section>
+                <button th:if="${eatery.id} != null" type="button" id="modify-btn" class="btn btn-primary btn-sm">수정</button>
+                <button th:if="${eatery.id} == null" type="button" id="create-btn" class="btn btn-primary btn-sm">등록</button>
+            </article>
+        </div>
+    </div>
+</div>
+
+<script src="/js/eatery.js"></script>
+</body>
