@@ -1,6 +1,6 @@
-package com.example.eatery.Dto;
+package com.example.Eatery.Dto;
 
-import com.example.eatery.Entity.Eatery;
+import com.example.Eatery.Entity.Eatery;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -1,9 +1,9 @@
-package com.example.eatery.Service;
+package com.example.Eatery.Service;
 
-import com.example.eatery.Dto.AddEateryRequest;
-import com.example.eatery.Dto.UpdateEateryRequest;
-import com.example.eatery.Entity.Eatery;
-import com.example.eatery.Repository.EateryRepository;
+import com.example.Eatery.Dto.AddEateryRequest;
+import com.example.Eatery.Dto.UpdateEateryRequest;
+import com.example.Eatery.Entity.Eatery;
+import com.example.Eatery.Repository.EateryRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

@@ -1,10 +1,10 @@
-package com.example.eatery.Controller;
+package com.example.Eatery.Controller;
 
-import com.example.eatery.Dto.AddEateryRequest;
-import com.example.eatery.Dto.EateryResponse;
-import com.example.eatery.Dto.UpdateEateryRequest;
-import com.example.eatery.Entity.Eatery;
-import com.example.eatery.Service.EateryService;
+import com.example.Eatery.Dto.AddEateryRequest;
+import com.example.Eatery.Dto.EateryResponse;
+import com.example.Eatery.Dto.UpdateEateryRequest;
+import com.example.Eatery.Entity.Eatery;
+import com.example.Eatery.Service.EateryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

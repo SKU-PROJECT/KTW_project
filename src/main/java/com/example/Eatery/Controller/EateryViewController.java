@@ -1,9 +1,9 @@
-package com.example.eatery.Controller;
+package com.example.Eatery.Controller;
 
-import com.example.eatery.Dto.EateryListViewResponse;
-import com.example.eatery.Dto.EateryViewResponse;
-import com.example.eatery.Entity.Eatery;
-import com.example.eatery.Service.EateryService;
+import com.example.Eatery.Dto.EateryListViewResponse;
+import com.example.Eatery.Dto.EateryViewResponse;
+import com.example.Eatery.Entity.Eatery;
+import com.example.Eatery.Service.EateryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

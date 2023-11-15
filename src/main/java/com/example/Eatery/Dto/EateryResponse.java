@@ -1,6 +1,6 @@
-package com.example.eatery.Dto;
+package com.example.Eatery.Dto;
 
-import com.example.eatery.Entity.Eatery;
+import com.example.Eatery.Entity.Eatery;
 import lombok.Getter;
 
 @Getter
