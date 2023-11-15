@@ -1,4 +1,4 @@
-package com.example.eatery.Dto;
+package com.example.Eatery.Dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
