@@ -1,8 +1,8 @@
-package com.example.Board.controller;
+package com.example.board.controller;
 
-import com.example.Board.entity.Board;
-import com.example.Board.dto.BoardViewResponse;
-import com.example.Board.service.BoardService;
+import com.example.board.entity.Board;
+import com.example.board.dto.BoardViewResponse;
+import com.example.board.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

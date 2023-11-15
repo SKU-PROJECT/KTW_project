@@ -1,15 +1,13 @@
 package com.example.board.dto;
 
-import com.example.board.domain.Board;
+import com.example.board.entity.Board;
 import lombok.Getter;
 
 @Getter
 public class BoardResponse {
     private final String title;
     private final String content;
-
     private final String mem_id;
-
     private final String board_category;
 
     public BoardResponse(Board board) {

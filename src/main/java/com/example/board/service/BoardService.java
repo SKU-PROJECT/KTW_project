@@ -1,9 +1,9 @@
-package com.example.Board.service;
+package com.example.board.service;
 
-import com.example.Board.entity.Board;
-import com.example.Board.dto.AddBoardRequest;
-import com.example.Board.dto.UpdateBoardRequest;
-import com.example.Board.repository.BoardRepository;
+import com.example.board.entity.Board;
+import com.example.board.dto.AddBoardRequest;
+import com.example.board.dto.UpdateBoardRequest;
+import com.example.board.repository.BoardRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

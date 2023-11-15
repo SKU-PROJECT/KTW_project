@@ -1,10 +1,10 @@
-package com.example.Board.controller;
+package com.example.board.controller;
 
-import com.example.Board.entity.Board;
-import com.example.Board.dto.AddBoardRequest;
-import com.example.Board.dto.BoardViewResponse;
-import com.example.Board.dto.UpdateBoardRequest;
-import com.example.Board.service.BoardService;
+import com.example.board.entity.Board;
+import com.example.board.dto.AddBoardRequest;
+import com.example.board.dto.BoardViewResponse;
+import com.example.board.dto.UpdateBoardRequest;
+import com.example.board.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,4 +1,4 @@
-package com.example.Board.controller;
+package com.example;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,9 +11,4 @@ public class MainController {
         return "mainPage";
     }
 
-    @GetMapping("/stay")
-    public String stayPage() {
-
-        return "stayPage";
-    }
 }

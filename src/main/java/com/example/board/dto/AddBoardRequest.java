@@ -1,6 +1,6 @@
-package com.example.Board.dto;
+package com.example.board.dto;
 
-import com.example.Board.entity.Board;
+import com.example.board.entity.Board;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
