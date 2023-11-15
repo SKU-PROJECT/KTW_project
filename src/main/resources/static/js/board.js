@@ -63,3 +63,35 @@ if (createButton) {
             });
     });
 }
+// const createButton = document.getElementById('create-btn');
+//
+// if (createButton) {
+//     createButton.addEventListener('click', event => {
+//         // 폼 데이터 생성
+//         const formData = new FormData();
+//         formData.append('title', document.getElementById('title').value);
+//         formData.append('content', document.getElementById('content').value);
+//         formData.append('mem_id', document.getElementById('mem_id').value);
+//         formData.append('board_category', document.getElementById('board_category').value);
+//
+//         // 파일 입력 가져오기
+//         const fileInput = document.getElementById('file');
+//         // 모든 선택된 파일을 FormData에 추가
+//         for (const file of fileInput.files) {
+//             formData.append('files', file);
+//         }
+//
+//         // Fetch를 사용하여 데이터 전송
+//         fetch('/api/boards', {
+//             method: 'POST',
+//             body: formData,
+//         })
+//             .then(() => {
+//                 alert('등록 완료되었습니다.');
+//                 location.replace('/boards');
+//             })
+//             .catch(error => {
+//                 console.error('에러:', error);
+//             });
+//     });
+// }

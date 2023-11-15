@@ -84,3 +84,33 @@ body {
 .sidebar ul li:hover a {
     color: #ffd700; /* Change text color on hover */
 }
+.search-container {
+    margin:50px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.sub_list {
+    font-family: 'Pretendard-Regular';
+    float: left;
+    list-style-type: none;
+    padding: 25px;
+    font-size: 18px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+.main:hover {
+    color: blue;
+}
+button {
+    font-family: 'Pretendard-Regular';
+    font-size: 15px;
+    font-weight:bold;
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid #161616;
+    padding:10px;
+    margin:5px;
+
+}
