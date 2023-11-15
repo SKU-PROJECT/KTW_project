@@ -1,6 +1,6 @@
-package com.example.Board.repository;
+package com.example.Board.Repository;
 
-import com.example.Board.dto.File;
+import com.example.Board.Dto.File;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

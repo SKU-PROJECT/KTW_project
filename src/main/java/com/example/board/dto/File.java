@@ -1,6 +1,6 @@
-package com.example.Board.dto;
+package com.example.Board.Dto;
 
-import com.example.Board.entity.Board;
+import com.example.Board.Entity.Board;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
