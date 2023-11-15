@@ -1,16 +1,15 @@
-package com.example.board.controller;
+package com.example.Board.Controller;
 
-import com.example.board.entity.Board;
-import com.example.board.dto.AddBoardRequest;
-import com.example.board.dto.BoardViewResponse;
-import com.example.board.dto.UpdateBoardRequest;
-import com.example.board.service.BoardService;
+import com.example.Board.Entity.Board;
+import com.example.Board.Dto.AddBoardRequest;
+import com.example.Board.Dto.BoardViewResponse;
+import com.example.Board.Dto.UpdateBoardRequest;
+import com.example.Board.Service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-import java.io.IOException;
+
 import java.util.List;
 
 @RequiredArgsConstructor

@@ -1,22 +1,15 @@
-package com.example.board.service;
+package com.example.Board.Service;
 
 
-import com.example.Board.dto.File;
-import com.example.Board.dto.FileFormat;
-import com.example.Board.entity.Board;
-import com.example.Board.dto.AddBoardRequest;
-import com.example.Board.dto.UpdateBoardRequest;
-import com.example.Board.repository.BoardRepository;
-import com.example.Board.repository.FileRepository;
+import com.example.Board.Dto.*;
+import com.example.Board.Entity.Board;
+import com.example.Board.Repository.BoardRepository;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
+
 import java.util.List;
 
 @RequiredArgsConstructor

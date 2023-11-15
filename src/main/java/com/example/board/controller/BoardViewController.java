@@ -1,15 +1,14 @@
-package com.example.board.controller;
+package com.example.Board.Controller;
 
-import com.example.board.entity.Board;
-import com.example.board.dto.BoardViewResponse;
-import com.example.board.service.BoardService;
+import com.example.Board.Entity.Board;
+import com.example.Board.Dto.BoardViewResponse;
+import com.example.Board.Service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
-import com.example.Board.dto.FileFormat;
 
 import java.util.List;
 
