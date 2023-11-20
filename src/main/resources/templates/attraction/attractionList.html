@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Attraction List</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="p-5 mb-5 text-center</> bg-light">
+    <h1 class="mb-3">Kick The World</h1>
+    <h4 class="mb-3">오늘 뭐 하지?</h4>
+</div>
+
+<div class="container">
+    <button type="button" id="create-btn"
+            th:onclick="|location.href='@{/newAttraction}'|"
+            class="btn btn-secondary btn-sm mb-3">등록</button>
+    <div class="row-6" th:each="attraction : ${attractionPaging}">
+        <div class="card">
+            <div class="card-header" th:text="${attraction.id}">
+            </div>
+            <div class="card-body">
+                <h5 class="card-title" th:text="${attraction.name}"></h5>
+                <span class="card-text" th:text="${attraction.location}"></span>
+                <span class="card-text" th:text="${attraction.category}"></span>
+                <br><br>
+                <a th:href="@{/attractions/{id}(id=${attraction.id})}" class="btn btn-primary">상세보기</a>
+            </div>
+        </div>
+        <br>
+    </div>
+</div>
+
+<!--페이징 처리-->
+<div th:if="${!attractionPaging.isEmpty()}">
+    <ul class="pagination justify-content-center">
+        <li class="page-item" th:classappend="${!attractionPaging.hasPrevious} ? 'disabled'">
+            <a class="page-link" th:href="@{|?page=${attractionPaging.number-1}|}">
+                <span>이전</span>
+            </a>
+        </li>
+        <li th:each="page: ${#numbers.sequence(0, attractionPaging.totalPages-1)}"
+            th:if="${page >= attractionPaging.number-5 and page <= attractionPaging.number+5}"
+            th:classappend="${page == attractionPaging.number} ? 'active'"
+            class="page-item">
+            <a th:text="${page}" class="page-link" th:href="@{|?page=${page}|}"></a>
+        </li>
+        <li class="page-item" th:classappend="${!attractionPaging.hasNext} ? 'disabled'">
+            <a class="page-link" th:href="@{|?page=${attractionPaging.number+1}|}">
+                <span>다음</span>
+            </a>
+        </li>
+    </ul>
+</div>
+
+<script src="/js/attraction.js"></script>
+
+</body>
+</html>
