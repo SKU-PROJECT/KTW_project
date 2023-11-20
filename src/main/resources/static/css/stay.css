@@ -12,19 +12,17 @@ header {
 .logo {
     width: 120px;
     height: 120px;
-    margin-left: 60px;
+    margin-left: 30px;
 }
 h1 {
     display: inline-block;
 }
 nav {
+    margin-top: 20px;
     display: inline-block;
     float: right;
 }
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-}
+
 .main_list {
     font-family: 'Pretendard-Regular';
     font-weight:bold;
@@ -37,72 +35,44 @@ body {
     text-align: right;
 }
 
-.main {
+.sub_list {
+    font-family: 'Pretendard-Regular';
+    float: left;
+    list-style-type: none;
+    padding: 15px;
+    font-size: 18px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+a {
     text-decoration: none;
     color: black;
 }
 
-.sidebar {
-    height: 100%;
-    width: 200px;
-    position: fixed;
-    left: 0;
-    top: 0;
-    background-color: #111;
-    padding-top: 20px;
-}
-
-.sidebar ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.sidebar ul li {
-    padding: 8px 16px;
-    text-align: center;
-}
-
-.sidebar ul li a {
+.main {
     text-decoration: none;
-    color: #ffffff;
-}
-
-.sidebar ul li:hover {
-    background-color: #555;
+    color: black;
 }
 
 .content {
     margin-left: 220px;
     padding: 20px;
 }
-
-/* Optional: Add styles for better appearance */
-.sidebar {
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.card {
+    width: 18%; /* Adjust the width as needed */
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    box-sizing: border-box;
 }
 
-.sidebar ul li:hover a {
-    color: #ffd700; /* Change text color on hover */
-}
-.search-container {
-    margin:50px;
-    display:flex;
-    justify-content: center;
-    align-items: center;
-}
-.sub_list {
-    font-family: 'Pretendard-Regular';
-    float: left;
-    list-style-type: none;
-    padding: 25px;
-    font-size: 18px;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-}
-.main:hover {
-    color: blue;
-}
 button {
     font-family: 'Pretendard-Regular';
     font-size: 15px;

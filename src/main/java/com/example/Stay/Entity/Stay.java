@@ -34,7 +34,8 @@ public class Stay {
     private String service;
     @Column(name="useGuide")
     private String useGuide;
-
+    @Column(name="amenity")
+    private String amenity;
 
     @Builder
     public Stay() {
@@ -46,6 +47,7 @@ public class Stay {
         this.address = address;
         this.service = service;
         this.useGuide = useGuide;
+        this.amenity = amenity;
 
     }
 

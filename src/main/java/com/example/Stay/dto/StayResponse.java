@@ -22,6 +22,8 @@ public class StayResponse {
     private String service;
     private String useGuide;
 
+    private String amenity;
+
 
     public StayResponse(Stay stay) {
         this.id = stay.getId();
@@ -33,6 +35,7 @@ public class StayResponse {
         this.address = stay.getAddress();
         this.service = stay.getService();
         this.useGuide = stay.getUseGuide();
+        this.amenity = stay.getAmenity();
 
     }
 

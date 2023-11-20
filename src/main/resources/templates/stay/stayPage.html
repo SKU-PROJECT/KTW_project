@@ -9,12 +9,12 @@
     <img class="logo" th:src="@{/images/Logo.png}" alt="Logo Image"/>
     <nav>
         <ul>
-            <li class="main_list"><input type="text"><button>검색</button></li>
-            <li class="main_list"><a class="main" href="/">여행지 소개</a></li>
+            <li class="main_list"><a class="main" href="/">여행지 추천</a></li>
             <li class="main_list"><a class="main" href="/stays">숙소정보</a></li>
-            <li class="main_list"><a class="main" href="/">맛집정보</a></li>
-            <li class="main_list"><a class="main" href="/">액티비티정보</a></li>
+            <li class="main_list"><a class="main" href="/">맛집&카페</a></li>
+            <li class="main_list"><a class="main" href="/">액티비티</a></li>
             <li class="main_list"><a class="main" href="/boards">메인게시판</a></li>
+            <li class="main_list"><a class="main" href="/">관리자페이지</a></li>
             <li class="main_list"><a class="main" href="/">마이페이지</a></li>
             <li class="main_list"><a class="main" href="/">로그인</a></li>
             <li class="main_list"><a class="main" href="/">회원가입</a></li>
@@ -51,23 +51,15 @@
     </ul>
 </div>
 
-
-<table border="1">
-    <thead>
-    <tr>
-        <th>숙소명</th>
-        <th>카테고리</th>
-        <th>위치</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="stay : ${stays}">
-        <td><a th:text="${stay.name}" th:href="@{/stays/{id}(id=${stay.id})}"></a></td>
-        <td th:text="${stay.category}"></td>
-        <td th:text="${stay.address}"></td>
-    </tr>
-    </tbody>
-</table>
+<div class="card-container">
+    <div class="card" th:each="stay : ${stays}">
+        <h2 th:text="${stay.name}"></h2>
+        <p th:text="${stay.category}"></p>
+        <p th:text="${stay.address}"></p>
+        <p th:text="${stay.price}"></p>
+        <a th:href="@{/stays/{id}(id=${stay.id})}">상세보기</a>
+    </div>
+</div>
 
 <div class="button">
     <button type="button" id="create-btn" th:onclick="|location.href='@{/stays/create}'|">숙소 등록</button>

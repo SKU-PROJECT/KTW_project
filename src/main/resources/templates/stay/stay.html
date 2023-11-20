@@ -28,31 +28,55 @@
     <h1>숙소 상세정보</h1>
 </div>
 
-<table border="1">
-    <thead>
-    <tr>
-        <th>숙소명</th>
-        <th>숙소종류</th>
-        <th>숙소위치</th>
-        <th>1박가격</th>
-        <th>이용안내</th>
-        <th>서비스</th>
-    </tr>
-    </thead>
-    <tbody>
+<div class="stay-details">
+    <div class="detail-item">
+        <strong>숙소명:</strong>
+        <span th:text="${stay.name}"></span>
+    </div>
 
-    <tr th:each="stay: ${stay}">
-        <td th:text="${stay.name}"></td>
-        <td th:text="${stay.category}"></td>
-        <td th:text="${stay.address}"></td>
-        <td th:text="${stay.price}"></td>
-        <td th:text="${stay.useGuide}"></td>
-        <td th:text="${stay.service}"></td>
-    </tr>
-    </tbody>
-</table>
+    <div class="detail-item">
+        <strong>카테고리:</strong>
+        <span th:text="${stay.category}"></span>
+    </div>
 
-<div>
+    <div class="detail-item">
+        <strong>숙소위치:</strong>
+        <span th:text="${stay.address}"></span>
+    </div>
+
+    <div class="detail-item">
+        <strong>1박가격:</strong>
+        <span th:text="${stay.price}"></span>
+    </div>
+
+    <div class="detail-item">
+        <strong>이용안내:</strong>
+        <span th:text="${stay.useGuide}"></span>
+    </div>
+
+    <div class="detail-item">
+        <strong>시설 및 서비스:</strong>
+        <span th:text="${stay.service}"></span>
+    </div>
+
+    <div class="detail-item">
+        <strong>예약공지:</strong>
+        <span th:text="${stay.amenity}"></span>
+    </div>
+
+    <!-- Add more details as needed -->
+
+    <!-- Image display (uncomment if needed) -->
+    <!--
+    <div class="detail-item">
+        <strong>숙소 이미지:</strong>
+        <img th:src="@{'/getImage?name=' + ${stay.imageFileName}}" alt="Stay Image"/>
+    </div>
+    -->
+
+</div>
+
+<div class="button">
     <button type="button" id="modify-btn" th:onclick="|location.href='/stays/edit/{id}'|"
             th:attr="data-stayid=${stay.id}">수정</button>
     <button type="button" id="delete-btn" th:onclick="|location.href='/stays/delete/' + ${stay.id}|"
