@@ -1,6 +1,5 @@
 package com.example.Eatery.Controller;
 
-import com.example.Eatery.Dto.EateryListViewResponse;
 import com.example.Eatery.Dto.EateryViewResponse;
 import com.example.Eatery.Entity.Eatery;
 import com.example.Eatery.Service.EateryService;
@@ -11,8 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.ui.Model;
-
-import java.util.List;
 
 @RequiredArgsConstructor
 @Controller
