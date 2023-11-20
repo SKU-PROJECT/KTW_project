@@ -4,6 +4,12 @@
     font-weight: 400;
     font-style: normal;
 }
+@font-face {
+    font-family: 'SOYOMapleBoldTTF';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/SOYOMapleBoldTTF.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
 
 body{
     width: 100%;
@@ -55,8 +61,8 @@ nav {
 }
 
 .image1 {
-    width: 1024px;
-    height: 500px;
+    width: 1200px;
+    height: 600px;
     margin: auto;
     display: block;
     justify-content: center;
@@ -72,8 +78,98 @@ nav {
 
 .p_main {
     margin: 50px auto;
-    font-family: 'Pretendard-Regular';
+    font-family: 'SOYOMapleBoldTTF';
     text-align: center;
     font-size: 30px;
 
+}
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    z-index: 1; /* 다른 요소들보다 앞에 배치 */
+    text-align: center; /* 가운데 정렬 */
+    background-color:#cccccc; /* 파란색 배경 */
+    font-family: 'Pretendard-Regular';
+    font-size: 15px;
+}
+
+.dropdown-content a {
+    display: block;
+    text-decoration: none;
+    color: black;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.slider {
+    position: relative;
+    overflow: hidden;
+    /*width: 600px;*/
+    /*height: 400px;*/
+
+
+    width: 1024px;
+    height: 500px;
+    margin: auto;
+    display: block;
+    justify-content: center;
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    animation: slider 7.5s infinite linear;
+}
+
+.slide:nth-child(1) {
+    background-image: url("https://www.visakorea.com/content/dam/VCOM/regional/ap/southkorea/travelwithvisa/marquee-travel-with-visa-1920x720.jpg");
+    animation-delay: 0s;
+}
+.slide:nth-child(2) {
+    background-image: url("https://c.files.bbci.co.uk/A02F/production/_123670014_ebaf878f-e274-4efa-ae58-40dad7aaa9fb.jpg");
+    animation-delay: -2.5s;
+}
+.slide:nth-child(3) {
+    background-image: url("https://content.skyscnr.com/m/5d599d9187946b56/original/CBucket-List-Graphic-Promo-Article-_2000x624.jpg?crop=1224px:647px&quality=100&position=attention");
+    animation-delay: -5s;
+}
+
+@keyframes slider {
+    0% {
+        transform: translateX(0);
+    }
+
+    26% {
+        transform: translateX(0);
+    }
+    33% {
+        transform: translateX(-100%);
+        animation-timing-function: step-end;
+    }
+    93% {
+        transform: translateX(100%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+.img0 {
+    width: 300px;
+    height: 300px;
+    margin: 20px;
+    justify-content: center;
+    border-radius: 20px;
 }

@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -32,10 +33,12 @@ public class SecurityConfig {
         //authorization
         http
                 .authorizeHttpRequests()
-                .requestMatchers("/login", "/signup/**").permitAll()
+                .requestMatchers("/members/login").anonymous()
+                .requestMatchers("/members/logout").authenticated()
+//                .requestMatchers("/boards/**").hasAnyRole("USER", "ADMIN")
+  //              .requestMatchers("/**").permitAll() //해당 경로에 대한 권한 설정
 
-//                .requestMatchers("/api/v1/member/**").hasAnyRole("USER", "GURU", "ADMIN", "MANAGER")
-//                .requestMatchers("/api/v1/skill/**").hasAnyRole("USER", "GURU", "ADMIN", "MANAGER")
+//                .requestMatchers("/stays/**").hasAnyRole("USER", "GURU", "ADMIN", "MANAGER")
 //                .requestMatchers("/api/v1/post/**").hasAnyRole("USER", "GURU", "ADMIN", "MANAGER")
 //                .requestMatchers("/api/v1/reply/**").hasAnyRole("USER", "GURU", "ADMIN", "MANAGER")
 //                .requestMatchers("/api/v1/message/**").hasAnyRole("USER", "GURU", "ADMIN", "MANAGER")
@@ -45,6 +48,7 @@ public class SecurityConfig {
 
                 .requestMatchers("/**").permitAll()
                 .anyRequest().authenticated();
+
 
         //authentication
 //            http
@@ -74,12 +78,13 @@ public class SecurityConfig {
         http.formLogin()
                 .loginPage("/members/login")
                 .defaultSuccessUrl("/")
-                .usernameParameter("email")
+                .usernameParameter("email") //로그인시 사용할 파라미터 이름을 email 로 설정
                 .failureUrl("/members/login/error")
                 .and()
                 .logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/members/logout"))
+                .logoutRequestMatcher(new AntPathRequestMatcher("/members/logout")) //멤버 로그아웃
                 .logoutSuccessUrl("/");
+
 
         return http.build();
 
@@ -89,6 +94,11 @@ public class SecurityConfig {
     public PasswordEncoder passwordEncoder() {
 
         return new BCryptPasswordEncoder();
+    }
+
+    protected void configure (AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(memberService)
+                .passwordEncoder(passwordEncoder());
     }
 
 }

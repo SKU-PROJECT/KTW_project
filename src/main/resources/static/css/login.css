@@ -1,6 +1,6 @@
 :root {
-    --primary-color: #4EA685;
-    --secondary-color: #57B894;
+    --primary-color: #5197cd;
+    --secondary-color: #5197cd;
     --black: #000000;
     --white: #ffffff;
     --gray: #efefef;
@@ -72,13 +72,13 @@ body {
     transition-delay: 1s;
 }
 
-.form-group {
+.input-group {
     position: relative;
     width: 100%;
     margin: 1rem 0;
 }
 
-.form-group i {
+.input-group i {
     position: absolute;
     top: 50%;
     left: 1rem;
@@ -87,7 +87,7 @@ body {
     color: var(--gray-2);
 }
 
-.form-group form {
+.input-group form {
     width: 100%;
     padding: 1rem 3rem;
     font-size: 1rem;
@@ -97,7 +97,7 @@ body {
     outline: none;
 }
 
-.form-group form:focus {
+.input-group form:focus {
     border: 0.125rem solid var(--primary-color);
 }
 

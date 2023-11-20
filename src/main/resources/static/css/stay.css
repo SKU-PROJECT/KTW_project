@@ -14,9 +14,7 @@ header {
     height: 120px;
     margin-left: 30px;
 }
-h1 {
-    display: inline-block;
-}
+
 nav {
     margin-top: 20px;
     display: inline-block;
@@ -34,7 +32,12 @@ nav {
     margin-right: auto;
     text-align: right;
 }
-
+.search-container {
+    margin:50px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
 .sub_list {
     font-family: 'Pretendard-Regular';
     float: left;
@@ -55,10 +58,6 @@ a {
     color: black;
 }
 
-.content {
-    margin-left: 220px;
-    padding: 20px;
-}
 .card-container {
     display: flex;
     flex-wrap: wrap;

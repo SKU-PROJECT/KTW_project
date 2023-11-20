@@ -28,3 +28,6 @@ spring:
 #  example:
 #    upload:
 #      path: C:\\upload
+
+server:
+  port: 8010

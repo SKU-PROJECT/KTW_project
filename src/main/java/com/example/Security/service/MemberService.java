@@ -17,11 +17,13 @@ public class MemberService implements UserDetailsService {
 
     private final MemberRepository memberRepository;
 
+     //회원 등록
     public Member saveMember(Member member){
         validateDuplicateMember(member);
         return memberRepository.save(member);
     }
 
+    //유효성 검사
     private void validateDuplicateMember(Member member){
         Member findMember = memberRepository.findByEmail(member.getEmail());
         if(findMember != null){

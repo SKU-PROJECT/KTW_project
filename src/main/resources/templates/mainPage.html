@@ -1,27 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
   <meta charset="UTF-8">
   <title>MainPage</title>
   <link th:href="@{/css/main.css}" rel="stylesheet">
 </head>
+<style>
+</style>
 <body>
 <header>
   <img class="logo" th:src="@{/images/Logo.png}" alt="Logo Image"/>
   <nav>
     <ul>
       <li class="main_list"><a class="main" href="/">여행지 추천</a></li>
-      <li class="main_list"><a class="main" href="/stays">숙소정보</a></li>
-      <li class="main_list"><a class="main" href="/">맛집&카페</a></li>
-      <li class="main_list"><a class="main" href="/">액티비티</a></li>
+      <li class="main_list dropdown">
+        <a class="main" href="#">여행 정보</a>
+        <div class="dropdown-content">
+          <a href="/stays">숙소</a>
+          <a href="/eaterys">음식점 & 카페</a>
+          <a href="/">관광 명소</a>
+        </div>
+      </li>
       <li class="main_list"><a class="main" href="/boards">메인게시판</a></li>
       <li class="main_list"><a class="main" href="/">관리자페이지</a></li>
       <li class="main_list"><a class="main" href="/">마이페이지</a></li>
-      <li class="main_list"><a class="main" href="/members/login">로그인</a></li>
+      <li class="main_list">
+        <a class="main" href="/members/login">로그인</a>
+      </li>
+      <li class="main_list" >
+        <a class="main" href="/members/logout">로그아웃</a>
+      </li>
       <li class="main_list"><a class="main" href="/members/new">회원가입</a></li>
     </ul>
   </nav>
+
   <hr>
 </header>
 
@@ -29,13 +42,23 @@
   <p class="p_main">이달의 추천 여행지</p>
 </div>
 <div class="main_div">
-  <img class="image1"
-       th:src="@{https://www.visakorea.com/content/dam/VCOM/regional/ap/southkorea/travelwithvisa/marquee-travel-with-visa-1920x720.jpg}">
-  <p class="p_title">Kick The World</p>
+  <div class="slider">
+    <div class="slide"></div>
+    <div class="slide"></div>
+    <div class="slide"></div>
+  </div>
+
 </div>
 
 <div class="sub_div2">
   <p class="p_main">추천 여행 코스</p>
+  <img class="img0" th:src="@{/images/강원정선만항재.png}"/>
+  <img class="img0" th:src="@{/images/강원춘천남이섬.png}"/>
+  <img class="img0" th:src="@{/images/경기광주화담숲.png}"/>
+  <img class="img0" th:src="@{/images/경기안산탄도항.png}"/>
+  <img class="img0" th:src="@{/images/경기포천허브아일랜드.png}"/>
+  <img class="img0" th:src="@{/images/경남함안낙화놀이.png}"/>
+  <img class="img0" th:src="@{/images/경북경주월정교.png}"/>
 </div>
 </body>
 </html>
