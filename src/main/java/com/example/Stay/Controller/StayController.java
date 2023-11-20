@@ -2,7 +2,7 @@ package com.example.Stay.Controller;
 
 import com.example.Stay.Entity.Stay;
 import com.example.Stay.Service.StayService;
-import com.example.Stay.dto.StayResponse;
+import com.example.Stay.Dto.StayResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

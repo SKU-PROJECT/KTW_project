@@ -16,7 +16,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @Controller
 
-public class EateryViewController {
+public class EateryController {
 
     private final EateryService eateryService;
 
@@ -53,4 +53,10 @@ public class EateryViewController {
 
         return "eatery/newEatery";
     }
+
+
+
+
+
+
 }

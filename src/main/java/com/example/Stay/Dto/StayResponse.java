@@ -1,4 +1,4 @@
-package com.example.Stay.dto;
+package com.example.Stay.Dto;
 
 
 import com.example.Stay.Entity.Stay;
