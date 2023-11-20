@@ -5,6 +5,7 @@ import com.example.Eatery.Dto.EateryViewResponse;
 import com.example.Eatery.Entity.Eatery;
 import com.example.Eatery.Service.EateryService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,15 +21,23 @@ public class EateryViewController {
 
     private final EateryService eateryService;
 
-    // 전체 음식점 전체 리스트 뷰 리턴
-    @GetMapping("/eaterys")
-    public String getEaterys(Model model){
-        List<EateryListViewResponse> eaterys = eateryService.findAll()
-                .stream()
-                .map(EateryListViewResponse::new)
-                .toList();
-        model.addAttribute("eaterys", eaterys);
+//    // 전체 음식점 전체 리스트 뷰 리턴
+//    @GetMapping("/eaterys")
+//    public String getEaterys(Model model){
+//        List<EateryListViewResponse> eaterys = eateryService.findAll()
+//                .stream()
+//                .map(EateryListViewResponse::new)
+//                .toList();
+//        model.addAttribute("eaterys", eaterys);
+//
+//        return "eatery/eateryList";
+//    }
 
+    // 전체 음식점 리스트 뷰 리턴 - 페이징
+    @GetMapping("/eaterys")
+    public String getEaterys(Model model, @RequestParam(value="page", defaultValue="0") int page){
+        Page<Eatery> eaterysPaging = this.eateryService.findAll(page);
+        model.addAttribute("eateryPaging", eaterysPaging);
         return "eatery/eateryList";
     }
 

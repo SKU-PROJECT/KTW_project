@@ -27,17 +27,17 @@ public class EateryApiController {
                 .body(savedEatery);
     }
 
-    //전체조회
-    @GetMapping("/api/eaterys")
-    public ResponseEntity<List<EateryResponse>> findAllEaterys(){
-        List<EateryResponse> eaterys = eateryService.findAll()
-                .stream()
-                .map(EateryResponse::new)
-                .toList();
-
-        return ResponseEntity.ok()
-                .body(eaterys);
-    }
+//    //전체조회
+//    @GetMapping("/api/eaterys")
+//    public ResponseEntity<List<EateryResponse>> findAllEaterys(){
+//        List<EateryResponse> eaterys = eateryService.findAll()
+//                .stream()
+//                .map(EateryResponse::new)
+//                .toList();
+//
+//        return ResponseEntity.ok()
+//                .body(eaterys);
+//    }
 
     //상세조회
     @GetMapping("/api/eaterys/{id}")
