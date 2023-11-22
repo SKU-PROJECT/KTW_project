@@ -4,6 +4,8 @@ import com.example.Board.Entity.Board;
 import com.example.Board.Dto.BoardViewResponse;
 import com.example.Board.Service.BoardService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,7 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
-
 @RequiredArgsConstructor
 @Controller
 public class BoardViewController {
@@ -23,7 +24,6 @@ public class BoardViewController {
                 .stream()
                 .map(BoardViewResponse::new)
                 .toList();
-
         model.addAttribute("boards", boards);
 
         return "board/boardList";
@@ -32,18 +32,7 @@ public class BoardViewController {
     @GetMapping("/boards/{id}")
     public String getBoard(@PathVariable Long id, Model model) {
         Board board = boardService.findById(id);
-
-       // List<FileFormat> fileFormatList = boardService.findFileByBoard(id);
-
-       /* if (fileFormatList != null) {
-            model.addAttribute("board", new BoardViewResponse(board, fileFormatList));
-        } else {
-            model.addAttribute("board", new BoardViewResponse(board));
-        }*/
-
         model.addAttribute("board", new BoardViewResponse(board));
-//        model.addAttribute("board", new BoardViewResponse(board, fileFormatList));
-//        model.addAttribute("fileList", fileFormatList);
 
         return "board/board";
     }
@@ -60,7 +49,4 @@ public class BoardViewController {
 
         return "board/newBoard";
     }
-
-
-
 }

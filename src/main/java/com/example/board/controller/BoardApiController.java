@@ -11,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
 @RequiredArgsConstructor
 @RestController
 public class BoardApiController {
@@ -25,17 +24,6 @@ public class BoardApiController {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(savedBoard);
     }
-
-    /*@PostMapping(value = "/api/boards", consumes = {"multipart/form-data"})
-    public ResponseEntity<Board> addBoard(@RequestPart AddBoardRequest request,
-                                          @RequestPart(name = "files", required = false) List<MultipartFile> files) throws IOException {
-
-        Board savedBoard = boardService.save(request, files);
-
-        return ResponseEntity.status(HttpStatus.CREATED)
-                .body(savedBoard);
-    }*/
-
     @GetMapping("/api/boards")
     public ResponseEntity<List<BoardViewResponse>> findAllBoards() {
         List<BoardViewResponse> boards = boardService.findAll()
@@ -63,7 +51,7 @@ public class BoardApiController {
     }
     @PutMapping("/api/boards/{id}")
     public ResponseEntity<Board> updateBoard(@PathVariable long id,
-                                               @RequestBody UpdateBoardRequest request) {
+                                             @RequestBody UpdateBoardRequest request) {
         Board updatedBoard = boardService.update(id, request);
 
         return ResponseEntity.ok()
