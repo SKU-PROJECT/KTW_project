@@ -2,93 +2,57 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <title>Add stay</title>
-  <script src="../js/jquery-3.7.1.min.js"></script>
+  <link th:href="@{/css/main.css}" rel="stylesheet" />
+  <link th:href="@{/css/stay.css}" rel="stylesheet">
 </head>
 <body>
+<header>
+  <!--    <a href="/"><img class="logo" src="C:\Users\Kimeunjeong\KickTheWorld\src\main\resources\static\images\Logo.png" alt="Logo Image" /></a>-->
+  <a href="/"><img class="logo" src="/images/Logo.png" alt="Logo Image" /></a>
+  <nav>
+    <ul>
+      <li class="main_list"><a class="main" href="/">여행지 추천</a></li>
+      <li class="main_list dropdown">
+        <a class="main" href="#">여행 정보</a>
+        <div class="dropdown-content">
+          <a th:href="@{/stays}">숙소</a>
+          <a th:href="@{/eaterys}">음식점 & 카페</a>
+          <a th:href="@{/}">관광 명소</a>
+        </div>
+      </li>
+      <li class="main_list"><a class="main" href="/boards">메인게시판</a></li>
+      <li class="main_list"><a class="main" href="/admin">관리자페이지</a></li>
+      <li class="main_list"><a class="main" href="/">마이페이지</a></li>
+      <li class="main_list"><a class="main" href="/members/login">로그인</a></li>
+      <li class="main_list"><a class="main" href="/members/new">회원가입</a></li>
+    </ul>
+  </nav>
+  <hr>
+</header>
+<h2>Add Stay</h2>
 
-<h2>Add stay</h2>
-
-<form th:object="${stay}" th:action="@{/stays/create}" method="post">
-
+<form class="create_form" th:object="${stay}" th:action="@{/stays/create}" method="post">
   <label>숙소명: <input type="text" th:field="*{name}" /></label><br/>
-  <label>카테고리: <input type="text" th:field="*{category}" /></label><br/>
-  <label>숙소 금액: <input type="text" th:field="*{price}" /></label><br/>
+  <label for="category">숙박유형: </label>
+  <select class="form-control" id="category" th:field="*{category}">
+    <option value="" disabled selected>카테고리</option>
+    <option value="호텔">호텔</option>
+    <option value="펜션">펜션</option>
+    <option value="게스트하우스">게스트하우스</option>
+    <option value="캠핑">캠핑</option>
+    <option value="기타">기타</option>
+  </select>
+<!--  <input type="text" th:field="*{category}" /></label><br/>-->
+  <label>숙소 소개: <input type="text" th:field="*{detail}" /></label><br/>
+  <label>1박 금액: <input type="text" th:field="*{price}" /></label><br/>
   <label>주소: <input type="text" th:field="*{address}" /></label><br/>
-  <label>서비스: <input type="text" th:field="*{service}" /></label><br/>
-  <label>이용안내: <input type="text" th:field="*{useGuide}" /></label><br/>
-  <label>이미지 파일: <input type="file" id="imageInput"> </label><br/>
-    <button id="uploadImageButton">이미지 업로드</button><br/><br/>
+  <label>서비스: <input type="textarea" th:field="*{service}" /></label><br/>
+  <label>이용 안내: <input type="textarea" th:field="*{useGuide}" /></label><br/>
+  <label>예약 공지: <input type="textarea" th:field="*{amenity}" /></label><br/>
+<!--  <label>이미지 파일: <input type="file" id="imageInput"> </label><br/>-->
+<!--    <button id="uploadImageButton">이미지 업로드</button><br/><br/>-->
 
   <button type="submit">숙소 등록</button>
 </form>
 </body>
-<script>
-  $(document).ready(function() {
-    $('#uploadImageButton').on('click', function() {
-      var imageFile = $('#imageInput')[0].files[0]; // 이미지 파일 선택 input에서 이미지 파일 가져오기
-
-      var formData = new FormData(); // FormData 생성
-      formData.append('imageFile', imageFile); // 이미지 파일을 FormData에 추가
-
-      $.ajax({
-        url: 'http://localhost:8080/image', // 이미지를 업로드하는 서버 엔드포인트 URL
-        type: 'POST',
-        data: formData, // FormData를 전송 데이터로 설정
-        processData: false, // 데이터 처리 방식을 false로 설정
-        contentType: false, // 컨텐츠 타입을 false로 설정
-        success: function(response) {
-          // 성공 시 처리할 내용
-          console.log('이미지 업로드 성공:', response);
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-          // 오류 발생 시 처리할 내용
-          console.error('이미지 업로드 실패:', textStatus, errorThrown);
-        }
-      });
-    });
-  });
-
-  // 이미지 이름을 가져오는 API 호출
-  $(document).ready(function() {
-    $('#loadImagesButton').on('click', function() {
-      // 이미지 이름을 가져오는 API 호출
-      $.ajax({
-        url: 'http://localhost:8080/images',
-        type: 'GET',
-        success: function(imageNames) {
-          // 이미지를 표시할 컨테이너 선택
-          var imageContainer = $('#imageContainer');
-
-          // 각 이미지에 대해 요청을 보내어 이미지 받아오기
-          imageNames.forEach(function(imageName) {
-            // 이미지 이름을 이용하여 이미지 가져오기
-            $.ajax({
-              url: 'http://localhost:8080/getImage?name=' + imageName,
-              type: 'GET',
-              success: function(imageData) {
-                // 이미지 데이터를 받아와서 처리
-                console.log('이미지 데이터:', imageData);
-
-                // 이미지를 보여줄 <img> 요소 생성
-                var imgElement = $('<img>');
-
-                // 이미지 데이터를 src로 설정
-                imgElement.attr('src', 'data:image/jpeg;base64,' + imageData); // 이미지 타입 및 Base64 데이터 설정
-
-                // 이미지를 컨테이너에 추가
-                imageContainer.append(imgElement);
-              },
-              error: function(jqXHR, textStatus, errorThrown) {
-                console.error('이미지 가져오기 실패:', textStatus, errorThrown);
-              }
-            });
-          });
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-          console.error('이미지 이름 가져오기 실패:', textStatus, errorThrown);
-        }
-      });
-    });
-  });
-</script>
 </html>
