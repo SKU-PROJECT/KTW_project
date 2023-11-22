@@ -36,16 +36,17 @@ public class BoardApiController {
                 .body(savedBoard);
     }*/
 
-    @GetMapping("/api/boards")
-    public ResponseEntity<List<BoardViewResponse>> findAllBoards() {
-        List<BoardViewResponse> boards = boardService.findAll()
-                .stream()
-                .map(BoardViewResponse::new)
-                .toList();
+//    @GetMapping("/api/boards")
+//    public ResponseEntity<List<BoardViewResponse>> findAllBoards() {
+//        List<BoardViewResponse> boards = boardService.findAll()
+//                .stream()
+//                .map(BoardViewResponse::new)
+//                .toList();
+//
+//        return ResponseEntity.ok()
+//                .body(boards);
+//    }
 
-        return ResponseEntity.ok()
-                .body(boards);
-    }
     @GetMapping("/api/boards/{id}")
     public ResponseEntity<BoardViewResponse> findBoard(@PathVariable long id) {
         Board board = boardService.findById(id);

@@ -4,6 +4,7 @@ import com.example.Board.Entity.Board;
 import com.example.Board.Dto.BoardViewResponse;
 import com.example.Board.Service.BoardService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,15 +18,23 @@ import java.util.List;
 public class BoardViewController {
     private final BoardService boardService;
 
+//    @GetMapping("/boards")
+//    public String getBoards(Model model) {
+//        List<BoardViewResponse> boards = boardService.findAll()
+//                .stream()
+//                .map(BoardViewResponse::new)
+//                .toList();
+//
+//        model.addAttribute("boards", boards);
+//
+//        return "board/boardList";
+//    }
+
+    // 전체 게시판 리스트 페이징
     @GetMapping("/boards")
-    public String getBoards(Model model) {
-        List<BoardViewResponse> boards = boardService.findAll()
-                .stream()
-                .map(BoardViewResponse::new)
-                .toList();
-
-        model.addAttribute("boards", boards);
-
+    public String getBoards(Model model, @RequestParam(value="page", defaultValue = "0") int page){
+        Page<Board> boardsPaging = this.boardService.findAll(page);
+        model.addAttribute("boardPaging", boardsPaging);
         return "board/boardList";
     }
 
