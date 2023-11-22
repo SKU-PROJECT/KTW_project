@@ -1,4 +1,4 @@
-//package com.example.Stay.Controller;
+package com.example.Stay.Controller;//package com.example.Stay.Controller;
 //
 //import com.example.Stay.Entity.Stay;
 //import com.example.Stay.Repository.StayRepository;

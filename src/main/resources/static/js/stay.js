@@ -1,5 +1,5 @@
 // 생성 기능
-const createButton = document.getElementById('create-btn');
+const createButton = document.getElementById('stay-create-btn');
 
 if (createButton) {
     createButton.addEventListener('click', event => {
@@ -28,7 +28,7 @@ if (createButton) {
 }
 
 // 수정 기능
-const modifyButton = document.getElementById('modify-btn');
+const modifyButton = document.getElementById('stay-modify-btn');
 
 if (modifyButton) {
     modifyButton.addEventListener('click', event => {
@@ -39,13 +39,11 @@ if (modifyButton) {
 }
 
 //삭제 기능
-const deleteButton = document.getElementById('delete-btn');
+const deleteButton = document.getElementById('stay-delete-btn');
 
 if (deleteButton) {
     deleteButton.addEventListener('click', event => {
-
         let stayId = deleteButton.getAttribute('data-stayid');
-
         if (confirm('해당 숙소를 삭제 하시겠습니까')) {
             fetch(`/stays/delete/${stayId}`, {
                 method: 'POST',
@@ -56,14 +54,14 @@ if (deleteButton) {
                 .then(response => {
                     if (response.ok) {
                         alert('삭제 완료되었습니다.');
-                        location.reload();
+                        window.location.href = '/stays'; // 리다이렉션
                     } else {
                         alert('삭제 실패했습니다.');
                     }
                 })
                 .catch(error => {
                     console.error('Error deleting stay:', error);
-                    alert('An error occurred while deleting the stay.');
+                    alert('삭제 중에 오류가 발생했습니다.');
                 });
         }
     });
