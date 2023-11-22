@@ -1,7 +1,7 @@
 package com.example.Board.Controller;
 
-import com.example.Board.Entity.Board;
 import com.example.Board.Dto.BoardViewResponse;
+import com.example.Board.Entity.Board;
 import com.example.Board.Service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -10,8 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.List;
 
 @RequiredArgsConstructor
 @Controller
@@ -42,7 +40,7 @@ public class BoardViewController {
     public String getBoard(@PathVariable Long id, Model model) {
         Board board = boardService.findById(id);
 
-       // List<FileFormat> fileFormatList = boardService.findFileByBoard(id);
+        // List<FileFormat> fileFormatList = boardService.findFileByBoard(id);
 
        /* if (fileFormatList != null) {
             model.addAttribute("board", new BoardViewResponse(board, fileFormatList));

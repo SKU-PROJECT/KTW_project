@@ -1,10 +1,9 @@
 package com.example.Board.Service;
 
-
-import com.example.Board.Dto.*;
+import com.example.Board.Dto.AddBoardRequest;
+import com.example.Board.Dto.UpdateBoardRequest;
 import com.example.Board.Entity.Board;
 import com.example.Board.Repository.BoardRepository;
-
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -60,7 +59,7 @@ public class BoardService {
 
     // 전체 조회 - 페이징, 글 번호(id) 기준으로 역순 출력
     public Page<Board> findAll(int page){
-        List <Sort.Order> sorts = new ArrayList<>();
+        List<Sort.Order> sorts = new ArrayList<>();
         sorts.add(Sort.Order.desc("id"));
         Pageable pageable = PageRequest.of(page, 10, Sort.by(sorts));
         return this.boardRepository.findAll(pageable);

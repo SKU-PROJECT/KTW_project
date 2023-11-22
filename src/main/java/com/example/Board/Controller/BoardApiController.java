@@ -1,16 +1,14 @@
 package com.example.Board.Controller;
 
-import com.example.Board.Entity.Board;
-import com.example.Board.Dto.AddBoardRequest;
 import com.example.Board.Dto.BoardViewResponse;
 import com.example.Board.Dto.UpdateBoardRequest;
+import com.example.Board.Entity.Board;
 import com.example.Board.Service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import com.example.Board.Dto.AddBoardRequest;
 
 @RequiredArgsConstructor
 @RestController
@@ -64,7 +62,7 @@ public class BoardApiController {
     }
     @PutMapping("/api/boards/{id}")
     public ResponseEntity<Board> updateBoard(@PathVariable long id,
-                                               @RequestBody UpdateBoardRequest request) {
+                                             @RequestBody UpdateBoardRequest request) {
         Board updatedBoard = boardService.update(id, request);
 
         return ResponseEntity.ok()

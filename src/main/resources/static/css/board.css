@@ -8,11 +8,10 @@
 header {
     width: 100%;
     top: 0;
-
 }
 .logo {
-    width: 120px;
-    height: 120px;
+    width: 100px;
+    height: 100px;
     margin-left: 30px;
 }
 h1 {
@@ -26,16 +25,48 @@ nav {
     width:100%;
     height:100%;
 }
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    z-index: 1;
+    /* 다른 요소들보다 앞에 배치 */
+    text-align: center;
+    /* 가운데 정렬 */
+    background-color: #cccccc;
+    /* 파란색 배경 */
+    font-family: 'Pretendard-Regular';
+    font-size: 15px;
+}
+
+.dropdown-content a {
+    display: block;
+    text-decoration: none;
+    color: black;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
 .main_list {
     font-family: 'Pretendard-Regular';
     font-weight: bold;
     float: left;
     list-style-type: none;
     padding: 25px;
-    font-size: 20px;
+    font-size: 18px;
     margin-left: auto;
     margin-right: auto;
     text-align: right;
+}
+.sublist_ul {
+    background-color:#e9f5ff;
+    border-radius: 10px;
 }
 .sub_list {
     font-family: 'Pretendard-Regular';
@@ -46,6 +77,7 @@ nav {
     margin-left: auto;
     margin-right: auto;
     text-align: center;
+    font-weight: bold;
 }
 a {
      text-decoration: none;
@@ -138,4 +170,7 @@ tr:hover {
 #delete-btn {
     margin-left: auto;
 }
-
+.pagination li.active {
+    background-color: #4CAF50;
+    color: white;
+}
