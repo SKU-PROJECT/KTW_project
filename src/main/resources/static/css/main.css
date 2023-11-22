@@ -5,18 +5,27 @@
     font-style: normal;
 }
 
-body{
+@font-face {
+    font-family: 'SOYOMapleBoldTTF';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/SOYOMapleBoldTTF.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
+body {
     width: 100%;
     margin: 10px auto;
+    font-family: 'Pretendard-Regular';
 }
 
 header {
     width: 100%;
     top: 0;
 }
+
 .logo {
-    width: 120px;
-    height: 120px;
+    width: 100px;
+    height: 100px;
     margin-left: 30px;
 }
 
@@ -25,30 +34,23 @@ h1 {
 }
 
 nav {
-    margin-top: 20px;
+    margin-top: 10px;
     display: inline-block;
     float: right;
 }
 
 .main_list {
     font-family: 'Pretendard-Regular';
-    font-weight:bold;
+    font-weight: bold;
     float: left;
     list-style-type: none;
     padding: 25px;
-    font-size: 20px;
+    font-size: 18px;
     margin-left: auto;
     margin-right: auto;
     text-align: right;
 }
 
-#search{
-
-}
-
-#search_btn{
-
-}
 
 .main {
     text-decoration: none;
@@ -62,8 +64,8 @@ nav {
 }
 
 .image1 {
-    width: 1024px;
-    height: 500px;
+    width: 1200px;
+    height: 600px;
     margin: auto;
     display: block;
     justify-content: center;
@@ -79,8 +81,254 @@ nav {
 
 .p_main {
     margin: 50px auto;
-    font-family: 'Pretendard-Regular';
+    font-family: 'SOYOMapleBoldTTF';
     text-align: center;
     font-size: 30px;
+
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    z-index: 1;
+    /* 다른 요소들보다 앞에 배치 */
+    text-align: center;
+    /* 가운데 정렬 */
+    background-color: #436ba6;
+    /* 파란색 배경 */
+    font-family: 'Pretendard-Regular';
+    font-size: 15px;
+}
+
+.dropdown-content a {
+    display: block;
+    text-decoration: none;
+    color: black;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.slider {
+    position: relative;
+    overflow: hidden;
+    width: 70%;
+    /* 100%로 변경하여 화면에 꽉 차게 설정 */
+    height: 60vh;
+    /* 뷰포트 높이 100%로 설정 */
+    margin: auto;
+    display: block;
+    justify-content: center;
+    border-radius: 10px;
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    /* 100%로 변경하여 화면에 꽉 차게 설정 */
+    height: 100%;
+    /* 100%로 변경하여 화면에 꽉 차게 설정 */
+    background-size: cover;
+    background-position: center;
+    animation: slider 7.5s infinite linear;
+}
+
+.slide:nth-child(1) {
+    background-image: url("https://www.visakorea.com/content/dam/VCOM/regional/ap/southkorea/travelwithvisa/marquee-travel-with-visa-1920x720.jpg");
+    animation-delay: 0s;
+}
+
+.slide:nth-child(2) {
+    background-image: url("https://c.files.bbci.co.uk/A02F/production/_123670014_ebaf878f-e274-4efa-ae58-40dad7aaa9fb.jpg");
+    animation-delay: -2.5s;
+}
+
+.slide:nth-child(3) {
+    background-image: url("https://content.skyscnr.com/m/5d599d9187946b56/original/CBucket-List-Graphic-Promo-Article-_2000x624.jpg?crop=1224px:647px&quality=100&position=attention");
+    animation-delay: -5s;
+}
+
+@keyframes slider {
+    0% {
+        transform: translateX(0);
+    }
+
+    26% {
+        transform: translateX(0);
+    }
+
+    33% {
+        transform: translateX(-100%);
+        animation-timing-function: step-end;
+    }
+
+    93% {
+        transform: translateX(100%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.img0 {
+    width: 300px;
+    height: 300px;
+    margin: 20px;
+    justify-content: center;
+    border-radius: 20px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    text-align: center;
+
+}
+
+a:hover {
+    background-color: rgba(184, 184, 184, 0.471);
+    border-radius: 10px;
+}
+
+.searchBtns {
+    list-style: none;
+    padding: 0;
+    justify-content: center;
+    display: flex;
+}
+
+.btn_icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+    float: left;
+    padding: 10px;
+}
+
+.stay_icon {
+    width: 50px;
+    /* 이미지 크기 조정 */
+    height: 50px;
+    /* 이미지 크기 조정 */
+    margin-bottom: 5px;
+    /* 이미지와 텍스트 사이 여백 */
+    text-align: center;
+    padding: 10px;
+}
+
+.icon_content {
+    margin-bottom: 20px;
+    /* 아래로 20px 간격을 줌 */
+}
+
+span {
+    font-family: 'Pretendard-Regular';
+    text-align: center;
+
+}
+
+.btn_icon a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.btn_icon img {
+    vertical-align: middle;
+}
+
+.searchPanel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+    float: left;
+    padding: 20px;
+    background-color: rgb(255, 255, 255);
+    border: solid black 1px;
+    border-radius: 20px;
+    width: 200px;
+
+}
+
+.searchPanel label {
+    display: inline-block;
+}
+
+.searchPanel input {
+    display: inline-block;
+}
+
+
+.panel {
+    list-style: none;
+    padding: 0;
+    justify-content: center;
+    display: flex;
+}
+
+.search_content {
+    background-color: #efefefb9;
+    width: auto;
+    height: auto;
+
+    margin: auto;
+
+    border-radius: 10px;
+    display: flex;
+    /* Flex 컨테이너로 설정 */
+    justify-content: center;
+    /* 수평 가운데 정렬 */
+    align-items: center;
+    /* 수직 가운데 정렬 */
+    text-align: center;
+}
+
+.search_btn {
+    border-color: black;
+    background-color: rgb(124, 210, 239);
+    border-radius: 20px;
+    color: white;
+    width: 100px;
+    height: 50px;
+    margin: auto;
+}
+
+.p_imgaes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+    float: left;
+    padding: 10px;
+
+}
+
+.panel_images {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+    float: left;
+
+
+}
+
+.sub_p {
+    font-family: 'Pretendard-Regular';
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
 
 }
