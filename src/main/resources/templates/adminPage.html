@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>MainPage</title>
+  <link th:href="@{/css/main.css}" rel="stylesheet">
+</head>
+<style>
+  @font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  button {
+    font-family: 'Pretendard-Regular';
+    font-size: 20px;
+    font-weight:bold;
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid #161616;
+    padding:30px;
+    margin:20px;
+    justify-content: center;
+
+  }
+</style>
+<header>
+  <img class="logo" th:src="@{/images/Logo.png}" alt="Logo Image"/>
+  <nav>
+    <ul>
+      <li class="main_list"><a class="main" href="/">여행지 추천</a></li>
+      <li class="main_list dropdown">
+        <a class="main" href="#">여행 정보</a>
+        <div class="dropdown-content">
+          <a href="/stays">숙소</a>
+          <a href="/eaterys">음식점 & 카페</a>
+          <a href="/">관광 명소</a>
+        </div>
+      </li>
+      <li class="main_list"><a class="main" href="/boards">메인게시판</a></li>
+      <li class="main_list"><a class="main" href="/admin">관리자페이지</a></li>
+      <li class="main_list"><a class="main" href="/">마이페이지</a></li>
+      <li class="main_list">
+        <a class="main" href="/members/login">로그인</a>
+      </li>
+      <li class="main_list"><a class="main" href="/members/new">회원가입</a></li>
+    </ul>
+  </nav>
+  <hr>
+</header>
+<body>
+<div class="button">
+  <button type="button" id="stay-create-btn" th:onclick="|location.href='@{/stays/create}'|">숙소등록</button>
+  <button type="button" id="create-btn" th:onclick="|location.href='@{/newEatery}'|" class="btn btn-secondary btn-sm mb-3">음식점 등록</button>
+  <button>어트랙션 등록</button>
+</div>
+
+</body>
+</html>

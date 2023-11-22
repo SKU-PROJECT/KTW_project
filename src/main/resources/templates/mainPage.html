@@ -1,64 +1,205 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
   <meta charset="UTF-8">
   <title>MainPage</title>
-  <link th:href="@{/css/main.css}" rel="stylesheet">
+  <link th:href="@{/css/main.css}" rel="stylesheet" />
 </head>
-<style>
-</style>
 <body>
-<header>
-  <img class="logo" th:src="@{/images/Logo.png}" alt="Logo Image"/>
-  <nav>
-    <ul>
-      <li class="main_list"><a class="main" href="/">여행지 추천</a></li>
-      <li class="main_list dropdown">
-        <a class="main" href="#">여행 정보</a>
-        <div class="dropdown-content">
-          <a href="/stays">숙소</a>
-          <a href="/eaterys">음식점 & 카페</a>
-          <a href="/">관광 명소</a>
-        </div>
+  <header>
+    <a href="/"><img class="logo" src="/images/Logo.png" alt="Logo Image" /></a>
+    <nav>
+      <ul>
+        <li class="main_list"><a class="main" href="/">여행지 추천</a></li>
+        <li class="main_list dropdown">
+          <a class="main" href="#">여행 정보</a>
+          <div class="dropdown-content">
+            <a th:href="@{/stays}">숙소</a>
+            <a th:href="@{/eaterys}">음식점 & 카페</a>
+            <a th:href="@{/}">관광 명소</a>
+          </div>
+        </li>
+        <li class="main_list"><a class="main" href="/boards">메인게시판</a></li>
+        <li class="main_list"><a class="main" href="admin">관리자페이지</a></li>
+        <li class="main_list"><a class="main" href="/">마이페이지</a></li>
+        <li class="main_list"><a class="main" href="/members/login" sec:authorize="isAnonymous()">로그인</a></li>
+        <li class="main_list"><a class="main" href="/members/logout" sec:authorize="isAuthenticated()">로그아웃</a></li>
+      </ul>
+    </nav>
+    <hr>
+  </header>
+
+  <div class="icon_content">
+    <ul class="searchBtns">
+      <li class="btn_icon">
+        <a class="a1" href="/"><img class="stay_icon"
+            src="/images/여행지아이콘.png"><span>여행지</span> </a>
       </li>
-      <li class="main_list"><a class="main" href="/boards">메인게시판</a></li>
-      <li class="main_list"><a class="main" href="/">관리자페이지</a></li>
-      <li class="main_list"><a class="main" href="/">마이페이지</a></li>
-      <li class="main_list">
-        <a class="main" href="/members/login">로그인</a>
+      <li class="btn_icon">
+        <a class="a1" href="/stays"><img class="stay_icon"
+            src="/images/숙박아이콘.png"><span>숙박</span> </a>
       </li>
-      <li class="main_list" >
-        <a class="main" href="/members/logout">로그아웃</a>
+      <li class="btn_icon">
+        <a class="a1" href="/eaterys"><img class="stay_icon"
+            src="/images/음식점아이콘.png"><span>맛집</span></a>
       </li>
-      <li class="main_list"><a class="main" href="/members/new">회원가입</a></li>
+      <li class="btn_icon">
+        <a class="a1" href="/attraction"><img class="stay_icon"
+            src="/images/액티비티아이콘.png"><span>액티비티</span> </a>
+      </li>
     </ul>
-  </nav>
+  </div>
+  <div class="search_content">
+    <ul class="panel">
+      <li class="searchPanel">
+        <p>여행지역</p>
+        <form>
+          <select id="location" name="location" onchange="updateDistricts()">
+            <option value="none">==지역==</option>
+            <option value="seoul">서울</option>
+            <option value="busan">부산</option>
+            <option value="daegu">대구</option>
+            <option value="daejeon">대전</option>
+            <option value="incheon">인천</option>
+            <option value="gyeongi">경기</option>
+            <option value="gyeongnam">경남</option>
+            <option value="gyeongbuk">경북</option>
+            <option value="jeonnam">전남</option>
+            <option value="jeonbuk">전북</option>
+            <option value="chungbuk">충북</option>
+            <option value="chungnam">충남</option>
+            <option value="jeju">제주</option>
 
-  <hr>
-</header>
+          </select>
+          <select id="district" name="district">
+            <option value="none">==관할구==</option>
+          </select>
+        </form>
+      </li>
+      <li class="searchPanel">
+        <p>숙박일</p>
+        <label >
+          <input type="date" id="date1" max="2030-06-20" min="2023-01-01" value="2023-11-21">~
+          <input type="date" id="date2" max="2030-06-20" min="2023-01-01" value="2023-11-21">~
+        </label>
+      </li>
+      <li class="searchPanel">
+        <p>인원</p>
+        <form>
+          <select name="person">
+            <option value="none" selected>== 인원 ==</option>
+            <option value="two">2인</option>
+            <option value="three">3인</option>
+            <option value="four">4인</option>
+            <option value="etc">기타</option>
+          </select>
+        </form>
+      </li>
+      <button class="search_btn" type="submit"> 검색 </button>
+    </ul>
+  </div><br><br>
 
-<div class="sub_div1">
-  <p class="p_main">이달의 추천 여행지</p>
-</div>
-<div class="main_div">
-  <div class="slider">
-    <div class="slide"></div>
-    <div class="slide"></div>
-    <div class="slide"></div>
+  <div class="main_div">
+    <div class="slider">
+      <div class="slide"></div>
+      <div class="slide"></div>
+      <div class="slide"></div>
+    </div>
   </div>
 
-</div>
+  <div class="sub_div2">
+    <p class="p_main">이달의 인기 여행지</p>
+    <hr style="width: 50%;"><br>
+    <p class="sub_p">경기/강원</p>
+    <ul class="p_images">
+      <li class="panel_images"><img class="img0"
+          src="/images/경기광주화담숲.png" /></li>
+      <li class="panel_images"><img class="img0"
+          src="/images/경기안산탄도항.png" /></li>
+      <li class="panel_images"><img class="img0"
+          src="/images/경기포천허브아일랜드.png" /></li>
+      <li class="panel_images"><img class="img0"
+          src="/images/강원정선만항재.png" /></li>
+    </ul>
+  </div><br>
 
-<div class="sub_div2">
-  <p class="p_main">추천 여행 코스</p>
-  <img class="img0" th:src="@{/images/강원정선만항재.png}"/>
-  <img class="img0" th:src="@{/images/강원춘천남이섬.png}"/>
-  <img class="img0" th:src="@{/images/경기광주화담숲.png}"/>
-  <img class="img0" th:src="@{/images/경기안산탄도항.png}"/>
-  <img class="img0" th:src="@{/images/경기포천허브아일랜드.png}"/>
-  <img class="img0" th:src="@{/images/경남함안낙화놀이.png}"/>
-  <img class="img0" th:src="@{/images/경북경주월정교.png}"/>
-</div>
+  <div class="sub_div3">
+    <p class="sub_p"> 부산/여수</p>
+    <ul ul class="p_images">
+      <li class="panel_images"><img class="img0"
+          src="C:\Users\Kimeunjeong\KickTheWorld\src\main\resources\static\images\경기포천허브아일랜드.png" /></li>
+      <li class="panel_images"><img class="img0"
+          src="C:\Users\Kimeunjeong\KickTheWorld\src\main\resources\static\images\경남함안낙화놀이.png" /></li>
+      <li class="panel_images"><img class="img0"
+          src="C:\Users\Kimeunjeong\KickTheWorld\src\main\resources\static\images\경북경주월정교.png" /></li>
+    </ul>
+  </div>
+  <script>
+    function updateDistricts() {
+      var locationSelect = document.getElementById('location');
+      var districtSelect = document.getElementById('district');
+
+      // 이전에 선택한 구를 초기화
+      districtSelect.innerHTML = '<option value="none">==관할구==</option>';
+
+      // 선택한 여행지에 따라 관할구 추가
+      if (locationSelect.value === 'seoul') {
+        addOption(districtSelect, '강남구');
+        addOption(districtSelect, '강동구');
+        addOption(districtSelect, '강북구');
+        addOption(districtSelect, '강서구');
+        addOption(districtSelect, '관악구');
+        addOption(districtSelect, '광진구');
+        addOption(districtSelect, '구로구');
+        addOption(districtSelect, '금천구');
+        addOption(districtSelect, '노원구');
+        addOption(districtSelect, '도봉구');
+        addOption(districtSelect, '동대문구');
+        addOption(districtSelect, '동작구');
+        addOption(districtSelect, '마포구');
+        addOption(districtSelect, '서대문구');
+        addOption(districtSelect, '서초구');
+        addOption(districtSelect, '성동구');
+        addOption(districtSelect, '성북구');
+        addOption(districtSelect, '송파구');
+        addOption(districtSelect, '양천구');
+        addOption(districtSelect, '영등포구');
+        addOption(districtSelect, '용산구');
+        addOption(districtSelect, '은평구');
+        addOption(districtSelect, '종로구');
+        addOption(districtSelect, '중구');
+        addOption(districtSelect, '중랑구');
+
+      } else if (locationSelect.value === 'busan') {
+        addOption(districtSelect, '강서구');
+        addOption(districtSelect, '금정구');
+        addOption(districtSelect, '기장구');
+        addOption(districtSelect, '해운대구');
+        addOption(districtSelect, '남구');
+        addOption(districtSelect, '동구');
+        addOption(districtSelect, '동래');
+        addOption(districtSelect, '부산진');
+        addOption(districtSelect, '북구');
+        addOption(districtSelect, '사상');
+        addOption(districtSelect, '사하');
+        addOption(districtSelect, '서구');
+        addOption(districtSelect, '수영구');
+        addOption(districtSelect, '중구');
+        addOption(districtSelect, '연제구');
+        addOption(districtSelect, '영도구');
+        // 다른 부산의 관할구들도 추가
+      }
+      // 다른 여행지에 대한 구 추가
+    }
+
+    function addOption(selectElement, optionText) {
+      var option = document.createElement('option');
+      option.value = optionText;
+      option.text = optionText;
+      selectElement.add(option);
+    }
+  </script>
 </body>
+
 </html>
