@@ -32,14 +32,14 @@ public class Member  {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    public static Member createMember(MemberFormDto memberFormDto, PasswordEncoder passwordEncoder){
+    public static Member createMember(MemberFormDto memberFormDto, PasswordEncoder passwordEncoder, Role role){
         Member member = new Member();
         member.setName(memberFormDto.getName());
         member.setEmail(memberFormDto.getEmail());
         member.setAddress(memberFormDto.getAddress());
         String password = passwordEncoder.encode(memberFormDto.getPassword());
         member.setPassword(password);
-        member.setRole(Role.ADMIN);
+        member.setRole(role);  // 여기서 전달받은 role을 사용하도록 변경
         return member;
     }
 

@@ -1,5 +1,6 @@
 package com.example.Security.controller;
 
+import com.example.Security.constant.Role;
 import com.example.Security.dto.MemberFormDto;
 import com.example.Security.entity.Member;
 import com.example.Security.service.MemberService;
@@ -35,7 +36,7 @@ public class MemberController {
         }
 
         try {
-            Member member = Member.createMember(memberFormDto, passwordEncoder);
+            Member member = Member.createMember(memberFormDto, passwordEncoder, Role.USER);
             memberService.saveMember(member);
         } catch (IllegalStateException e){
             model.addAttribute("errorMessage", e.getMessage());

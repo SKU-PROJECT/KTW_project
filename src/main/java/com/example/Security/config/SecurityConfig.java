@@ -33,9 +33,9 @@ public class SecurityConfig {
         //authorization
         http
                 .authorizeHttpRequests()
-                .requestMatchers("/members/login").anonymous()
-                .requestMatchers("/members/logout").authenticated()
-//                .requestMatchers("/boards/**").hasAnyRole("USER", "ADMIN")
+//                .requestMatchers("/members/login").anonymous()
+//                .requestMatchers("/members/logout").authenticated()
+                .requestMatchers("/admin/**").hasAnyRole( "ADMIN")
   //              .requestMatchers("/**").permitAll() //해당 경로에 대한 권한 설정
 
 //                .requestMatchers("/stays/**").hasAnyRole("USER", "GURU", "ADMIN", "MANAGER")
@@ -50,30 +50,7 @@ public class SecurityConfig {
                 .anyRequest().authenticated();
 
 
-        //authentication
-//            http
-//                    .addFilterBefore(new JwtAuthenticationFilter(jwtProvider), UsernamePasswordAuthenticationFilter.class)
-//                    .exceptionHandling()
-//
-//                    // 권한 없을 때 오류 발생 - 요청한 경로의 USER_ROLE이 적합하지 않을 때
-//                    .accessDeniedHandler(new AccessDeniedHandler() {
-//                        @Override
-//                        public void handle(HttpServletRequest request, HttpServletResponse response,
-//                                           AccessDeniedException accessDeniedException) throws IOException, ServletException {
-//                            response.setStatus(ResponseStatus.FAIL_FORBIDDEN.getStatusCode().value());
-//                            response.getWriter().write(ResponseStatus.FAIL_FORBIDDEN.getMessage());
-//                        }
-//                    })
-//
-//                    // 인증이 올바르지 않을 때 오류 발생 - token 오류
-//                    .authenticationEntryPoint(new AuthenticationEntryPoint() {
-//                        @Override
-//                        public void commence(HttpServletRequest request, HttpServletResponse response,
-//                                             AuthenticationException authException) throws IOException, ServletException {
-//                            response.setStatus(ResponseStatus.FAIL_UNAUTHORIZED.getStatusCode().value());
-//                            response.getWriter().write(ResponseStatus.FAIL_UNAUTHORIZED.getMessage());
-//                        }
-//                    });
+
 
         http.formLogin()
                 .loginPage("/members/login")
@@ -89,7 +66,6 @@ public class SecurityConfig {
         return http.build();
 
     }
-
     @Bean
     public PasswordEncoder passwordEncoder() {
 
