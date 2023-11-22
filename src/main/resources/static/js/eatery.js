@@ -3,7 +3,6 @@ const deleteBtn = document.getElementById('delete-btn');
 const modifyBtn = document.getElementById('modify-btn');
 
 
-//create 왜 .. 안되니... ? 뭐가 문제니
 if(createBtn){
     createBtn.addEventListener('click', event => {
         fetch("/api/eaterys", {
