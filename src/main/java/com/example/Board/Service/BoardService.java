@@ -8,8 +8,13 @@ import com.example.Board.Repository.BoardRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -49,8 +54,16 @@ public class BoardService {
 //        return board;
 //    }
 
-    public List<Board> findAll() {
-        return boardRepository.findAll();
+//    public List<Board> findAll() {
+//        return boardRepository.findAll();
+//    }
+
+    // 전체 조회 - 페이징, 글 번호(id) 기준으로 역순 출력
+    public Page<Board> findAll(int page){
+        List <Sort.Order> sorts = new ArrayList<>();
+        sorts.add(Sort.Order.desc("id"));
+        Pageable pageable = PageRequest.of(page, 10, Sort.by(sorts));
+        return this.boardRepository.findAll(pageable);
     }
 
     public Board findById(long id) {

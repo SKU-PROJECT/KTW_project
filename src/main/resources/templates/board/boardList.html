@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>게시판</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
     <link th:href="@{/css/board.css}" rel="stylesheet">
 </head>
 <body>
@@ -48,7 +49,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="board : ${boards}">
+            <tr th:each="board : ${boardPaging}">
                 <td th:text="${board.id}"></td>
                 <td><a th:text="${board.title}" th:href="@{/boards/{id}(id=${board.id})}"></a></td>
                 <td th:text="${board.mem_id}"></td>
@@ -56,6 +57,29 @@
             </tr>
             </tbody>
         </table>
+        <br><br>
+        <!--페이징 처리-->
+        <div th:if="${!boardPaging.isEmpty()}">
+            <ul class="pagination justify-content-center">
+                <li class="page-item" th:classappend="${!boardPaging.hasPrevious} ? 'disabled'">
+                    <a class="page-link" th:href="@{|?page=${boardPaging.number-1}|}">
+                        <span>이전</span>
+                    </a>
+                </li>
+                <li th:each="page: ${#numbers.sequence(0, boardPaging.totalPages-1)}"
+                    th:if="${page >= boardPaging.number-5 and page <= boardPaging.number+5}"
+                    th:classappend="${page == boardPaging.number} ? 'active'"
+                    class="page-item">
+                    <a th:text="${page}" class="page-link" th:href="@{|?page=${page}|}"></a>
+                </li>
+                <li class="page-item" th:classappend="${!boardPaging.hasNext} ? 'disabled'">
+                    <a class="page-link" th:href="@{|?page=${boardPaging.number+1}|}">
+                        <span>다음</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
     </div>
 </div>
 
@@ -64,6 +88,7 @@
 </div>
 
 </div>
+
 <script src="/js/board.js"></script>
 </body>
 </html>
