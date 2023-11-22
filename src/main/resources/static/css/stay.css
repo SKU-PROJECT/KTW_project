@@ -10,79 +10,27 @@ header {
     top: 0;
 }
 .logo {
-    width: 120px;
-    height: 120px;
-    margin-left: 60px;
+    width: 100px;
+    height: 100px;
+    margin-left: 30px;
 }
-h1 {
-    display: inline-block;
-}
+
 nav {
+    margin-top: 20px;
     display: inline-block;
     float: right;
 }
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-}
+
 .main_list {
     font-family: 'Pretendard-Regular';
     font-weight:bold;
     float: left;
     list-style-type: none;
     padding: 25px;
-    font-size: 20px;
+    font-size: 18px;
     margin-left: auto;
     margin-right: auto;
     text-align: right;
-}
-
-.main {
-    text-decoration: none;
-    color: black;
-}
-
-.sidebar {
-    height: 100%;
-    width: 200px;
-    position: fixed;
-    left: 0;
-    top: 0;
-    background-color: #111;
-    padding-top: 20px;
-}
-
-.sidebar ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.sidebar ul li {
-    padding: 8px 16px;
-    text-align: center;
-}
-
-.sidebar ul li a {
-    text-decoration: none;
-    color: #ffffff;
-}
-
-.sidebar ul li:hover {
-    background-color: #555;
-}
-
-.content {
-    margin-left: 220px;
-    padding: 20px;
-}
-
-/* Optional: Add styles for better appearance */
-.sidebar {
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
-}
-
-.sidebar ul li:hover a {
-    color: #ffd700; /* Change text color on hover */
 }
 .search-container {
     margin:50px;
@@ -94,15 +42,42 @@ body {
     font-family: 'Pretendard-Regular';
     float: left;
     list-style-type: none;
-    padding: 25px;
+    padding: 15px;
     font-size: 18px;
     margin-left: auto;
     margin-right: auto;
     text-align: center;
 }
-.main:hover {
-    color: blue;
+.location_list {
+    background-color: #b7dfed;
+    border-radius:10px;
+    font-weight: bold;
 }
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.main {
+    text-decoration: none;
+    color: black;
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.card {
+    font-family: 'Pretendard-Regular';
+    width: 18%; /* Adjust the width as needed */
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
 button {
     font-family: 'Pretendard-Regular';
     font-size: 15px;
@@ -112,5 +87,92 @@ button {
     border: 1px solid #161616;
     padding:10px;
     margin:5px;
+
+}
+h2 {
+    font-family: 'Pretendard-Regular';
+    text-align: center;
+    margin:auto;
+    font-size: 20px;
+
+}
+.detail-item {
+    font-family: 'Pretendard-Regular';
+    margin:10px;
+    font-size:18px;
+}
+.create_form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 50px;
+    border-radius:10px;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+}
+textarea {
+    width:100%;
+    height:20%;
+
+}
+button {
+    background-color: #436ba6;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    justify-content: center;
+    magin:auto;
+}
+
+button:hover {
+    background-color: #233762;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #ddd;
+    margin: 20px 0;
+}
+.image2 {
+    width:260px;
+    height:260px;
+    border-radius:8px;
+}
+.image3 {
+    width:300px;
+    height:280px;
+    border-radius:8px;
+    margin:auto;
+    justify-content: center;
+    display:flex;
+}
+.img_div {
+    width: 80%;
+    margin:auto;
+    justify-content: center;
+}
+.p_stay_title {
+    font-family: 'Pretendard-Regular';
+    font-size: 20px;
+    text-align: center;
+}
+.p_stay_detail {
+    font-family: 'Pretendard-Regular';
+    font-size: 20px;
+    text-align: center;
 
 }

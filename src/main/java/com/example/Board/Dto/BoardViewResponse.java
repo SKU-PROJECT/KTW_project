@@ -19,7 +19,7 @@ public class BoardViewResponse {
     private String board_category;
     private Date createdAt;
 
-    private List<BoardImageDto> boardImageDTOList = new ArrayList<>();
+  //  private List<BoardImageDto> boardImageDTOList = new ArrayList<>();
 
     //파일이 존재 하지 않을 때
     public BoardViewResponse(Board board) {

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/53a8c415f1.js" crossorigin="anonymous"></script>
+<!--  <link rel="stylesheet" href="./login.css">-->
+  <link th:href="@{/login.css}" rel="stylesheet">
+
+</head>
+<body>
+<div class="wrap">
+  <div class="login">
+    <h2>Log-in</h2>
+    <div class="login_sns">
+      <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+      <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+      <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+    </div>
+
+
+    <form role="form" method="post" action="/members/login" >
+    <div class="login_id">
+<!--      <h4>E-mail</h4>-->
+<!--      <input type="email" name="" id="" placeholder="Email">-->
+      <div class="form-group">
+        <label th:for="email">이메일주소</label>
+        <input type="email" name="email" class="form-control" placeholder="이메일을 입력해주세요">
+      </div>
+
+    </div>
+    <div class="login_pw">
+<!--      <h4>Password</h4>-->
+<!--      <input type="password" name="" id="" placeholder="Password">
+      -->
+      <div class="form-group" >
+        <label th:for="password"> 비밀번호</label>
+        <input type="password" name="password" id="password" class="form-control" placeholder="비밀번호 입력" >
+      </div>
+    </div>
+
+    <div class="login_etc">
+      <div class="checkbox">
+        <input type="checkbox" name="" id=""> Remember Me?
+      </div>
+      <div class="forgot_pw">
+        <a href="">Forgot Password?</a>
+      </div>
+    </div>
+<!--    <div class="submit">-->
+<!--      <input type="submit" value="submit">-->
+<!--    </div>-->
+      <p th:if="${loginErrorMsg}" class="error" th:text="${loginErrorMsg}"></p>
+      <button >로그인</button>
+    </form>
+  </div>
+</div>
+</body>
+</html>

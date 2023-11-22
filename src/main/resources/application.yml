@@ -4,6 +4,10 @@ spring:
     driver-class-name: org.mariadb.jdbc.Driver
     username: 'kicktheworld'
     password: 'kicktheworld1!'
+  h2:
+    console:
+      enabled: true
+
   jpa:
     open-in-view: false
     generate-ddl: true
@@ -14,13 +18,14 @@ spring:
       hibernate:
         show_sql: true
         format_sql: true
-  servlet:
-    multipart:
-      enabled: true
-      location: C:\\upload
-      max-request-size: 30MB
-      max-file-size: 10MB
-com:
-  example:
-    upload:
-      path: C:\\upload
+#  servlet:
+#    multipart:
+#      enabled: true
+#      location: C:\\upload
+#      max-request-size: 30MB
+#      max-file-size: 10MB
+#com:
+#  example:
+#    upload:
+#      path: C:\\upload
+
