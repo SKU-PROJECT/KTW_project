@@ -2,8 +2,7 @@ const createBtn = document.getElementById('create-btn');
 const deleteBtn = document.getElementById('delete-btn');
 const modifyBtn = document.getElementById('modify-btn');
 
-
-//create 왜 .. 안되니... ? 뭐가 문제니
+//create
 if(createBtn){
     createBtn.addEventListener('click', event => {
         fetch("/api/eaterys", {
@@ -20,7 +19,7 @@ if(createBtn){
                 detail: document.getElementById("detail").value
             })
         }).then(()=>{
-            alert('등록');
+            alert('등록이 완료되었습니다.');
             location.replace("/eaterys");
         });
     });
@@ -33,7 +32,7 @@ if(deleteBtn) {
         fetch(`/api/eaterys/${id}`, {
             method: 'DELETE'
         }).then(()=> {
-            alert('삭제');
+            alert('삭제가 완료되었습니다.');
             location.replace('/eaterys');
         });
     });
@@ -59,7 +58,7 @@ if(modifyBtn){
                 detail: document.getElementById('detail').value
             })
         }).then(()=>{
-            alert('수정');
+            alert('수정이 완료되었습니다.');
             location.replace(`/eaterys/${id}`);
         });
     });
