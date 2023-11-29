@@ -9,15 +9,14 @@ if (createButton) {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                title: document.getElementById('title').value,
-                link: document.getElementById('link').value,
+                name: document.getElementById('name').value,
                 category:document.getElementById('category').value,
-                description:document.getElementById('description').value,
-                telephone:document.getElementById('telephone').value,
+                price:document.getElementById('price').value,
+                detail:document.getElementById('detail').value,
+                use_guide:document.getElementById('use_guide').value,
                 address:document.getElementById('address').value,
-                road_address:document.getElementById('road_address').value,
-                mapx:document.getElementById('mapx').value,
-                mapx:document.getElementById('mapy').value
+                amenity:document.getElementById('amenity').value,
+                service:document.getElementById('service').value,
             })
         })
             .then(() => {

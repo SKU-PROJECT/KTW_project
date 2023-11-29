@@ -1,24 +1,69 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
-    <meta charset="UTF-8">
     <title>editStay</title>
+    <link th:href="@{/css/main.css}" rel="stylesheet" />
+    <link th:href="@{/css/stay.css}" rel="stylesheet">
 </head>
 <body>
+<header>
+    <a href="/"><img class="logo" src="/images/Logo.png" alt="Logo Image" /></a>
+    <nav>
+        <ul>
+            <li class="main_list"><a class="main" href="/">여행지 추천</a></li>
+            <li class="main_list dropdown">
+                <a class="main" href="#">여행 정보</a>
+                <div class="dropdown-content">
+                    <a th:href="@{/stays}">숙소</a>
+                    <a th:href="@{/eaterys}">음식점 & 카페</a>
+                    <a th:href="@{/attractions}">관광 명소</a>
+                </div>
+            </li>
+            <li class="main_list"><a class="main" href="/boards">메인게시판</a></li>
+            <li class="main_list"><a class="main" href="/" th:if="${#authorization.expression('hasRole(''USER'')')}">마이페이지</a></li>
+            <li class="main_list"><a class="main" href="admin" th:href="@{/admin}" th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
+                관리자페이지
+            </a></li>
+            <a class="main" href="/members/login" th:href="@{/members/login}" th:if="${#authorization.expression('isAnonymous()')}">
+                로그인
+            </a>
+            <a class="main" href="/members/logout" th:href="@{/members/logout}" th:if="${#authorization.expression('isAuthenticated()')}">
+                로그아웃
+            </a>
+        </ul>
+    </nav>
+    <hr>
+</header>
 <h2>Edit stay</h2>
 
-<form th:object="${stay}" th:action="@{/stays/edit/{id}(id=${stay.id})}" method="post">
-
+<form class="create_form"th:object="${stay}" th:action="@{/stays/edit/{id}(id=${stay.stay_id})}" method="post">
+    <label>예약현황</label>
+    <select th:field="*{staySellStatus}" class="">
+        <option value="SELL">예약가능</option>
+        <option value="SOLD_OUT">예약마감</option>
+    </select><br>
     <label>숙소명: <input type="text" th:field="*{name}" /></label><br/>
-    <label>카테고리: <input type="text" th:field="*{category}" /></label><br/>
-    <label>숙소 금액: <input type="text" th:field="*{price}" /></label><br/>
-    <label>주소: <input type="text" th:field="*{address}" /></label><br/>
-    <label>숙소소개: <input type="text" th:field="*{detail}" /></label><br/>
-    <label>서비스: <input type="text" th:field="*{service}" /></label><br/>
-    <label>이용안내: <input type="text" th:field="*{useGuide}" /></label><br/>
-    <label>예약공지: <input type="text" th:field="*{amenity}" /></label><br/>
 
-    <button type="submit">숙소 수정</button>
+    <label for="category">숙소 유형: </label>
+    <select class="form-control" id="category" th:field="*{category}">
+        <option value="" disabled selected>카테고리</option>
+        <option value="호텔">호텔</option>
+        <option value="펜션">펜션</option>
+        <option value="게스트하우스">게스트하우스</option>
+        <option value="캠핑">캠핑</option>
+        <option value="기타">기타</option>
+    </select> <br>
+<!--    <label>카테고리: <input type="text" th:field="*{category}" /></label><br/>-->
+    <label>숙소소개: <textarea th:field="*{detail}" /></textarea></label><br/>
+    <label>숙소 금액: <input type="text" th:field="*{price}" /></label><br/>
+    <label>남은객실: <input type="number" th:field="*{stayday}" /></label><br/>
+    <label>주소: <input type="text" th:field="*{address}" /></label><br/>
+    <label>서비스: <textarea th:field="*{service}"></textarea></label><br/>
+    <label>이용 안내: <textarea th:field="*{use_guide}" ></textarea></label><br/>
+    <label>예약 공지: <textarea th:field="*{amenity}" ></textarea></label><br/>
+
+
+    <button type="submit" style="text-align:right"> 수정완료</button>
 </form>
 </body>
 </html>
