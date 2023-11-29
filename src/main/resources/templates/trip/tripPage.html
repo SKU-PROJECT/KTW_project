@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>tripPage</title>
+    <link th:href="@{/css/stay.css}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
+
+    <script th:inline="javascript">
+        $(document).ready(function(){
+            $("#searchBtn").on("click",function(e) {
+                e.preventDefault();
+                page(0);  //조회할때 페이지 번호를 0으로 설정해서 조회해야 함
+            });
+        });
+
+        function page(page){
+            var searchBy = $("#searchBy").val();
+            var searchQuery = $("#searchQuery").val();
+
+            location.href="/main/trips/" + page + "?searchBy=" + searchBy + "&searchQuery=" + searchQuery ;
+        }
+    </script>
+<style>
+    @font-face {
+        font-family: 'Pretendard-Regular';
+        src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+        font-weight: 400;
+        font-style: normal;
+    }
+    img{
+        border-radius:20px;
+    }
+    body{
+        font-family: 'Pretendard-Regular';
+    }
+    h2{
+        font-family: 'Pretendard-Regular';
+        font-size: 20px;
+    }
+    a{
+        text-decoration: none;
+        color:black;
+        font-size:18px;
+        text-align:center;
+    }
+    select{
+        margin-right:10px;
+    }
+    footer {
+        background-color: #333;
+        color: #fff;
+        padding: 30px 0;
+    }
+
+    .container {
+        max-width: 1100px;
+        margin: 0 auto;
+    }
+
+    .footer-content {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .footer-section {
+        flex: 1;
+        margin-right: 20px;
+        text-align:center;
+    }
+
+    .footer-section h2 {
+        color: #fff;
+        margin-bottom: 10px;
+        text-align:center;
+    }
+
+    .footer-section p {
+        font-size: 0.9em;
+        line-height: 1.4em;
+        color: #aaa;
+        text-align:center;
+    }
+
+    .footer-section a {
+        color: #fff;
+        text-decoration: none;
+    }
+
+    .footer-section ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .footer-section li {
+        margin-bottom: 8px;
+    }
+
+
+    .btn {
+        display: inline-block;
+        background-color: #000000;
+        color: #fff;
+        padding: 10px 20px;
+        text-decoration: none;
+        border-radius: 5px;
+    }
+</style>
+</head>
+<body>
+<header>
+    <a href="/"><img class="logo" src="/images/Logo.png" alt="Logo Image" /></a>
+    <nav>
+        <ul>
+            <li class="main_list"><a class="main" href="/">여행지 추천</a></li>
+            <li class="main_list dropdown">
+                <a class="main" href="#">여행 정보</a>
+                <div class="dropdown-content">
+                    <a th:href="@{/stays}">숙소</a>
+                    <a th:href="@{/}">음식점 & 카페</a>
+                    <a th:href="@{/}">관광 명소</a>
+                </div>
+            </li>
+            <li class="main_list"><a class="main" href="/boards">메인게시판</a></li>
+
+            <li class="main_list"><a class="main" href="/" th:if="${#authorization.expression('hasRole(''USER'')')}">마이페이지</a></li>
+            <li class="main_list"><a class="main" href="admin" th:href="@{/admin}" th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
+                관리자페이지
+            </a></li>
+            <a class="main" href="/members/login" th:href="@{/members/login}" th:if="${#authorization.expression('isAnonymous()')}">
+                로그인
+            </a>
+            <a class="main" href="/members/logout" th:href="@{/members/logout}" th:if="${#authorization.expression('isAuthenticated()')}">
+                로그아웃
+            </a>
+        </ul>
+    </nav>
+    <hr>
+</header>
+<div>
+    <h2>어디로 여행가시나요? </h2><br>
+    <form th:action="@{'/main/trips/' + ${trips.number}}" role="form" method="get" th:object="${trips}">
+        <div th:object="${tripSearchDto}" style="text-align: center;">
+            <select th:field="*{searchBy}" style="width:auto;">
+                <option value="address">지역</option>
+                <option value="name">여행지</option>
+            </select>
+            <input th:field="*{searchQuery}" type="text"  placeholder="검색어를 입력해주세요" style="width:60%; margin-left:auto; margin-right:auto; border-radius:10px;">
+            <button id="searchBtn" type="submit" class="btn btn-outline-dark">검색</button>
+        </div>
+
+
+        <div class="card-container" style="margin-top:50px;">
+            <div class="card" th:each="trip, status: ${trips.getContent()}">
+                <a th:href="'/admin/trip/'+${trip.id}">
+                <img th:src="${trip.imgUrl}" th:alt="${trip.name}" style="width:300px; height:300px; margin:auto; padding:20px; border-radius:20px;">
+                <a th:text="${trip.name}"></a></a>
+            </div>
+        </div>
+
+        <!--        페이징처리-->
+        <div class="paging" style="margin-top:300px;" >
+        <div th:with="start=${(trips.number/maxPage)*maxPage + 1}, end=(${(trips.totalPages == 0) ? 1 : (start + (maxPage - 1) < trips.totalPages ? start + (maxPage - 1) : trips.totalPages)})" >
+            <ul class="pagination justify-content-center">
+
+                <li class="page-item" th:classappend="${trips.first}?'disabled'">
+                    <a th:onclick="'javascript:page(' + ${trips.number - 1} + ')'" aria-label='Previous' class="page-link">
+                        <span aria-hidden='true'>Previous</span>
+                    </a>
+                </li>
+
+                <li class="page-item" th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${trips.number eq page-1}?'active':''">
+                    <a th:onclick="'javascript:page(' + ${page - 1} + ')'" th:inline="text" class="page-link">[[${page}]]</a>
+                </li>
+
+                <li class="page-item" th:classappend="${trips.last}?'disabled'">
+                    <a th:onclick="'javascript:page(' + ${trips.number + 1} + ')'" aria-label='Next' class="page-link">
+                        <span aria-hidden='true'>Next</span>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+        </div>
+    </form>
+</div>
+<footer>
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section about">
+                    <h2>KickTheWorld</h2>
+                    <p>KickTheWorld에 오신걸 환영합니다 !</p>
+                </div>
+
+                <div class="footer-section links">
+                    <h2>DEVELOPER</h2>
+                    <ul>
+                        <li>김은정 / https://github.com/Kej613</a></li>
+                        <li>박의연 / https://gitgub.com/euiyeon0519</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+</footer>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</body>
+</html>
