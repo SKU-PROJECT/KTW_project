@@ -1,10 +1,43 @@
+// 생성 기능
+const createButton = document.getElementById('create-btn');
+
+if (createButton) {
+    createButton.addEventListener('click', event => {
+        fetch('/new-board', {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                title: document.getElementById('title').value,
+                content: document.getElementById('content').value,
+                mem_id: document.getElementById('mem_id').value,
+                board_category: document.getElementById('board_category').value
+            })
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(() => {
+                alert('등록 완료되었습니다.');
+                location.replace('/boards');
+            })
+            .catch(error => {
+                console.error('Fetch error:', error);
+            });
+    });
+}
+
 // 삭제 기능
 const deleteButton = document.getElementById('delete-btn');
 
 if (deleteButton) {
     deleteButton.addEventListener('click', event => {
-        let id = document.getElementById('board-id').value;
-        fetch(`/api/boards/${id}`, {
+        let boardId = document.getElementById('data-boardid').value;
+        fetch(`/boards/delete/${boardId}`, {
             method: 'DELETE'
         })
             .then(() => {
@@ -18,51 +51,37 @@ const modifyButton = document.getElementById('modify-btn');
 
 if (modifyButton) {
     modifyButton.addEventListener('click', event => {
-        let params = new URLSearchParams(location.search);
-        let id = params.get('id');
+        let boardId = modifyButton.getAttribute('data-boardid');
 
-        fetch(`/api/boards/${id}`, {
-            method: 'PUT',
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                title: document.getElementById('title').value,
-                content: document.getElementById('content').value,
-                mem_id:document.getElementById('mem_id').value,
-                board_category:document.getElementById('board_category').value
-            })
-        })
-            .then(() => {
-                alert('수정이 완료되었습니다.');
-                location.replace(`/boards/${id}`);
-            });
+        window.location.href = `/boards/edit/${boardId}`;
     });
 }
 
-// 생성 기능
-const createButton = document.getElementById('create-btn');
 
-if (createButton) {
-    createButton.addEventListener('click', event => {
-        fetch('/api/boards', {
-            method: 'POST',
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                title: document.getElementById('title').value,
-                content: document.getElementById('content').value,
-                mem_id:document.getElementById('mem_id').value,
-                board_category:document.getElementById('board_category').value
-            })
-        })
-            .then(() => {
-                alert('등록 완료되었습니다.');
-                location.replace('/boards');
-            });
-    });
-}
+// if (modifyButton) {
+//     modifyButton.addEventListener('click', event => {
+//         let params = new URLSearchParams(location.search);
+//         let id = params.get('id');
+//
+//         fetch(`/boards/${id}`, {
+//             method: 'PUT',
+//             headers: {
+//                 "Content-Type": "application/json",
+//             },
+//             body: JSON.stringify({
+//                 title: document.getElementById('title').value,
+//                 content: document.getElementById('content').value,
+//                 mem_id:document.getElementById('mem_id').value,
+//                 board_category:document.getElementById('board_category').value
+//             })
+//         })
+//             .then(() => {
+//                 alert('수정이 완료되었습니다.');
+//                 location.replace(`/boards/${id}`);
+//             });
+//     });
+// }
+
 // const createButton = document.getElementById('create-btn');
 //
 // if (createButton) {

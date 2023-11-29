@@ -35,13 +35,12 @@ nav {
     display: none;
     position: absolute;
     z-index: 1;
-    /* 다른 요소들보다 앞에 배치 */
     text-align: center;
-    /* 가운데 정렬 */
     background-color: #cccccc;
-    /* 파란색 배경 */
     font-family: 'Pretendard-Regular';
+    padding:5px;
     font-size: 15px;
+    border-radius:5px;
 }
 
 .dropdown-content a {
@@ -130,12 +129,14 @@ button {
 }
 
 .table_board {
-    font-family : 'Pretendard-Regular';
+    width: 600px;
+    font-family: 'Pretendard-Regular';
     border-color: rgb(131, 131, 131);
     margin-left: auto;
-    margin-right:auto;
-    border-spacing: 2px;
-    padding:20px;
+    margin-right: auto;
+    border-collapse: separate;
+    border-spacing: 20px; /* Adjust the value as needed */
+    padding: 20px;
 }
 .detail {
     display: flex;
