@@ -2,10 +2,9 @@ const createBtn = document.getElementById('create-btn');
 const deleteBtn = document.getElementById('delete-btn');
 const modifyBtn = document.getElementById('modify-btn');
 
-//create
 if(createBtn){
     createBtn.addEventListener('click', event => {
-        fetch("/api/eaterys", {
+        fetch("/eaterys/create", {
             method: 'POST',
             headers: {
                 "Content-Type" : "application/json",
@@ -19,7 +18,7 @@ if(createBtn){
                 detail: document.getElementById("detail").value
             })
         }).then(()=>{
-            alert('등록이 완료되었습니다.');
+            alert('등록');
             location.replace("/eaterys");
         });
     });
@@ -28,24 +27,55 @@ if(createBtn){
 //delete
 if(deleteBtn) {
     deleteBtn.addEventListener('click', event => {
-        let id = document.getElementById('eatery-id').value;
-        fetch(`/api/eaterys/${id}`, {
-            method: 'DELETE'
+        let eatery_id = document.getElementById('eatery-id').value;
+        fetch(`/eaterys/delete/${eatery_id}`, {
+            method: 'POST'
         }).then(()=> {
-            alert('삭제가 완료되었습니다.');
+            alert('삭제');
             location.replace('/eaterys');
         });
     });
 }
 
 //update
+// if(modifyBtn){
+//     modifyBtn.addEventListener('click', event => {
+//         // let id = modifyBtn.getAttribute('eatery-id');
+//
+//         fetch(`/eaterys/edit/${id}`, {
+//             method: 'POST',
+//             headers: {
+//                 "Content-Type": "application/json",
+//             },
+//             body: JSON.stringify({
+//                 code: document.getElementById('code').value,
+//                 name: document.getElementById('name').value,
+//                 category: document.getElementById('category').value,
+//                 location: document.getElementById('location').value,
+//                 address: document.getElementById('address').value,
+//                 detail: document.getElementById('detail').value
+//             })
+//         }).then(()=>{
+//             alert('수정');
+//             location.replace(`/eaterys/${id}`);
+//         });
+//     });
+// }
+
 if(modifyBtn){
     modifyBtn.addEventListener('click', event => {
-        let params = new URLSearchParams(location.search);
-        let id = params.get('id');
+        location.href = `/eaterys/edit/${id}`;
+    });
+}
 
-        fetch(`/api/eaterys/${id}`, {
-            method: 'PUT',
+const submitBtn = document.getElementById('submit-btn');
+if(submitBtn){
+    submitBtn.addEventListener('click', event => {
+
+        const id = document.getElementById('eatery-id').value;
+
+        fetch(`/eaterys/edit/${id}`, {
+            method: 'POST',
             headers: {
                 "Content-Type": "application/json",
             },
@@ -58,7 +88,7 @@ if(modifyBtn){
                 detail: document.getElementById('detail').value
             })
         }).then(()=>{
-            alert('수정이 완료되었습니다.');
+            alert('수정');
             location.replace(`/eaterys/${id}`);
         });
     });
