@@ -1,58 +1,43 @@
 package com.example.Eatery.Entity;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
 @Table(name="eatery")
 @Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Setter
+@NoArgsConstructor
+@EntityListeners(AuditingEntityListener.class)
 public class Eatery {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false) // PK
-    private Long id;
+    @Column(name = "eatery_id") // PK
+    private Long eatery_id;
 
-    @Column(name = "code", nullable = false)
-    private String code;
-
-    @Column(name = "category", nullable = false)
-    private String category;
-
-    @Column(name = "name", nullable = false)
+    @Column(nullable = false, length=100)
     private String name;
 
-    @Column(name = "location", nullable = false) // FK
-    private String location;
+    @Column(name = "category")
+    private String category;
 
-    @Column(name = "address", nullable = false)
+    @Column(name = "address")
     private String address;
 
-    @Column(name = "detail", nullable = true)
+    @Lob
+    @Column(columnDefinition = "LONGTEXT")
     private String detail;
 
     @Builder
-    public Eatery(String code, String category, String name, String location,
+    public Eatery(String category, String name,
                   String address, String detail) {
-        this.code = code;
         this.category = category;
         this.name=name;
-        this.location = location;
         this.address = address;
         this.detail = detail;
-    }
-
-    public void update(String code, String category, String name, String location,
-                       String address, String detail){
-        this.code=code;
-        this.category=category;
-        this.name=name;
-        this.location=location;
-        this.address=address;
-        this.detail=detail;
     }
 }

@@ -1,59 +1,178 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>음식점 리스트</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
+  <meta charset="UTF-8">
+  <title>EateryPage</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
+  <link th:href="@{/css/stay.css}" rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: 'Pretendard-Regular';
+      src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+      font-weight: 400;
+      font-style: normal;
+    }
+    body{
+      font-family: 'Pretendard-Regular';
+    }
+    h2{
+      font-family: 'Pretendard-Regular';
+      font-size: 20px;
+
+    }
+    select{
+      margin-right:10px;
+    }
+    footer {
+      background-color: #333;
+      color: #fff;
+      padding: 30px 0;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .footer-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+
+    .footer-section {
+      flex: 1;
+      margin-right: 20px;
+      text-align:center;
+    }
+
+    .footer-section h2 {
+      color: #fff;
+      margin-bottom: 10px;
+      text-align:center;
+    }
+
+    .footer-section p {
+      font-size: 0.9em;
+      line-height: 1.4em;
+      color: #aaa;
+      text-align:center;
+    }
+
+    .footer-section a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .footer-section ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-section li {
+      margin-bottom: 8px;
+    }
+
+
+    .btn {
+      display: inline-block;
+      background-color: #000000;
+      color: #fff;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+  </style>
 </head>
 <body>
-<div class="p-5 mb-5 text-center</> bg-light">
-    <h1 class="mb-3">Kick The World</h1>
-    <h4 class="mb-3">오늘 뭐 먹지?</h4>
+<header>
+  <a href="/"><img class="logo" src="/images/Logo.png" alt="Logo Image" /></a>
+  <nav>
+    <ul>
+      <li class="main_list"><a class="main" href="/">여행지 추천</a></li>
+      <li class="main_list dropdown">
+        <a class="main" href="#">여행 정보</a>
+        <div class="dropdown-content">
+          <a th:href="@{/stays}">숙소</a>
+          <a th:href="@{/eaterys}">음식점 & 카페</a>
+          <a th:href="@{/attractions}">관광 명소</a>
+        </div>
+      </li>
+      <li class="main_list"><a class="main" href="/boards">메인게시판</a></li>
+
+      <li class="main_list"><a class="main" href="/" th:if="${#authorization.expression('hasRole(''USER'')')}">마이페이지</a></li>
+      <li class="main_list"><a class="main" href="admin" th:href="@{/admin}" th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
+        관리자페이지
+      </a></li>
+      <a class="main" href="/members/login" th:href="@{/members/login}" th:if="${#authorization.expression('isAnonymous()')}">
+        로그인
+      </a>
+      <a class="main" href="/members/logout" th:href="@{/members/logout}" th:if="${#authorization.expression('isAuthenticated()')}">
+        로그아웃
+      </a>
+    </ul>
+  </nav>
+  <hr>
+</header>
+
+
+<div class="card-container">
+  <div class="card" th:each="eatery : ${eaterys}">
+    <a th:href="@{/eaterys/{id}(id=${eatery.eatery_id})}">
+<!--      <img class="image2" th:src="@{/images/신라스테이.webp}" ></a>-->
+    <h2 th:text="${eatery.name}"></h2>
+    <p th:text="${eatery.category}"></p>
+    <p th:text="${eatery.address}"></p>
+
+    </a></div>
 </div>
 
-<div class="container">
-    <button type="button" id="create-btn"
-            th:onclick="|location.href='@{/newEatery}'|"
-            class="btn btn-secondary btn-sm mb-3">등록</button>
-    <div class="row-6" th:each="eatery : ${eateryPaging}">
-        <div class="card">
-            <div class="card-header" th:text="${eatery.id}">
-            </div>
-            <div class="card-body">
-                <h5 class="card-title" th:text="${eatery.name}"></h5>
-                <span class="card-text" th:text="${eatery.location}"></span>
-                <span class="card-text" th:text="${eatery.category}"></span>
-                <br><br>
-                <a th:href="@{/eaterys/{id}(id=${eatery.id})}" class="btn btn-primary">상세보기</a>
-            </div>
-        </div>
-        <br>
-    </div>
-</div>
 
 <!--페이징 처리-->
-<div th:if="${!eateryPaging.isEmpty()}">
-    <ul class="pagination justify-content-center">
-        <li class="page-item" th:classappend="${!eateryPaging.hasPrevious} ? 'disabled'">
-            <a class="page-link" th:href="@{|?page=${eateryPaging.number-1}|}">
-                <span>이전</span>
-            </a>
-        </li>
-        <li th:each="page: ${#numbers.sequence(0, eateryPaging.totalPages-1)}"
-            th:if="${page >= eateryPaging.number-5 and page <= eateryPaging.number+5}"
-            th:classappend="${page == eateryPaging.number} ? 'active'"
-            class="page-item">
-            <a th:text="${page}" class="page-link" th:href="@{|?page=${page}|}"></a>
-        </li>
-        <li class="page-item" th:classappend="${!eateryPaging.hasNext} ? 'disabled'">
-            <a class="page-link" th:href="@{|?page=${eateryPaging.number+1}|}">
-                <span>다음</span>
-            </a>
-        </li>
-    </ul>
-</div>
+<!--<div th:if="${!stays.isEmpty()}">-->
+<!--    <ul class="pagination justify-content-center">-->
+<!--        <li class="page-item" th:classappend="${!stays.hasPrevious} ? 'disabled'">-->
+<!--&lt;!&ndash;            <a class="page-link" th:href="@{|?category=${param.category}&address=${param.address}&page=${stays.number-1}|}">&ndash;&gt;-->
+<!--            <a class="page-link" th:href="@{|?page=${stays.number-1}|}">-->
+<!--                <span>이전</span>-->
+<!--            </a>-->
+<!--        </li>-->
+<!--        <li th:each="page: ${#numbers.sequence(0, stays.totalPages-1)}"-->
+<!--            th:if="${page >= stays.number-5 and page <= stays.number+5}"-->
+<!--            th:classappend="${page == stays.number} ? 'active'"-->
+<!--            class="page-item">-->
+<!--&lt;!&ndash;            <a th:text="${page+1}" class="page-link" th:href="@{|${currentUrl}(page=${page})|}"></a>&ndash;&gt;-->
+<!--&lt;!&ndash;            <a th:text="${page+1}" class="page-link" th:href="@{|?category=${param.category}&address=${param.address}&page=${page}|}"></a>&ndash;&gt;-->
+<!--            <a th:text="${page+1}" class="page-link" th:href="@{|?page=${page}|}"></a>-->
+<!--        </li>-->
+<!--        <li class="page-item" th:classappend="${!stays.hasNext} ? 'disabled'">-->
+<!--            <a class="page-link" th:href="@{|?page=${stays.number+1}|}">-->
+<!--                <span>다음</span>-->
+<!--            </a>-->
+<!--        </li>-->
+<!--    </ul>-->
+<!--</div>-->
+<footer>
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section about">
+          <h2>KickTheWorld</h2>
+          <p>KickTheWorld에 오신걸 환영합니다 !</p>
+        </div>
 
-
-<script src="/js/eatery.js"></script>
+        <div class="footer-section links">
+          <h2>DEVELOPER</h2>
+          <ul>
+            <li>김은정 / https://github.com/Kej613</a></li>
+            <li>박의연 / https://gitgub.com/euiyeon0519</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+</footer>
+<script src="/js/eatery.js" ></script>
+<script src="/js/stay.js"></script>
 </body>
+</html>

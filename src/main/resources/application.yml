@@ -18,14 +18,11 @@ spring:
       hibernate:
         show_sql: true
         format_sql: true
-#  servlet:
-#    multipart:
-#      enabled: true
-#      location: C:\\upload
-#      max-request-size: 30MB
-#      max-file-size: 10MB
-#com:
-#  example:
-#    upload:
-#      path: C:\\upload
 
+  servlet:
+    multipart:
+      maxFileSize: 20MB
+      maxRequestSize: 100MB
+
+server:
+  port: 9090

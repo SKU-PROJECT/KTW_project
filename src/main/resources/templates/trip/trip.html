@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>TripDetail</title>
+    <link th:href="@{/css/stay.css}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
+    <style>
+        .slider-container {
+            position: relative;
+            overflow: hidden;
+            width: 70%; /* Adjust the width as needed */
+            margin: 10px auto; /* Center the slider */
+        }
+
+        .slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slide {
+            min-width: 100%;
+            box-sizing: border-box;
+        }
+
+        img {
+            width: 600px;
+            height: 400px;
+        }
+
+        button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .prev-btn {
+            left: 10px;
+        }
+
+        .next-btn {
+            right: 10px;
+        }
+        @font-face {
+            font-family: 'Pretendard-Regular';
+            src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+            font-weight: 400;
+            font-style: normal;
+        }
+        select{
+            margin-right:10px;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 30px 0;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .footer-section {
+            flex: 1;
+            margin-right: 20px;
+            text-align:center;
+        }
+
+        .footer-section h2 {
+            color: #fff;
+            margin-bottom: 10px;
+            text-align:center;
+        }
+
+        .footer-section p {
+            font-size: 0.9em;
+            line-height: 1.4em;
+            color: #aaa;
+            text-align:center;
+        }
+
+        .footer-section a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-section li {
+            margin-bottom: 8px;
+        }
+
+    </style>
+</head>
+<body>
+<header>
+    <a href="/"><img class="logo" src="/images/Logo.png" alt="Logo Image" /></a>
+    <nav>
+        <ul>
+            <li class="main_list"><a class="main" href="/">여행지 추천</a></li>
+            <li class="main_list dropdown">
+                <a class="main" href="#">여행 정보</a>
+                <div class="dropdown-content">
+                    <a th:href="@{/stays}">숙소</a>
+                    <a th:href="@{/eaterys}">음식점 & 카페</a>
+                    <a th:href="@{/attractions}">관광 명소</a>
+                </div>
+            </li>
+            <li class="main_list"><a class="main" href="/boards">메인게시판</a></li>
+
+            <li class="main_list"><a class="main" href="/" th:if="${#authorization.expression('hasRole(''USER'')')}">마이페이지</a></li>
+            <li class="main_list"><a class="main" href="admin" th:href="@{/admin}" th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
+                관리자페이지
+            </a></li>
+            <a class="main" href="/members/login" th:href="@{/members/login}" th:if="${#authorization.expression('isAnonymous()')}">
+                로그인
+            </a>
+            <a class="main" href="/members/logout" th:href="@{/members/logout}" th:if="${#authorization.expression('isAuthenticated()')}">
+                로그아웃
+            </a>
+        </ul>
+    </nav>
+    <hr>
+</header>
+<div>
+    <div class="main_content">
+    <input type="hidden" id="id" th:value="${trip.id}">
+<!--        대표이미지-->
+        <div class="d-flex">
+            <div class="repImgDiv" >
+<!--                <img th:src="${trip.tripImgDtoList[0].imgUrl}" class = "rounded repImg" th:alt="${trip.name}" style=" width: 500px;-->
+<!--            height: 400px;-->
+<!--            margin-left:auto;-->
+<!--            margin-right:auto;-->
+<!--            justify-content: center;-->
+<!--            text-align:center;">-->
+                <b><h2 th:text="${trip.name}" style="font-size:25px;"></h2></b>
+                <hr class="my-4">
+                <div style="background-color:lightgrey; border-radius:10px;">
+                <p th:text="${trip.detail}" ></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="slider-container">
+            <div class="slider">
+                <div th:each="tripImg: ${trip.tripImgDtoList}" class="slide">
+                    <img th:if="${not #strings.isEmpty(tripImg.imgUrl)}" th:src="@{${tripImg.imgUrl}}" alt="slide-image">
+                </div>
+            </div>
+            <button class="prev-btn" onclick="prevSlide()">&#8249;</button>
+            <button class="next-btn" onclick="nextSlide()">&#8250;</button>
+        </div>
+
+<!--        <div th:each="tripImg: ${trip.tripImgDtoList}">-->
+<!--           <img th:if="${not #strings.isEmpty(tripImg.imgUrl)}" th:src="@{${tripImg.imgUrl}}" >-->
+<!--       </div>-->
+
+
+        <hr class="my-4">
+
+        <div class="text-center">
+        <p><b>[위치] </b><span th:text="${trip.address}"></span></p>
+            <div id="map" style="width:80%;height:300px; border-radius:10px; margin-left:auto; margin-right:auto;"></div>
+        </div>
+        <hr class="my-4">
+
+        <div class="row">
+            <div class="col-md-6">
+                <p><b>[문의 및 전화]</b><br> <span th:text="${trip.telephone}"></span></p>
+                <p><b>[홈페이지]</b><br> <span th:text="${trip.link}"></span></p>
+            </div>
+            <div class="col-md-6">
+                <p><b>[주차]</b><br> <span th:text="${trip.parking}"></span></p>
+                <p><b>[이용시간]</b><br> <span th:text="${trip.service}"></span></p>
+            </div>
+        </div>
+        <hr class="my-4">
+        <div>
+            <p><b>[근처 숙소]</b><br></p>
+            <p><b>[근처 맛집]</b><br></p>
+        </div>
+
+    </div>
+</div>
+
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section about">
+                <h2>KickTheWorld</h2>
+                <p>KickTheWorld에 오신걸 환영합니다 !</p>
+            </div>
+
+            <div class="footer-section links">
+                <h2>DEVELOPER</h2>
+                <ul>
+                    <li>김은정 / <a href="https://github.com/Kej613">https://github.com/Kej613</a></li>
+                    <li>박의연 / <a href="https://github.com/euiyeon0519">https://github.com/euiyeon0519</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const slider = document.querySelector(".slider");
+        let currentIndex = 0;
+
+        function showSlide(index) {
+            slider.style.transition = "transform 0.5s ease-in-out";
+            slider.style.transform = `translateX(${-index * 100}%)`;
+        }
+
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % document.querySelectorAll(".slide").length;
+            showSlide(currentIndex);
+        }
+
+        function prevSlide() {
+            currentIndex = (currentIndex - 1 + document.querySelectorAll(".slide").length) % document.querySelectorAll(".slide").length;
+            showSlide(currentIndex);
+        }
+
+        document.querySelector(".next-btn").addEventListener("click", nextSlide);
+        document.querySelector(".prev-btn").addEventListener("click", prevSlide);
+    });
+
+</script>
+
+
+<script type="text/javascript" th:src="'//dapi.kakao.com/v2/maps/sdk.js?appkey=c2e5cdc145feeac77effa91283d46a6e&libraries=services'"></script>
+
+<!--   카카오맵 api-->
+<script th:inline="javascript">
+    var mapContainer = document.getElementById('map');
+    var mapOption = {
+        center: new kakao.maps.LatLng(33.450701, 126.570667),
+        level: 3
+    };
+
+    var map = new kakao.maps.Map(mapContainer, mapOption);
+    var geocoder = new kakao.maps.services.Geocoder();
+
+    geocoder.addressSearch('[[${trip .address}]]', function(result, status) {
+        if (status === kakao.maps.services.Status.OK) {
+            var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+            var marker = new kakao.maps.Marker({
+                map: map,
+                position: coords
+            });
+            var infowindow = new kakao.maps.InfoWindow({
+                content: '<div style="width:150px;text-align:center;padding:6px 0;">위치</div>'
+            });
+            infowindow.open(map, marker);
+            map.setCenter(coords);
+        }
+    });
+</script>
+</body>
+</html>

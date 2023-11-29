@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>숙소관리</title>
+    <link th:href="@{/css/stay.css}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
+    <style>
+        @font-face {
+            font-family: 'Pretendard-Regular';
+            src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+            font-weight: 400;
+            font-style: normal;
+        }
+        body{
+            font-family: 'Pretendard-Regular';
+        }
+        select{
+            margin-right:10px;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <a href="/"><img class="logo" src="/images/Logo.png" alt="Logo Image" /></a>
+    <nav>
+        <ul>
+            <li class="main_list"><a class="main" href="/">여행지 추천</a></li>
+            <li class="main_list dropdown">
+                <a class="main" href="#">여행 정보</a>
+                <div class="dropdown-content">
+                    <a th:href="@{/stays}">숙소</a>
+                    <a th:href="@{/eaterys}">음식점 & 카페</a>
+                    <a th:href="@{/attractions}">관광 명소</a>
+                </div>
+            </li>
+            <li class="main_list"><a class="main" href="/boards">메인게시판</a></li>
+
+            <li class="main_list"><a class="main" href="/" th:if="${#authorization.expression('hasRole(''USER'')')}">마이페이지</a></li>
+            <li class="main_list"><a class="main" href="admin" th:href="@{/admin}" th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
+                관리자페이지
+            </a></li>
+            <a class="main" href="/members/login" th:href="@{/members/login}" th:if="${#authorization.expression('isAnonymous()')}">
+                로그인
+            </a>
+            <a class="main" href="/members/logout" th:href="@{/members/logout}" th:if="${#authorization.expression('isAuthenticated()')}">
+                로그아웃
+            </a>
+        </ul>
+    </nav>
+    <hr>
+</header>
+
+<div class="content">
+    <form th:action="@{'/admin/stays/' + ${stays.number}}" role="form" method="get" th:object="${stays}">
+        <table class="table">
+            <thead>
+            <tr>
+                <td>숙소아이디</td>
+                <td>숙소명</td>
+                <td>예약상태</td>
+<!--                <td>등록자</td>-->
+                <td>등록일</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="stay, status: ${stays.getContent()}">
+                <td th:text="${stay.stay_id}"></td>
+                <td>
+                    <a th:href="@{/stays/{id}(id=${stay.stay_id})}" th:text="${stay.name}"></a>
+                </td>
+                <td th:text="${stay.staySellStatus == T(com.example.kicktheworld_test.Stay.Constant.StaySellStatus).SELL} ? '예약가능' : '예약마감'"></td>
+<!--                <td th:text="${stay.createdBy}"></td>-->
+                <td th:text="${stay.regTime}"></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div th:with="start=${(stays.number/maxPage)*maxPage + 1}, end=(${(stays.totalPages == 0) ? 1 : (start + (maxPage - 1) < stays.totalPages ? start + (maxPage - 1) : stays.totalPages)})" >
+            <ul class="pagination justify-content-center">
+
+                <li class="page-item" th:classappend="${stays.first}?'disabled'">
+                    <a th:onclick="'javascript:page(' + ${stays.number - 1} + ')'" aria-label='Previous' class="page-link">
+                        <span aria-hidden='true'>Previous</span>
+                    </a>
+                </li>
+
+                <li class="page-item" th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${stays.number eq page-1}?'active':''">
+                    <a th:onclick="'javascript:page(' + ${page - 1} + ')'" th:inline="text" class="page-link">[[${page}]]</a>
+                </li>
+
+                <li class="page-item" th:classappend="${stays.last}?'disabled'">
+                    <a th:onclick="'javascript:page(' + ${stays.number + 1} + ')'" aria-label='Next' class="page-link">
+                        <span aria-hidden='true'>Next</span>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+
+        <div th:object="${staySearchDto}">
+            <select th:field="*{searchDateType}"  style="width:auto;">
+                <option value="all">전체기간</option>
+                <option value="1d">1일</option>
+                <option value="1w">1주</option>
+                <option value="1m">1개월</option>
+                <option value="6m">6개월</option>
+            </select>
+            <select th:field="*{searchSellStatus}"  style="width:auto;">
+                <option value="">예약상태(전체)</option>
+                <option value="SELL">예약가능</option>
+                <option value="SOLD_OUT">예약마감</option>
+            </select>
+            <select th:field="*{searchBy}"  style="width:auto;">
+                <option value="name">숙소명</option>
+                <option value="createdBy">등록자</option>
+            </select>
+            <input th:field="*{searchQuery}" type="text"  placeholder="검색어를 입력해주세요">
+            <button id="searchBtn" type="submit" class="btn btn-outline-dark">검색</button>
+        </div>
+    </form>
+
+</div>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script th:inline="javascript">
+
+    $(document).ready(function(){
+        $("#searchBtn").on("click",function(e) {
+            e.preventDefault();
+            page(0);  //조회할때 페이지 번호를 0으로 설정해서 조회해야 함
+        });
+    });
+
+    function page(page){
+        var searchDateType = $("#searchDateType").val();
+        var searchSellStatus = $("#searchSellStatus").val();
+        var searchBy = $("#searchBy").val();
+        var searchQuery = $("#searchQuery").val();
+
+        location.href="/admin/stays/" + page + "?searchDateType=" + searchDateType
+            + "&searchSellStatus=" + searchSellStatus
+            + "&searchBy=" + searchBy
+            + "&searchQuery=" + searchQuery;
+    }
+
+</script>
+</body>
+</html>

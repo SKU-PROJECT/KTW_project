@@ -7,7 +7,6 @@
 </head>
 <body>
 <header>
-  <!--    <a href="/"><img class="logo" src="C:\Users\Kimeunjeong\KickTheWorld\src\main\resources\static\images\Logo.png" alt="Logo Image" /></a>-->
   <a href="/"><img class="logo" src="/images/Logo.png" alt="Logo Image" /></a>
   <nav>
     <ul>
@@ -17,14 +16,20 @@
         <div class="dropdown-content">
           <a th:href="@{/stays}">숙소</a>
           <a th:href="@{/eaterys}">음식점 & 카페</a>
-          <a th:href="@{/}">관광 명소</a>
+          <a th:href="@{/attractions}">관광 명소</a>
         </div>
       </li>
       <li class="main_list"><a class="main" href="/boards">메인게시판</a></li>
-      <li class="main_list"><a class="main" href="/admin">관리자페이지</a></li>
-      <li class="main_list"><a class="main" href="/">마이페이지</a></li>
-      <li class="main_list"><a class="main" href="/members/login">로그인</a></li>
-      <li class="main_list"><a class="main" href="/members/new">회원가입</a></li>
+      <li class="main_list"><a class="main" href="/" th:if="${#authorization.expression('hasRole(''USER'')')}">마이페이지</a></li>
+      <li class="main_list"><a class="main" href="admin" th:href="@{/admin}" th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
+        관리자페이지
+      </a></li>
+      <a class="main" href="/members/login" th:href="@{/members/login}" th:if="${#authorization.expression('isAnonymous()')}">
+        로그인
+      </a>
+      <a class="main" href="/members/logout" th:href="@{/members/logout}" th:if="${#authorization.expression('isAuthenticated()')}">
+        로그아웃
+      </a>
     </ul>
   </nav>
   <hr>
@@ -32,8 +37,15 @@
 <h2>Add Stay</h2>
 
 <form class="create_form" th:object="${stay}" th:action="@{/stays/create}" method="post">
+  <label>예약 현황</label>
+  <select th:field="*{staySellStatus}" class="">
+    <option value="SELL">예약가능</option>
+    <option value="SOLD_OUT">예약마감</option>
+  </select><br>
+
   <label>숙소명: <input type="text" th:field="*{name}" /></label><br/>
-  <label for="category">숙박유형: </label>
+
+  <label for="category">숙소유형: </label>
   <select class="form-control" id="category" th:field="*{category}">
     <option value="" disabled selected>카테고리</option>
     <option value="호텔">호텔</option>
@@ -41,18 +53,20 @@
     <option value="게스트하우스">게스트하우스</option>
     <option value="캠핑">캠핑</option>
     <option value="기타">기타</option>
-  </select>
-<!--  <input type="text" th:field="*{category}" /></label><br/>-->
-  <label>숙소 소개: <input type="text" th:field="*{detail}" /></label><br/>
+  </select> <br>
+
+  <label>숙소 소개: <textarea th:field="*{detail}" /></textarea></label><br/>
   <label>1박 금액: <input type="text" th:field="*{price}" /></label><br/>
+  <label>객실 수: <input type="number" th:field="*{stayday}" /></label><br/>
   <label>주소: <input type="text" th:field="*{address}" /></label><br/>
-  <label>서비스: <input type="textarea" th:field="*{service}" /></label><br/>
-  <label>이용 안내: <input type="textarea" th:field="*{useGuide}" /></label><br/>
-  <label>예약 공지: <input type="textarea" th:field="*{amenity}" /></label><br/>
+  <label>서비스: <textarea th:field="*{service}"></textarea></label><br/>
+  <label>이용 안내: <textarea th:field="*{use_guide}" ></textarea></label><br/>
+  <label>예약 공지: <textarea th:field="*{amenity}" ></textarea></label><br/>
 <!--  <label>이미지 파일: <input type="file" id="imageInput"> </label><br/>-->
 <!--    <button id="uploadImageButton">이미지 업로드</button><br/><br/>-->
 
   <button type="submit">숙소 등록</button>
+
 </form>
 </body>
 </html>

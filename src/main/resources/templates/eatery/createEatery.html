@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>음식점 등록</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+</head>
+<body>
+<div class="p-5 mb-5 text-center</> bg-light">
+  <h1 class="mb-3">Kick The World</h1>
+  <h4 class="mb-3">오늘 뭐 먹지?</h4>
+</div>
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-lg-8">
+      <article>
+        <form th:action="@{/eaterys/create}" th:object="${eatery}" method="post" enctype="multipart/form-data">
+          <input type="hidden" id="eatery-id" th:field="*{eatery_id}">
+          <section class="mb-5">
+            <input type="text" class="form-control" placeholder="업소명" id="name" th:field="*{name}">
+            <input type="text" class="form-control" placeholder="카테고리" id="category" th:field="*{category}">
+            <input type="text" class="form-control" placeholder="주소" id="address" th:field="*{address}">
+            <textarea class="form-control h-25" rows="10" placeholder="내용" id="detail" th:field="*{detail}"></textarea>
+          </section>
+          <button  type="submit" class="btn btn-primary btn-sm">수정</button>
+          <button type="submit" class="btn btn-primary btn-sm">등록</button>
+        </form>
+      </article>
+    </div>
+  </div>
+</div>
+<script src="/js/eatery.js"></script>
+</body>

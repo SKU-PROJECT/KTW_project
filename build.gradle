@@ -24,26 +24,26 @@ dependencies {
 
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-  //  implementation group: 'org.springframework.boot', name: 'spring-boot-starter-webflux'
-    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
     implementation 'org.springframework.boot:spring-boot-devtools'
-
     implementation 'org.apache.commons:commons-lang3:3.12.0'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
-    //Thumbnailator
-    //implementation 'net.coobird:thumbnailator:0.4.12'
 
+    //thymeleaf
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:3.2.1'
+    implementation 'org.modelmapper:modelmapper:2.4.4'
 
     //Security
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '3.0.7'
     implementation group: 'org.springframework.security', name: 'spring-security-config', version: '6.0.5'
-    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity3'
+    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
-    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity3:3.0.4.RELEASE'
+
 
     // mariaDB
     runtimeOnly 'org.mariadb.jdbc:mariadb-java-client:2.7.4'
+
 
     //lombok
     compileOnly 'org.projectlombok:lombok'
@@ -60,6 +60,10 @@ dependencies {
 
     // File
     implementation 'commons-io:commons-io:2.7'
+
+    //test
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.security:spring-security-test'
 }
 
 tasks.named('test') {

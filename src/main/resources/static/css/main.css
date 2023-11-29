@@ -96,23 +96,25 @@ nav {
     display: none;
     position: absolute;
     z-index: 1;
-    /* 다른 요소들보다 앞에 배치 */
     text-align: center;
-    /* 가운데 정렬 */
-    background-color: #436ba6;
-    /* 파란색 배경 */
+    background-color: #cccccc;
     font-family: 'Pretendard-Regular';
     font-size: 15px;
+    border-radius:5px;
 }
 
 .dropdown-content a {
     display: block;
     text-decoration: none;
+    padding:5px;
     color: black;
 }
 
 .dropdown:hover .dropdown-content {
     display: block;
+}
+.main:hover {
+    color: grey;
 }
 
 .slider {
@@ -216,9 +218,9 @@ a:hover {
 }
 
 .stay_icon {
-    width: 50px;
+    width: 70px;
     /* 이미지 크기 조정 */
-    height: 50px;
+    height: 70px;
     /* 이미지 크기 조정 */
     margin-bottom: 5px;
     /* 이미지와 텍스트 사이 여백 */
@@ -331,4 +333,8 @@ span {
     font-size: 20px;
     font-weight: bold;
 
+}
+.sub_div2 {
+    margin-bottom:50px;
+    padding:10px;
 }

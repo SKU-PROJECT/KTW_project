@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>MainPage</title>
   <link th:href="@{/css/main.css}" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
 </head>
 <style>
   @font-face {
@@ -12,7 +13,10 @@
     font-weight: 400;
     font-style: normal;
   }
-
+  h2{
+    font-family: 'Pretendard-Regular';
+    text-align:center;
+  }
   button {
     font-family: 'Pretendard-Regular';
     font-size: 20px;
@@ -23,38 +27,50 @@
     padding:30px;
     margin:20px;
     justify-content: center;
-
+    text-align:center;
   }
 </style>
 <header>
-  <img class="logo" th:src="@{/images/Logo.png}" alt="Logo Image"/>
+  <a href="/"><img class="logo" src="/images/Logo.png" alt="Logo Image" /></a>
   <nav>
     <ul>
       <li class="main_list"><a class="main" href="/">여행지 추천</a></li>
       <li class="main_list dropdown">
         <a class="main" href="#">여행 정보</a>
         <div class="dropdown-content">
-          <a href="/stays">숙소</a>
-          <a href="/eaterys">음식점 & 카페</a>
-          <a href="/">관광 명소</a>
+          <a th:href="@{/stays}">숙소</a>
+          <a th:href="@{/eaterys}">음식점 & 카페</a>
+          <a th:href="@{/attracions}">관광 명소</a>
         </div>
       </li>
       <li class="main_list"><a class="main" href="/boards">메인게시판</a></li>
-      <li class="main_list"><a class="main" href="/admin">관리자페이지</a></li>
-      <li class="main_list"><a class="main" href="/">마이페이지</a></li>
-      <li class="main_list">
-        <a class="main" href="/members/login">로그인</a>
-      </li>
-      <li class="main_list"><a class="main" href="/members/new">회원가입</a></li>
+      <li class="main_list"><a class="main" href="/" th:if="${#authorization.expression('hasRole(''USER'')')}">마이페이지</a></li>
+      <li class="main_list"><a class="main" href="admin" th:href="@{/admin}" th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
+        관리자페이지
+      </a></li>
+      <a class="main" href="/members/login" th:href="@{/members/login}" th:if="${#authorization.expression('isAnonymous()')}">
+        로그인
+      </a>
+      <a class="main" href="/members/new" th:href="@{/members/new}" th:if="${#authorization.expression('isAnonymous()')}">
+        회원가입
+      </a>
+      <a class="main" href="/members/logout" th:href="@{/members/logout}" th:if="${#authorization.expression('isAuthenticated()')}">
+        로그아웃
+      </a>
     </ul>
   </nav>
   <hr>
 </header>
 <body>
 <div class="button">
+  <h2>AdminPage</h2>
+  <hr class="my-4">
+  <div class="button"></div>
+  <button type="button" th:onclick="|location.href='@{/admin/stays}'|">숙소관리</button>
   <button type="button" id="stay-create-btn" th:onclick="|location.href='@{/stays/create}'|">숙소등록</button>
-  <button type="button" id="create-btn" th:onclick="|location.href='@{/newEatery}'|" class="btn btn-secondary btn-sm mb-3">음식점 등록</button>
-  <button>어트랙션 등록</button>
+  <button type="button" th:onclick="|location.href='@{/admin/trip/new}'|">여행지등록</button>
+  <button>음식점 등록</button>
+</div>
 </div>
 
 </body>
