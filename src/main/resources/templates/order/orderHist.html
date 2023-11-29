@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta name="_csrf" th:content="${_csrf.token}"/>
+  <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+  <link th:href="@{/css/stay.css}" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
+
+  <script th:inline="javascript">
+    function cancelOrder(orderId) {
+      var token = $("meta[name='_csrf']").attr("content");
+      var header = $("meta[name='_csrf_header']").attr("content");
+
+      var url = "/order/" + orderId + "/cancel";
+      var paramData = {
+        orderId : orderId,
+      };
+
+      var param = JSON.stringify(paramData);
+
+      $.ajax({
+        url      : url,
+        type     : "POST",
+        contentType : "application/json",
+        data     : param,
+        beforeSend : function(xhr){
+          /* 데이터를 전송하기 전에 헤더에 csrf값을 설정 */
+          xhr.setRequestHeader(header, token);
+        },
+        dataType : "json",
+        cache   : false,
+        success  : function(result, status){
+          alert("주문이 취소 되었습니다.");
+          location.href='/orders/' + [[${page}]];
+        },
+        error : function(jqXHR, status, error){
+          if(jqXHR.status == '401'){
+            alert('로그인 후 이용해주세요');
+            location.href='/members/login';
+          } else{
+            alert(jqXHR.responseText);
+          }
+        }
+      });
+    }
+  </script>
+<!-- 사용자 CSS 추가 -->
+  <style>
+    /*.content-mg{*/
+    /*  margin-left:30%;*/
+    /*  margin-right:30%;*/
+    /*  margin-top:2%;*/
+    /*  margin-bottom:100px;*/
+    /*}*/
+    /*.repImgDiv{*/
+    /*  margin-right:15px;*/
+    /*  margin-left:15px;*/
+    /*  height:auto;*/
+    /*}*/
+    /*.repImg{*/
+    /*  height:100px;*/
+    /*  width:100px;*/
+    /*}*/
+    @font-face {
+      font-family: 'Pretendard-Regular';
+      src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+      font-weight: 400;
+      font-style: normal;
+    }
+    body {
+      font-family: 'Pretendard-Regular';
+    }
+
+    .card{
+      font-family: 'Pretendard-Regular';
+      width:750px;
+      height:100%;
+      padding:30px;
+      margin-bottom:20px;
+    }
+    .fs18{
+      font-family: 'Pretendard-Regular';
+      font-size:18px
+    }
+    .fs24{
+      font-family: 'Pretendard-Regular';
+      font-size:24px
+    }
+  </style>
+</head>
+<body>
+<header>
+  <a href="/"><img class="logo" src="/images/Logo.png" alt="Logo Image" /></a>
+  <nav>
+    <ul>
+      <li class="main_list"><a class="main" href="/">여행지 추천</a></li>
+      <li class="main_list dropdown">
+        <a class="main" href="#">여행 정보</a>
+        <div class="dropdown-content">
+          <a th:href="@{/stays}">숙소</a>
+          <a th:href="@{/eaterys}">음식점 & 카페</a>
+          <a th:href="@{/attractions}">관광 명소</a>
+        </div>
+      </li>
+      <li class="main_list"><a class="main" href="/boards">메인게시판</a></li>
+
+      <li class="main_list"><a class="main" href="/" th:if="${#authorization.expression('hasRole(''USER'')')}">마이페이지</a></li>
+      <li class="main_list"><a class="main" href="admin" th:href="@{/admin}" th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
+        관리자페이지
+      </a></li>
+      <a class="main" href="/members/login" th:href="@{/members/login}" th:if="${#authorization.expression('isAnonymous()')}">
+        로그인
+      </a>
+      <a class="main" href="/members/logout" th:href="@{/members/logout}" th:if="${#authorization.expression('isAuthenticated()')}">
+        로그아웃
+      </a>
+    </ul>
+  </nav>
+  <hr>
+</header>
+  <h2 class="mb-4">
+    예약현황
+  </h2>
+  <div th:each="order : ${orders.getContent()}">
+    <div class="d-flex mb-3 align-self-center">
+      <h4 th:text="${order.orderDate} + ' 예약'"></h4>
+      <div class="ml-3">
+        <div th:if="${order.orderStatus == T(com.example.kicktheworld_test.Cart.Constant.OrderStatus).ORDER}">
+          <button type="button" class="btn btn-outline-dark" th:value="${order.orderId}" onclick="cancelOrder(this.value)">예약취소</button>
+        </div>
+        <div th:unless="${order.orderStatus == T(com.example.kicktheworld_test.Cart.Constant.OrderStatus).ORDER}">
+          <h4>(취소 완료)</h4>
+        </div>
+       </div>
+      </div>
+
+    <div class="card d-flex">
+      <div th:each="orderItem : ${order.orderItemDtoList}" class="d-flex mb-3">
+<!--        <div class="repImgDiv">-->
+<!--          <img th:src="${orderItem.imgUrl}" class = "rounded repImg" th:alt="${orderItem.itemNm}">-->
+<!--        </div>-->
+        <div class="align-self-center w-75">
+          <span th:text="${orderItem.name}" class="fs24 font-weight-bold"></span>
+          <div class="fs18 font-weight-light">
+            <span th:text="${orderItem.orderPrice} +'원'"></span>
+            <span th:text="${orderItem.count} +'개'"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div th:with="start=${(orders.number/maxPage)*maxPage + 1}, end=(${(orders.totalPages == 0) ? 1 : (start + (maxPage - 1) < orders.totalPages ? start + (maxPage - 1) : orders.totalPages)})" >
+    <ul class="pagination justify-content-center">
+
+      <li class="page-item" th:classappend="${orders.number eq 0}?'disabled':''">
+        <a th:href="@{'/orders/' + ${orders.number-1}}" aria-label='Previous' class="page-link">
+          <span aria-hidden='true'>Previous</span>
+        </a>
+      </li>
+
+      <li class="page-item" th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${orders.number eq page-1}?'active':''">
+        <a th:href="@{'/orders/' + ${page-1}}" th:inline="text" class="page-link">[[${page}]]</a>
+      </li>
+
+      <li class="page-item" th:classappend="${orders.number+1 ge orders.totalPages}?'disabled':''">
+        <a th:href="@{'/orders/' + ${orders.number+1}}" aria-label='Next' class="page-link">
+          <span aria-hidden='true'>Next</span>
+        </a>
+      </li>
+
+    </ul>
+  </div>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</body>
+</html>
