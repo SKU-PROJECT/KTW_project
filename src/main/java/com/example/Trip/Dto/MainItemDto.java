@@ -11,11 +11,14 @@ public class MainItemDto {
     private String name;   //여행지명
     private String imgUrl;   //이미지 url
 
+    private String address;  //주소
+
     @QueryProjection
-    public MainItemDto(Long id, String name, String imgUrl) {
+    public MainItemDto(Long id, String name, String address, String imgUrl) {
         this.id= id;
         this.name = name;
         this.imgUrl = imgUrl;
+        this.address = address;
 
     }
 }
