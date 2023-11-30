@@ -43,11 +43,13 @@ public class Board {
 
 
     @Builder
-    public Board(String title, String content, String mem_id, String board_category) {
+    public Board(String title, String content, String mem_id, String board_category, Date createdAt, Date updatedAt) {
         this.title = title;
         this.content = content;
         this.mem_id = mem_id;
         this.board_category = board_category;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
     public void update(String title, String content, String mem_id, String board_category) {
