@@ -36,7 +36,7 @@
     }
     h2{
         font-family: 'Pretendard-Regular';
-        font-size: 20px;
+        font-size: 25px;
     }
     a{
         text-decoration: none;
@@ -110,36 +110,38 @@
 </head>
 <body>
 <header>
-    <a href="/"><img class="logo" src="/images/Logo.png" alt="Logo Image" /></a>
-    <nav>
-        <ul>
-            <li class="main_list"><a class="main" href="/">여행지 추천</a></li>
-            <li class="main_list dropdown">
-                <a class="main" href="#">여행 정보</a>
-                <div class="dropdown-content">
-                    <a th:href="@{/stays}">숙소</a>
-                    <a th:href="@{/}">음식점 & 카페</a>
-                    <a th:href="@{/}">관광 명소</a>
-                </div>
-            </li>
-            <li class="main_list"><a class="main" href="/boards">메인게시판</a></li>
-
-            <li class="main_list"><a class="main" href="/" th:if="${#authorization.expression('hasRole(''USER'')')}">마이페이지</a></li>
-            <li class="main_list"><a class="main" href="admin" th:href="@{/admin}" th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
-                관리자페이지
-            </a></li>
-            <a class="main" href="/members/login" th:href="@{/members/login}" th:if="${#authorization.expression('isAnonymous()')}">
-                로그인
-            </a>
-            <a class="main" href="/members/logout" th:href="@{/members/logout}" th:if="${#authorization.expression('isAuthenticated()')}">
-                로그아웃
-            </a>
-        </ul>
-    </nav>
+    <div class="header" >
+        <a href="/"><img class="logo" src="/images/Logo.png" alt="Logo Image" /></a>
+         <nav>
+            <ul>
+                <li class="main_list">
+                    <a class="main" href="/">여행지 추천</a></li>
+                <li class="main_list dropdown">
+                    <a class="main" href="#">여행 정보</a>
+                    <div class="dropdown-content">
+                        <a th:href="@{/main/trips}">여행지</a>
+                        <a th:href="@{/stays}">숙소</a>
+                        <a th:href="@{/eaterys}">음식점 & 카페</a>
+                    </div>
+                </li>
+                <li class="main_list"><a class="main" href="/boards">메인게시판</a></li>
+                <li class="main_list"><a class="main" href="/" th:if="${#authorization.expression('hasRole(''USER'')')}">마이페이지</a></li>
+                <li class="main_list"><a class="main" href="admin" th:href="@{/admin}" th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
+                    관리자페이지
+                </a></li>
+                <a class="main" href="/members/login" th:href="@{/members/login}" th:if="${#authorization.expression('isAnonymous()')}">
+                    로그인
+                </a>
+                <a class="main" href="/members/logout" th:href="@{/members/logout}" th:if="${#authorization.expression('isAuthenticated()')}">
+                    로그아웃
+                </a>
+            </ul>
+        </nav>
     <hr>
-</header>
+    </div>
+</header><br>
 <div>
-    <h2>어디로 여행가시나요? </h2><br>
+    <h2>어디로 떠나볼까요? </h2><br>
     <form th:action="@{'/main/trips/' + ${trips.number}}" role="form" method="get" th:object="${trips}">
         <div th:object="${tripSearchDto}" style="text-align: center;">
             <select th:field="*{searchBy}" style="width:auto;">

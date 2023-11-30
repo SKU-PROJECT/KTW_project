@@ -14,6 +14,8 @@ public class AddBoardRequest {
     private String mem_id;
     private String board_category;
 
+    private String createdAt;
+
     public Board toEntity() {
         return Board.builder()
                 .title(title)

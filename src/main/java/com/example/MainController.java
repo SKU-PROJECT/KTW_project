@@ -11,10 +11,14 @@ public class MainController {
         return "adminPage";
     }
 
+//    @GetMapping("/")
+//    public String mainPage() {
+//        return "mainPage";
+//    }
+
     @GetMapping("/")
     public String mainPage() {
-        return "mainPage";
+        return "mainPage_test";
     }
-
 
 }

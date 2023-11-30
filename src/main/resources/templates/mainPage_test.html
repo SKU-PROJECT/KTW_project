@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- REMIX ICONS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css">
+  <!-- SWIPER CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+  <!-- CSS -->
+  <link rel="stylesheet" th:href="@{css/main_test.css}">
+  <!-- TITLE -->
+  <title>Kick The World</title>
+</head>
+<body>
+<!-- HEADER -->
+<header class="header" id="header">
+  <!--NAV CONTAINER 1-->
+  <nav class="nav container">
+    <a href="/" class="nav__logo-eng"> <i class="ri-earth-line"></i> Kick The World </a>
+
+<!--    &lt;!&ndash; SEARCH &ndash;&gt;-->
+<!--    <div class="search container">-->
+<!--      <input type="text" class="search" maxlength="10" placeholder="검색어를 입력해주세요.">-->
+<!--      <span class="search__icon"><button class="search__button"><i class="ri-search-line"></i></button></span>-->
+<!--    </div>-->
+
+    <!--NAV MENU-->
+    <div class="nav__menu" id="nav-menu">
+      <ul class="nav__list">
+        <li class="nav__item">
+          <a class="nav__link" href="/" ><b>마이페이지</b></a>
+        </li>
+        <li class="nav__item">
+          <a class="nav__link" href="/admin" th:href="@{/admin}" ><b>관리자페이지</b>
+        </li>
+
+        <li class="nav__item">
+          <a class="nav__link" href="/members/login" th:href="@{/members/login}" th:if="${#authorization.expression('isAnonymous()')}"><b>로그인</b></a>
+        </li>
+
+        <li class="nav__item">
+          <a class="nav__link" href="/members/new" th:href="@{/members/new}" th:if="${#authorization.expression('isAnonymous()')}"><b>회원가입</b></a>
+        </li>
+
+        <li class="nav__item">
+          <a class="nav__link" href="/members/logout" th:href="@{/members/logout}" th:if="${#authorization.expression('isAuthenticated()')}"><b>로그아웃</b></a>
+        </li>
+
+        <i class="ri-close-line nav__close" id="nav-close"></i>
+      </ul>
+    </div>
+    <div class="nav__toggle" id="nav-toggle">
+      <i class="ri-function-line"></i>
+    </div>
+  </nav>
+
+  <!--NAV CONTAINER 2-->
+  <nav class="nav__container-main">
+    <div class="nav__menu" id="nav-menu-main">
+      <ul class="nav__list">
+        <li class="nav__item">
+          <a href="/main/trips" class="nav__link"><i class="ri-map-pin-line"></i> 여행지</a>
+        </li>
+        <li class="nav__item">
+          <a href="/stays" class="nav__link"><i class="ri-hotel-bed-line"></i> 숙소</a>
+        </li>
+        <li class="nav__item">
+          <a href="/eaterys" class="nav__link"><i class="ri-restaurant-line"></i> 맛집</a>
+        </li>
+        <li class="nav__item">
+          <a href="/boards" class="nav__link"><i class="ri-pencil-line"></i> 게시판</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<!-- MAIN -->
+<main class="main">
+  <!-- HOME -->
+  <section class="home" id="home">
+    <img th:src="@{images/main/home1.jpg}" alt="home main image" class="home__img">
+
+    <div class="home__container container grid">
+      <div class="home__data">
+        <!-- <span class="home__data-subtitle">Discover your place</span> -->
+<!--        <h1 class="home__data-title-eng">Collect <b>Moments,</b> <br> Not Things.</h1>-->
+<!--        <h1 class="home__data-title-eng">Kick The World</h1>-->
+        <br><h3 class="home__data-title-kor" style="font-size:25px;">
+<!--          물건들이 아닌, <b>순간들</b>을 모으세요.<br>-->
+<!--          당신과 세상의 만남을 Kick The World가 함께합니다.-->
+          함께하는 <b> 힐링여행, </b> 국내로 떠나볼까요 ?
+        </h3>
+<!--        <a th:href="@{#trips}" class="button" >둘러보기</a>-->
+      </div>
+
+
+      <div class="home__social">
+        <!--학교-->
+        <a href="https://cs.skuniv.ac.kr/" target="_blank" class="home__social-link">
+          <i class="ri-leaf-fill"></i>
+        </a>
+        <!--인스타그램-->
+        <a href="https://instagram.com/kicktheworld.official?igshid=OGQ5ZDc2ODk2ZA==" target="__blank" class="home__social-link">
+          <i class="ri-instagram-fill"></i>
+        </a>
+        <!--깃허브-->
+        <a href="https://github.com/SKU-PROJECT/KTW_project" target="__blank" class="home__social-link">
+          <i class="ri-github-fill"></i>
+        </a>
+      </div>
+
+      <!-- <div class="home__info">
+          <div>
+              <span class="home__info-title">5 best places to visit</span>
+              <a href="#" class="button button--flex button--link home__info-button">
+                  More <i class="ri-arrow-right-line"></i>
+              </a>
+          </div>
+
+          <div class="home__info-overlay">
+              <img src="assets/img/home2.jpg" alt="home sub overlay iamge" class="home__info-overlay">
+          </div>
+      </div> -->
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about section" id="about">
+    <div class="about__container container grid">
+      <div class="about__data">
+        <h2 class="section__title about__title">당신에게 보여주고 싶은 곳 </h2>
+        <p class="about__description">
+          Kick The World는 여러분들을 위한 장소들을 찾아 안내하며,<br>여행 중 최고의 순간이 되도록 도와드립니다.<br>
+<!--          우리는 여러분의 여행을 향한 모든 순간을 함께하겠습니다.-->
+          <br>함께하는 여행, 지금 떠날 준비를 해보세요.
+        </p>
+        <a th:href="@{/main/trips}" class="button">여행지 검색</a>
+      </div>
+
+      <div class="about__img">
+        <div class="about__img-overlay">
+          <img th:src="@{images/main/about1.jpg}" alt="about images" class="about__img-one">
+        </div>
+
+        <div class="about__img-overlay">
+          <img th:src="@{images/main/about2.jpg}" alt="about image" class="about__img-two">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DISCOVER -->
+  <section class="discover section" id="discover">
+    <h2 class="section__title discover__title">매력적인 여행지를 둘러보세요</h2>
+    <p class="discover__description">
+      당신의 마음을 사로잡을 최고의 장소들이 기다리고 있습니다.
+    </p>
+
+    <div class="discover__container container swiper">
+      <div class="swiper-wrapper">
+        <!-- DISCOVER1 -->
+        <div class="discover__card swiper-slide">
+          <img th:src="@{images/main/discover1.jpg}" alt="discover image" class="discover__img">
+          <div class="discover__data">
+            <h2 class="discover__img-title">경주</h2>
+            <span class="discover__img-description">경상북도 경주시</span>
+          </div>
+        </div>
+
+        <!-- DISCOVER2 -->
+        <div class="discover__card swiper-slide">
+          <img th:src="@{images/main/discover2.png}" alt="discover image" class="discover__img">
+          <div class="discover__data">
+            <h2 class="discover__img-title">부산</h2>
+            <span class="discover__img-description">부산광역시</span>
+          </div>
+        </div>
+
+        <!-- DISCOVER3 -->
+        <div class="discover__card swiper-slide">
+          <img th:src="@{images/main/discover3.jpg}" alt="discover image" class="discover__img">
+          <div class="discover__data">
+            <h2 class="discover__img-title">강릉</h2>
+            <span class="discover__img-description">강원특별자치도 강릉시</span>
+          </div>
+        </div>
+
+        <!-- DISCOVER4 -->
+        <div class="discover__card swiper-slide">
+          <img th:src="@{images/main/discover4.jpg}" alt="discover image" class="discover__img">
+          <div class="discover__data">
+            <h2 class="discover__img-title">제주</h2>
+            <span class="discover__img-description">제주특별자치도</span>
+          </div>
+        </div>
+
+        <!-- DISCOVER5 -->
+        <div class="discover__card swiper-slide">
+          <img th:src="@{images/main/discover5.jpg}" alt="discover image" class="discover__img">
+          <div class="discover__data">
+            <h2 class="discover__img-title">안산</h2>
+            <span class="discover__img-description">경기도 안산시</span>
+          </div>
+        </div>
+
+        <!-- DISCOVER6 -->
+        <div class="discover__card swiper-slide">
+          <img th:src="@{images/main/discover6.jpg}" alt="discover image" class="discover__img">
+          <div class="discover__data">
+            <h2 class="discover__img-title">창원</h2>
+            <span class="discover__img-description">경상남도 창원시</span>
+          </div>
+        </div>
+
+        <!-- DISCOVER7 -->
+        <div class="discover__card swiper-slide">
+          <img th:src="@{images/main/discover7.jpg}" alt="discover image" class="discover__img">
+          <div class="discover__data">
+            <h2 class="discover__img-title">함안</h2>
+            <span class="discover__img-description">경상남도 함안군</span>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </section>
+
+<!--  &lt;!&ndash; EXPERIENCE&ndash;&gt;-->
+<!--  <section class="experience section" id="experience">-->
+<!--    <h2 class="section__title">우리의 기술력과 경험을 바탕으로<br>소중한 추억을 선물할게요</h2>-->
+
+<!--    <div class="experience__container container grid">-->
+<!--      <div class="experience__content grid">-->
+
+<!--        <div class="experience__data">-->
+<!--          <h2 class="experience__number">62</h2>-->
+<!--          <span class="experience__description">Days <br> Training Period </span>-->
+<!--        </div>-->
+
+<!--        <div class="experience__data">-->
+<!--          <h2 class="experience__number">65</h2>-->
+<!--          <span class="experience__description">Days<br> Development Period </span>-->
+<!--        </div>-->
+
+<!--        <div class="experience__data">-->
+<!--          <h2 class="experience__number">1,000+</h2>-->
+<!--          <span class="experience__description"> Trial and <br> Error </span>-->
+<!--        </div>-->
+
+<!--        <div class="experience__img grid">-->
+<!--          <div class="experience__overlay">-->
+<!--            <img th:src="@{images/main/experience1.jpg}" alt="" class="experience__img-one">-->
+<!--          </div>-->
+
+<!--          <div class="experience__overlay">-->
+<!--            <img th:src="@{images/main/experience2.jpg}" alt="" class="experience__img-two">-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </section>-->
+
+<!--  &lt;!&ndash; VIDEO &ndash;&gt;-->
+<!--  <section class="video section">-->
+<!--    <h2 class="section__title">영상으로 느껴보는 <br>Kick The World와 함께하는 여행</h2>-->
+
+<!--    <div class="video__container container">-->
+<!--      <p class="video__description">-->
+<!--        여행은 새로운 세상의 아름다움과 다양함을 만날 수 있습니다.<br>-->
+<!--        우리가 전해드리는 여행의 감동을 모든 감각을 이용해 느껴보세요.-->
+<!--      </p>-->
+
+<!--      <div class="video__content">-->
+<!--        <video id="video-file">-->
+<!--          <source th:src="@{video/video.mp4}" type="video/mp4">-->
+<!--        </video>-->
+
+<!--        <button class="button button&#45;&#45;flex video__button" id="video-button">-->
+<!--          <i class="ri-play-line video__button-icon" id="video-icon"></i>-->
+<!--        </button>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </section>-->
+
+  <!-- PLACE -->
+  <section class="place section" id="place">
+    <h2 class="section__title">당신만을 위한 숙소를 선택하세요</h2>
+
+    <div class="place__container container grid">
+
+      <!-- PLACES CARD 1 -->
+      <div class="place__card">
+        <img th:src="@{images/main/place1.jpg}" alt="" class="place__img">
+
+        <div class="place__content">
+          <span class="place__rating">
+            <i class="ri-star-line place__rating-icon"></i>
+            <span class="place__rating-number">4,8</span>
+          </span>
+
+          <div class="place__data">
+            <h3 class="place__title">호텔</h3>
+            <span class="place__subtitle">지역</span>
+            <span class="place__price">₩100</span>
+          </div>
+        </div>
+
+        <button class="button button--flex place__button">
+          <a th:href="@{/stays}"><i class="ri-arrow-right-line"></i></a>
+        </button>
+
+      </div>
+
+      <!-- PLACES CARD 2 -->
+      <div class="place__card">
+        <img th:src="@{images/main/place2.jpg}" alt="" class="place__img">
+
+        <div class="place__content">
+          <span class="place__rating">
+            <i class="ri-star-line place__rating-icon"></i>
+            <span class="place__rating-number">5,0</span>
+          </span>
+
+          <div class="place__data">
+            <h3 class="place__title">풀빌라</h3>
+            <span class="place__subtitle">지역</span>
+            <span class="place__price">₩100</span>
+          </div>
+        </div>
+
+        <button class="button button--flex place__button">
+          <a th:href="@{/stays}"><i class="ri-arrow-right-line"></i></a>
+        </button>
+      </div>
+
+      <!-- PLACES CARD 3 -->
+      <div class="place__card">
+        <img th:src="@{images/main/place3.jpg}" alt="" class="place__img">
+
+        <div class="place__content">
+          <span class="place__rating">
+            <i class="ri-star-line place__rating-icon"></i>
+            <span class="place__rating-number">4,9</span>
+          </span>
+
+          <div class="place__data">
+            <h3 class="place__title">숙소</h3>
+            <span class="place__subtitle">지역</span>
+            <span class="place__price">₩100</span>
+          </div>
+        </div>
+
+        <button class="button button--flex place__button">
+          <a th:href="@{/stays}"><i class="ri-arrow-right-line"></i></a>
+        </button>
+      </div>
+
+      <!-- PLACES CARD 4 -->
+      <div class="place__card">
+        <img th:src="@{images/main/place4.jpg}" alt="" class="place__img">
+
+        <div class="place__content">
+          <span class="place__rating">
+            <i class="ri-star-line place__rating-icon"></i>
+            <span class="place__rating-number">4,8</span>
+          </span>
+
+          <div class="place__data">
+            <h3 class="place__title">호텔</h3>
+            <span class="place__subtitle">지역</span>
+            <span class="place__price">₩100</span>
+          </div>
+        </div>
+
+        <button class="button button--flex place__button">
+          <a th:href="@{/stays}"><i class="ri-arrow-right-line"></i></a>
+        </button>
+      </div>
+
+      <!-- PLACES CARD 5 -->
+      <div class="place__card">
+        <img th:src="@{images/main/place5.jpg}" alt="" class="place__img">
+
+        <div class="place__content">
+          <span class="place__rating">
+            <i class="ri-star-line place__rating-icon"></i>
+            <span class="place__rating-number">4,8</span>
+          </span>
+
+          <div class="place__data">
+            <h3 class="place__title">리조트</h3>
+            <span class="place__subtitle">지역</span>
+            <span class="place__price">₩100</span>
+          </div>
+        </div>
+
+        <button class="button button--flex place__button">
+          <a th:href="@{/stays}"><i class="ri-arrow-right-line"></i></a>
+        </button>
+
+      </div>
+
+      <!-- PLACES CARD 6 -->
+      <div class="place__card">
+        <img th:src="@{images/main/place6.jpg}" alt="" class="place__img">
+
+        <div class="place__content">
+          <span class="place__rating">
+            <i class="ri-star-line place__rating-icon"></i>
+            <span class="place__rating-number">4,8</span>
+          </span>
+
+          <div class="place__data">
+            <h3 class="place__title">펜션</h3>
+            <span class="place__subtitle">지역</span>
+            <span class="place__price">₩100</span>
+          </div>
+        </div>
+
+        <button class="button button--flex place__button">
+          <a th:href="@{/stays}"><i class="ri-arrow-right-line"></i></a>
+        </button>
+      </div>
+    </div>
+  </section>
+
+<!--  &lt;!&ndash; SUBSCRIBE &ndash;&gt;-->
+<!--  <section class="subscribe section">-->
+<!--    <div class="subscribe__bg">-->
+<!--      <div class="subscribe__container container">-->
+<!--        <h2 class="section__title subscribe__title">우리의 소식이 <br> 더 궁금하다면</h2>-->
+<!--        <p class="subscribe__description">-->
+<!--          이메일 구독을 통해 Kick The World의 소식을 전해드립니다.-->
+<!--        </p>-->
+
+<!--        <form action="" class="subscribe__form">-->
+<!--          <input type="text" placeholder="이메일을 입력하세요" class="subscribe__input">-->
+<!--          <button class="button"> 구독하기 </button>-->
+<!--        </form>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </section>-->
+
+<!--  &lt;!&ndash; SPONSOR &ndash;&gt;-->
+<!--  <section class="sponsor section">-->
+<!--    <div class="sponsor__container container grid">-->
+
+<!--      &lt;!&ndash; PRROJECT &ndash;&gt;-->
+<!--      <div class="sponsor__content">-->
+<!--        <img th:src="@{images/main/s1.png}" alt="" class="sponsor__img">-->
+<!--      </div>-->
+<!--      <div class="sponsor__content">-->
+<!--        <img th:src="@{images/main/s2.png}" alt="" class="sponsor__img">-->
+<!--      </div>-->
+<!--      <div class="sponsor__content">-->
+<!--        <img th:src="@{images/main/s3.png}" alt="" class="sponsor__img">-->
+<!--      </div>-->
+<!--      <div class="sponsor__content">-->
+<!--        <img th:src="@{images/main/s4.png}" alt="" class="sponsor__img">-->
+<!--      </div>-->
+<!--      <div class="sponsor__content">-->
+<!--        <img th:src="@{images/main/s5.png}" alt="" class="sponsor__img">-->
+<!--      </div>-->
+<!--      &lt;!&ndash; CUSTOM &ndash;&gt;-->
+<!--      <div class="sponsor__content">-->
+<!--        <img th:src="@{images/main/sponsors1.png}" alt="" class="sponsor__img">-->
+<!--      </div>-->
+<!--      <div class="sponsor__content">-->
+<!--        <img th:src="@{images/main/sponsors2.png}" alt="" class="sponsor__img">-->
+<!--      </div>-->
+<!--      <div class="sponsor__content">-->
+<!--        <img th:src="@{images/main/sponsors3.png}" alt="" class="sponsor__img">-->
+<!--      </div>-->
+<!--      <div class="sponsor__content">-->
+<!--        <img th:src="@{images/main/sponsors4.png}" alt="" class="sponsor__img">-->
+<!--      </div>-->
+<!--      <div class="sponsor__content">-->
+<!--        <img th:src="@{images/main/sponsors5.png}" alt="" class="sponsor__img">-->
+<!--      </div>-->
+
+<!--    </div>-->
+<!--  </section>-->
+</main>
+
+<!-- FOOTER -->
+<footer class="footer section">
+  <div class="footer__container container grid">
+    <div class="footer__content grid">
+      <div class="footer__data">
+        <h3 class="footer__title">Developer</h3>
+        <div>
+          <a href="https://www.facebook.com/" target="_blank" class="footer__social">
+            <span class="footer__name">김은정</span><i class="ri-github-fill"></i>
+          </a>
+          <a href="https://twitter.com/" target="_blank" class="footer__social">
+            <span class="footer__name">박의연</span><i class="ri-github-fill"></i>
+          </a>
+        </div>
+      </div>
+
+
+      <div class="footer__data">
+        <h3 class="footer__subtitle">Company</h3>
+        <ul>
+          <li class="footer__item">
+            <a href="" class="footer__link">Team</a>
+          </li>
+          <li class="footer__item">
+            <a href="" class="footer__link">Plan y Pricing</a>
+          </li>
+          <li class="footer__item">
+            <a href="" class="footer__link">Become a member</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__rights">
+      <p class="footer__copy">&#169; 2023 Balance Booster. All rigths reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- SCROLL UP -->
+
+
+<!-- SCROLL REVEAL -->
+
+
+<!-- SWIPER JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<!-- MAIN JS -->
+<script th:src="@{js/main_test.js}"></script>

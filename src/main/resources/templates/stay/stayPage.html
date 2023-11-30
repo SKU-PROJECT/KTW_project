@@ -93,9 +93,9 @@
             <li class="main_list dropdown">
                 <a class="main" href="#">여행 정보</a>
                 <div class="dropdown-content">
+                    <a th:href="@{/main/trips}">여행지</a>
                     <a th:href="@{/stays}">숙소</a>
-                    <a th:href="@{/eaterys}">음식점 & 카페</a>
-                    <a th:href="@{/attractions}">관광 명소</a>
+                    <a th:href="@{/eaterys}">맛집</a>
                 </div>
             </li>
             <li class="main_list"><a class="main" href="/boards">메인게시판</a></li>
@@ -143,10 +143,9 @@
                         <option value="게스트하우스" th:selected="${param.category == '게스트하우스'}">게스트하우스</option>
                         <option value="기타" th:selected="${param.category == '기타'}">기타</option>
                     </select>
-                    </li>
-                      <li class="searchPanel">
-                      <button type="submit">검색</button>
-                      </li>
+
+                    </li>  <button type="submit">검색</button>
+
 <!--                    <li class="searchPanel">-->
 <!--                        <p>숙박일</p>-->
 <!--                        <label >-->
@@ -174,15 +173,12 @@
 <div class="card-container">
     <div class="card" th:each="stay : ${stays}">
         <a th:href="@{/stays/{id}(id=${stay.stay_id})}">
-            <img class="image2" th:src="@{/images/신라스테이.webp}" ></a>
         <h2 th:text="${stay.name}"></h2>
         <p th:text="${stay.category}"></p>
         <p th:text="${stay.address}"></p>
 
     </a></div>
 </div>
-
-
 <!--페이징 처리-->
 <!--<div th:if="${!stays.isEmpty()}">-->
 <!--    <ul class="pagination justify-content-center">-->

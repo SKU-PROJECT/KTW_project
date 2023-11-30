@@ -41,21 +41,21 @@ public class TripRepositoryCustomImpl implements TripRepositoryCustom {
         return StringUtils.isEmpty(searchQuery) ? null : QTrip.trip.name.like("%" + searchQuery + "%");
     }
 
-    //조건 쿼리로 페이징된 페이지
-    @Override
-    public Page<Trip> getMainTripPage(TripSearchDto tripSearchDto, Pageable pageable) {
-        QueryResults<Trip> results = queryFactory
-                .selectFrom(QTrip.trip)
-                .where(searchByLike(tripSearchDto.getSearchBy(), tripSearchDto.getSearchQuery()))
-                .orderBy(QTrip.trip.id.desc())
-                .offset(pageable.getOffset())
-                .limit(pageable.getPageSize())
-                .fetchResults();
-
-        List<Trip> content = results.getResults();
-        long total = results.getTotal();
-        return new PageImpl<>(content, pageable, total);
-    }
+//    //조건 쿼리로 페이징된 페이지
+//    @Override
+//    public Page<Trip> getMainTripPage(TripSearchDto tripSearchDto, Pageable pageable) {
+//        QueryResults<Trip> results = queryFactory
+//                .selectFrom(QTrip.trip)
+//                .where(searchByLike(tripSearchDto.getSearchBy(), tripSearchDto.getSearchQuery()))
+//                .orderBy(QTrip.trip.id.desc())
+//                .offset(pageable.getOffset())
+//                .limit(pageable.getPageSize())
+//                .fetchResults();
+//
+//        List<Trip> content = results.getResults();
+//        long total = results.getTotal();
+//        return new PageImpl<>(content, pageable, total);
+//    }
 
     @Override
     public Page<MainItemDto> getTripPage (TripSearchDto tripSearchDto, Pageable pageable) {
@@ -67,6 +67,7 @@ public class TripRepositoryCustomImpl implements TripRepositoryCustom {
                 new QMainItemDto(
                         trip.id,
                         trip.name,
+                        trip.address,
                         tripImg.imgUrl)
         )
                 .from(tripImg)
