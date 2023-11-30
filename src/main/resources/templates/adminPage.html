@@ -38,9 +38,9 @@
       <li class="main_list dropdown">
         <a class="main" href="#">여행 정보</a>
         <div class="dropdown-content">
+          <a th:href="@{/main/trips}">여행지</a>
           <a th:href="@{/stays}">숙소</a>
-          <a th:href="@{/eaterys}">음식점 & 카페</a>
-          <a th:href="@{/attracions}">관광 명소</a>
+          <a th:href="@{/eaterys}">맛집</a>
         </div>
       </li>
       <li class="main_list"><a class="main" href="/boards">메인게시판</a></li>
@@ -65,11 +65,12 @@
 <div class="button">
   <h2>AdminPage</h2>
   <hr class="my-4">
-  <div class="button"></div>
-  <button type="button" th:onclick="|location.href='@{/admin/stays}'|">숙소관리</button>
+  <div style="text-align:center;"></div>
+  <button type="button" th:onclick="|location.href='@{/admin/stays}'|">숙소 전체 관리</button>
   <button type="button" id="stay-create-btn" th:onclick="|location.href='@{/stays/create}'|">숙소등록</button>
   <button type="button" th:onclick="|location.href='@{/admin/trip/new}'|">여행지등록</button>
   <button>음식점 등록</button>
+  <button>회원 관리</button>
 </div>
 </div>
 
