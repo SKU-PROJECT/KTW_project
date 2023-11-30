@@ -29,9 +29,10 @@
             <li class="main_list dropdown">
                 <a class="main" href="#">여행 정보</a>
                 <div class="dropdown-content">
+                    <a th:href="@{/main/trips}">여행지</a>
                     <a th:href="@{/stays}">숙소</a>
                     <a th:href="@{/eaterys}">음식점 & 카페</a>
-                    <a th:href="@{/attractions}">관광 명소</a>
+
                 </div>
             </li>
             <li class="main_list"><a class="main" href="/boards">메인게시판</a></li>
@@ -69,7 +70,7 @@
                 <td>
                     <a th:href="@{/stays/{id}(id=${stay.stay_id})}" th:text="${stay.name}"></a>
                 </td>
-                <td th:text="${stay.staySellStatus == T(com.example.kicktheworld_test.Stay.Constant.StaySellStatus).SELL} ? '예약가능' : '예약마감'"></td>
+                <td th:text="${stay.staySellStatus == T(com.example.Stay.Constant.StaySellStatus).SELL} ? '예약가능' : '예약마감'"></td>
 <!--                <td th:text="${stay.createdBy}"></td>-->
                 <td th:text="${stay.regTime}"></td>
             </tr>

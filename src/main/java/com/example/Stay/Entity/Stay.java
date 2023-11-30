@@ -1,6 +1,6 @@
 package com.example.Stay.Entity;
 
-import com.example.Cart.Exception.OutOfStockException;
+import com.example.Order.Exception.OutOfStockException;
 import com.example.Stay.Constant.StaySellStatus;
 import jakarta.persistence.*;
 import lombok.*;
@@ -54,6 +54,9 @@ public class Stay {
     @LastModifiedDate
     @Column(name = "update_time")
     private LocalDateTime updateTime;       //수정시간
+
+
+
 
     public void removeStay(int stayday) {
         int restStay = this.stayday - stayday;
