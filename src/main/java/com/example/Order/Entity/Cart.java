@@ -1,4 +1,4 @@
-package com.example.Cart.Entity;
+package com.example.Order.Entity;
 
 import com.example.Security.entity.Member;
 import jakarta.persistence.*;
