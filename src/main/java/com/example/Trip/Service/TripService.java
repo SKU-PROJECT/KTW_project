@@ -82,10 +82,10 @@ public class TripService {
 
 
     // main/trips/
-    @Transactional
-    public Page<Trip> getMainTripPage(TripSearchDto tripSearchDto, Pageable pageable) {
-        return tripRepository.getMainTripPage(tripSearchDto, pageable) ;
-    }
+//    @Transactional
+//    public Page<Trip> getMainTripPage(TripSearchDto tripSearchDto, Pageable pageable) {
+//        return tripRepository.getMainTripPage(tripSearchDto, pageable) ;
+//    }
 
     @Transactional
     public Page<MainItemDto> getTripPage(TripSearchDto tripSearchDto, Pageable pageable) {

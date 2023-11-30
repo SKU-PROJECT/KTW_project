@@ -11,6 +11,11 @@
     <link th:href="@{/css/stay.css}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
     <style>
+        h2{
+            font-family: 'Pretendard-Regular';
+            font-size: 20px;
+            text-align:left;
+        }
         .slider-container {
             position: relative;
             overflow: hidden;
@@ -118,9 +123,9 @@
             <li class="main_list dropdown">
                 <a class="main" href="#">여행 정보</a>
                 <div class="dropdown-content">
+                    <a th:href="@{/main/trips}">여행지</a>
                     <a th:href="@{/stays}">숙소</a>
                     <a th:href="@{/eaterys}">음식점 & 카페</a>
-                    <a th:href="@{/attractions}">관광 명소</a>
                 </div>
             </li>
             <li class="main_list"><a class="main" href="/boards">메인게시판</a></li>
@@ -151,8 +156,9 @@
 <!--            margin-right:auto;-->
 <!--            justify-content: center;-->
 <!--            text-align:center;">-->
-                <b><h2 th:text="${trip.name}" style="font-size:25px;"></h2></b>
+                <b><h2 th:text="${trip.name}" style="text-align:center;"></h2></b>
                 <hr class="my-4">
+                <h2>여행지 소개</h2><hr class="my-4">
                 <div style="background-color:lightgrey; border-radius:10px;">
                 <p th:text="${trip.detail}" ></p>
                 </div>
@@ -177,11 +183,14 @@
         <hr class="my-4">
 
         <div class="text-center">
-        <p><b>[위치] </b><span th:text="${trip.address}"></span></p>
+        <h2><b>위치 </b></h2>
+            <hr class="my-4">
             <div id="map" style="width:80%;height:300px; border-radius:10px; margin-left:auto; margin-right:auto;"></div>
+            <span th:text="${trip.address}"></span>
         </div>
         <hr class="my-4">
-
+        <h2>이용안내</h2>
+        <hr class="my-4">
         <div class="row">
             <div class="col-md-6">
                 <p><b>[문의 및 전화]</b><br> <span th:text="${trip.telephone}"></span></p>
