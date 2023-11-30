@@ -97,9 +97,9 @@
       <li class="main_list dropdown">
         <a class="main" href="#">여행 정보</a>
         <div class="dropdown-content">
+          <a th:href="@{/main/trips}">여행지</a>
           <a th:href="@{/stays}">숙소</a>
-          <a th:href="@{/eaterys}">음식점 & 카페</a>
-          <a th:href="@{/attractions}">관광 명소</a>
+          <a th:href="@{/eaterys}">맛집</a>
         </div>
       </li>
       <li class="main_list"><a class="main" href="/boards">메인게시판</a></li>
@@ -123,12 +123,12 @@
   </h2>
   <div th:each="order : ${orders.getContent()}">
     <div class="d-flex mb-3 align-self-center">
-      <h4 th:text="${order.orderDate} + ' 예약'"></h4>
+      <h4 th:text="${order.orderDate} + ' 예약 신청완료'"></h4>
       <div class="ml-3">
-        <div th:if="${order.orderStatus == T(com.example.kicktheworld_test.Cart.Constant.OrderStatus).ORDER}">
+        <div th:if="${order.orderStatus == T(com.example.Order.Constant.OrderStatus).ORDER}">
           <button type="button" class="btn btn-outline-dark" th:value="${order.orderId}" onclick="cancelOrder(this.value)">예약취소</button>
         </div>
-        <div th:unless="${order.orderStatus == T(com.example.kicktheworld_test.Cart.Constant.OrderStatus).ORDER}">
+        <div th:unless="${order.orderStatus == T(com.example.Order.Constant.OrderStatus).ORDER}">
           <h4>(취소 완료)</h4>
         </div>
        </div>
@@ -142,9 +142,9 @@
         <div class="align-self-center w-75">
           <span th:text="${orderItem.name}" class="fs24 font-weight-bold"></span>
           <div class="fs18 font-weight-light">
-            <span th:text="${orderItem.orderPrice} +'원'"></span>
-            <span th:text="${orderItem.count} +'개'"></span>
+            결제 금액: <span th:text="${orderItem.orderPrice * orderItem.count} +'원'"></span>
           </div>
+
         </div>
       </div>
     </div>
@@ -152,23 +152,19 @@
 
   <div th:with="start=${(orders.number/maxPage)*maxPage + 1}, end=(${(orders.totalPages == 0) ? 1 : (start + (maxPage - 1) < orders.totalPages ? start + (maxPage - 1) : orders.totalPages)})" >
     <ul class="pagination justify-content-center">
-
       <li class="page-item" th:classappend="${orders.number eq 0}?'disabled':''">
         <a th:href="@{'/orders/' + ${orders.number-1}}" aria-label='Previous' class="page-link">
           <span aria-hidden='true'>Previous</span>
         </a>
       </li>
-
       <li class="page-item" th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${orders.number eq page-1}?'active':''">
         <a th:href="@{'/orders/' + ${page-1}}" th:inline="text" class="page-link">[[${page}]]</a>
       </li>
-
       <li class="page-item" th:classappend="${orders.number+1 ge orders.totalPages}?'disabled':''">
         <a th:href="@{'/orders/' + ${orders.number+1}}" aria-label='Next' class="page-link">
           <span aria-hidden='true'>Next</span>
         </a>
       </li>
-
     </ul>
   </div>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>

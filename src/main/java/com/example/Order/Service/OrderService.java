@@ -1,11 +1,11 @@
-package com.example.Cart.Service;
+package com.example.Order.Service;
 
-import com.example.Cart.Dto.OrderDto;
-import com.example.Cart.Dto.OrderHistDto;
-import com.example.Cart.Dto.OrderItemDto;
-import com.example.Cart.Entity.Order;
-import com.example.Cart.Entity.OrderItem;
-import com.example.Cart.Repository.OrderRepository;
+import com.example.Order.Dto.OrderDto;
+import com.example.Order.Dto.OrderHistDto;
+import com.example.Order.Dto.OrderItemDto;
+import com.example.Order.Entity.Order;
+import com.example.Order.Entity.OrderItem;
+import com.example.Order.Repository.OrderRepository;
 import com.example.Security.entity.Member;
 import com.example.Security.repository.MemberRepository;
 import com.example.Stay.Entity.Stay;
@@ -31,6 +31,7 @@ public class OrderService {
     private final OrderRepository orderRepository;
 
 
+    // 예약
     public Long order(OrderDto orderDto, String memId) {
 
         Stay stay = stayRepository.findById(orderDto.getStay_id())    // 예약할 숙소를 조회
@@ -47,6 +48,9 @@ public class OrderService {
 
         return order.getId();
     }
+
+
+    //예약한 숙소 리스트
     @Transactional
     public Page<OrderHistDto> getOrderList(String memId, Pageable pageable) {
 

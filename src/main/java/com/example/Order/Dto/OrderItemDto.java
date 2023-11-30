@@ -1,6 +1,6 @@
-package com.example.Cart.Dto;
+package com.example.Order.Dto;
 
-import com.example.Cart.Entity.OrderItem;
+import com.example.Order.Entity.OrderItem;
 import lombok.Getter;
 import lombok.Setter;
 

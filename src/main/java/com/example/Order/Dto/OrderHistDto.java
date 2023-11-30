@@ -1,7 +1,7 @@
-package com.example.Cart.Dto;
+package com.example.Order.Dto;
 
-import com.example.Cart.Constant.OrderStatus;
-import com.example.Cart.Entity.Order;
+import com.example.Order.Constant.OrderStatus;
+import com.example.Order.Entity.Order;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,9 +19,9 @@ public class OrderHistDto {
         this.orderStatus = order.getOrderStatus();
     }
 
-    private Long orderId; //주문아이디
-    private String orderDate; //주문날짜
-    private OrderStatus orderStatus; //주문 상태
+    private Long orderId; //예약아이디
+    private String orderDate; //예약날짜
+    private OrderStatus orderStatus; //예약 상태
 
     private List<OrderItemDto> orderItemDtoList = new ArrayList<>();
 

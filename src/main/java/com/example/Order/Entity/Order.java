@@ -1,7 +1,7 @@
-package com.example.Cart.Entity;
+package com.example.Order.Entity;
 
 
-import com.example.Cart.Constant.OrderStatus;
+import com.example.Order.Constant.OrderStatus;
 import com.example.Security.entity.Member;
 import jakarta.persistence.*;
 import lombok.Getter;

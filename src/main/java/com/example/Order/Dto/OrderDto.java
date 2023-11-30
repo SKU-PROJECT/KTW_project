@@ -1,4 +1,4 @@
-package com.example.Cart.Dto;
+package com.example.Order.Dto;
 
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;

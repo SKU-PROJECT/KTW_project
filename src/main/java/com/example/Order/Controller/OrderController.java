@@ -1,8 +1,8 @@
-package com.example.Cart.Controller;
+package com.example.Order.Controller;
 
-import com.example.Cart.Dto.OrderDto;
-import com.example.Cart.Dto.OrderHistDto;
-import com.example.Cart.Service.OrderService;
+import com.example.Order.Dto.OrderDto;
+import com.example.Order.Dto.OrderHistDto;
+import com.example.Order.Service.OrderService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -58,6 +58,7 @@ public class OrderController {
 
         return new ResponseEntity<Long>(orderId, HttpStatus.OK);
     }
+
     // 사용자가 로그인되어 있지 않은 경우 로그인 폼으로 리다이렉트하는 메서드
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
     public ModelAndView redirectToLoginForm() {

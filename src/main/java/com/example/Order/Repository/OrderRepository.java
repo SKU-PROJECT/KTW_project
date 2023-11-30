@@ -1,6 +1,6 @@
-package com.example.Cart.Repository;
+package com.example.Order.Repository;
 
-import com.example.Cart.Entity.Order;
+import com.example.Order.Entity.Order;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
